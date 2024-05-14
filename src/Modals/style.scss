@@ -1,0 +1,9 @@
+.form-conatiner{
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    gap: 10px;
+    select{
+        width: 200px;
+        margin-top: 40px;
+    }
+}

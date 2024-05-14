@@ -1,0 +1,961 @@
+/** @format */
+@media screen and (min-width: 780px) and (max-width: 1500px) {
+  .HocSection {
+    min-height: 880px;
+  }
+  .UserSideBar {
+    height: 940px;
+  }
+  .HocNav {
+    width: 77%;
+  }
+  .homeThreeSec {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+  .secondScreen {
+    min-height: 550px;
+  }
+  .seventScreen .right {
+    width: 30%;
+  }
+  .seventScreen .seventScreenFivth .threeSec img {
+    width: 100px;
+  }
+  .seventScreen .seventScreenFivth .threeSec .centerONe h3 {
+    font-size: 23px;
+    margin: 0;
+  }
+  .seventScreen .seventScreenFivth .threeSec .centerONe h4 {
+    font-size: 20px;
+    margin: 0;
+  }
+  .seventScreen .seventScreenFivth .threeSec .centerONe h5 {
+    font-size: 18px;
+    margin: 0;
+  }
+  .seventScreen .seventScreenFivth .threeSec .centerONe .twoTwo h6 {
+    font-size: 16px;
+    margin: 0;
+  }
+  .seventScreen .seventScreenFivth .threeSec .centerONe .twoTwo img {
+    width: 60px;
+  }
+  .seventScreen .seventScreenFivth .threeSec .centerONe h6 {
+    font-size: 14px;
+    margin: 0;
+  }
+  .seventScreen .seventScreenFivth .threeSec .RightONe h4 {
+    font-size: 16px;
+    margin: 0 !important;
+  }
+  .seventScreen .seventScreenFivth .threeSec .RightONe h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 !important;
+  }
+
+  .seventScreen .seventScreenFivth .threeSec .RightONe button {
+    margin-top: 10px;
+    font-size: 16px;
+    padding: 0px;
+    width: 100px;
+    border-radius: 0px;
+  }
+  .homeThreeSec .second .under .two i {
+    margin-top: 10px;
+  }
+  .homeThreeSec .second .under .two img {
+    margin-top: 10px;
+  }
+  .homeThreeSec .second .under .two p {
+    margin-top: 7px;
+  }
+  .homeThreeSec .main .first img {
+    margin-top: 0px;
+  }
+  .seventScreen .left .mid .centerDiv {
+    width: 400px;
+  }
+  .newUU {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 10px;
+    margin-bottom: 50px !important;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 900px) {
+  .nav {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+  }
+  .nav .left img {
+    width: 120px;
+    margin-top: 12px;
+  }
+  .nav .left ul {
+    gap: 20px;
+  }
+  .nav .left ul li {
+    font-size: 20px;
+    margin-right: 20px;
+    margin-right: 0;
+  }
+  .nav .left .specialNavList {
+    min-width: 100px;
+  }
+
+  .nav .left .search {
+    margin-left: 0px;
+    display: none;
+  }
+  .nav .right button {
+    margin-top: 20px;
+  }
+
+  .homeThreeSec {
+    grid-template-columns: auto auto;
+    padding-bottom: 10%;
+  }
+  .HomeThreeSec p {
+    max-width: 200px;
+  }
+  .footer .upper {
+    grid-template-columns: auto auto;
+  }
+
+  .LocationModal .search {
+    max-width: 300px !important;
+  }
+  .LocationModal .sixSec {
+    grid-template-columns: auto auto auto;
+  }
+  .LocationModal .fourSec {
+    grid-template-columns: auto auto;
+  }
+
+  .consultationModal {
+    display: block;
+  }
+  .consultationModal .left {
+    width: 100%;
+    border-radius: 0px;
+    height: 400px;
+    margin-right: 0;
+  }
+  .consultationModal .right {
+    width: 100%;
+  }
+
+  .CallBackForm form .main {
+    width: 90%;
+  }
+  .CallBackForm form .Bigmain textarea {
+    width: 80% !important;
+  }
+  .CallBackForm form button {
+    margin-left: 5%;
+    margin-bottom: 5%;
+  }
+
+  .ServiceModalTwo {
+    display: block;
+  }
+  .ServiceModalTwo .main .two-sec {
+    display: block;
+  }
+  .ServiceModalTwo .main .two-sec ul li {
+    margin-top: 10px;
+    text-align: left;
+  }
+
+  .ServiceModalTwo .secondMain {
+    margin-top: 20px;
+  }
+
+  .consultationModal .consultationRight {
+    margin-top: 0 !important;
+  }
+  .consultationModal .consultationRight .head {
+    margin-top: 0;
+    padding-top: 20px;
+  }
+  .consultationModal .consultationRight .fa-x {
+    top: 20px;
+    right: 20px;
+  }
+  .consultationModal .consultationRight .threeSec {
+    padding-bottom: 30px;
+  }
+
+  .secondScreenTwo-Sec {
+    max-width: 800px !important;
+    gap: 0px !important;
+  }
+  .secondScreenTwo-Sec .left {
+    width: 40%;
+    height: 200px;
+  }
+  .secondScreenTwo-Sec .right {
+    width: 50%;
+  }
+
+  .secondScreenTwo2 {
+    max-width: 800px;
+  }
+  .secondScreenThreeSec {
+    gap: 20px;
+  }
+
+  .secondScreenThreeSec p {
+    max-width: 400px;
+  }
+
+  .seventScreen .right {
+    width: 35%;
+  }
+
+  .eightThird {
+    gap: 20px;
+  }
+  .eightThird .left {
+    width: 40%;
+  }
+  .eightThird .right {
+    width: 50%;
+  }
+  .thirdScreenFirst img {
+    width: 80%;
+    top: 30%;
+  }
+  .thirdScreenSecond {
+    display: block;
+    width: 100%;
+    margin: auto;
+  }
+  .thirdScreenSecond .left .head {
+    text-align: center !important;
+    max-width: 1000px;
+  }
+  .thirdScreenSecond .left .desc {
+    text-align: center;
+    max-width: 700px;
+    margin: auto;
+    margin-top: 20px;
+  }
+  .thirdScreenSecond .left .btn {
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+  }
+  .thirdScreenSecond img {
+    display: block;
+    margin: auto;
+  }
+  .FourthScreenFirst .main {
+    max-width: 280px;
+  }
+  .FourthScreenFirst .main img {
+    width: 100%;
+  }
+  .FourthScreen .right input {
+    width: 400px;
+    margin-left: 190px;
+  }
+  .FourthScreenSecond {
+    grid-template-columns: auto auto;
+  }
+  .FourthScreenSecond .main {
+    margin-top: 20px;
+    width: 400px;
+    height: 300px;
+  }
+  .FourthScreenFirst .main .two-sec {
+    margin-bottom: 0px;
+  }
+  .FourthScreenFirst {
+    height: 200px;
+  }
+  .FourthScreenFirst .main {
+    left: 25%;
+    max-width: 400px;
+    top: 30%;
+  }
+  .main2 {
+    max-width: 400px !important;
+    width: 400px !important;
+    height: 275px !important;
+    left: 75% !important;
+  }
+  .FourthScreenthird .one .MainBig {
+    grid-template-columns: auto auto;
+  }
+  .FourthScreenthird .one .MainBig .main {
+    width: 400px;
+    height: 300px;
+    margin-top: 20px;
+  }
+  .fifthScreen .left {
+    width: 40%;
+  }
+  .fifthScreen .right {
+    width: 45%;
+  }
+  .fifthScreen {
+    background-repeat: repeat-y;
+    background-size: cover;
+  }
+
+  .sixthScreen {
+    background-size: cover;
+  }
+  .HocSide {
+    display: none;
+  }
+  .HocNav {
+    width: 100%;
+    left: 0;
+  }
+  .UserNav .left .fa-bars {
+    display: block;
+    font-size: 25px;
+    margin-top: 7px;
+    cursor: pointer;
+  }
+  .UserNav .left {
+    display: flex;
+    gap: 30px;
+  }
+  .UserNav .mid input {
+    width: 150px;
+  }
+  .UserNav .mid button {
+    width: 150px;
+  }
+
+  .UserSideBar {
+    width: 100%;
+  }
+  .centerNinthHeading {
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+  .NinthFirst .left {
+    width: 53%;
+  }
+  .NinthFirst .left .two-sec {
+    height: 240px;
+    padding-top: 20px;
+  }
+
+  .NinthFirst .rightFirst {
+    width: 45%;
+    margin-right: 20px;
+  }
+  .twelveFirst {
+    display: flex;
+  }
+  .twelveFirst .left {
+    width: 45%;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 760px) {
+  .nav {
+    justify-content: space-between;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+  .nav .left ul {
+    display: none;
+  }
+  .nav .left .search {
+    display: none;
+  }
+  .nav .right button {
+    display: none;
+  }
+  .nav .left img {
+    width: 120px;
+  }
+  .nav .right .fa-bars {
+    display: block;
+    font-size: 23px;
+    cursor: pointer;
+    margin-top: 7px;
+  }
+  .carouselPrev {
+    width: 30px !important;
+    left: 93%;
+    height: 30px;
+  }
+
+  .carouselNext {
+    width: 30px !important;
+    left: 6%;
+    height: 30px;
+  }
+
+  .home2btn {
+    width: 95%;
+    margin-top: 5%;
+  }
+
+  .home2btn button {
+    font-size: 16px;
+  }
+
+  .homeThreeSec {
+    grid-template-columns: auto;
+    max-height: 620px;
+    overflow-y: auto;
+    padding-top: 50px;
+  }
+  .HomeCenterInput {
+    max-width: 400px;
+    margin-top: 10%;
+    margin-bottom: 5%;
+  }
+  .HomeThreeSec {
+    grid-template-columns: auto;
+  }
+  .homeFistSec {
+    max-width: 90%;
+  }
+  .homeFistSec .two-btn {
+    display: block;
+  }
+  .homeFistSec .two-btn button {
+    width: 100%;
+    height: 100%;
+    padding: 8px;
+    margin-top: 10px;
+  }
+  .footer .upper {
+    grid-template-columns: auto auto;
+    text-align: left;
+    justify-content: space-evenly;
+  }
+  .footer .upper .head {
+    font-size: 28px;
+  }
+  .footer .upper ul li {
+    font-size: 15px;
+  }
+  .footer .upper .desc {
+    font-size: 15px;
+  }
+  .footer .upper div .specialHead {
+    text-align: center;
+  }
+  .footer .upper div img {
+    width: 150px;
+    display: block;
+    margin: auto;
+  }
+  .footer .upper .downWard .head {
+    text-align: center;
+  }
+
+  .consultationModal {
+    display: block;
+    max-height: 600px;
+    overflow: auto;
+  }
+  .consultationModal .left {
+    width: 100%;
+    height: 400px;
+    padding-top: 0;
+    border-radius: 0;
+  }
+  .consultationModal .left .head {
+    padding-top: 20px;
+  }
+  .consultationModal .right {
+    width: 100%;
+  }
+  .CallBackForm form .main {
+    width: 90%;
+  }
+  .consultationModal .right .fa-x {
+    top: 0;
+  }
+  .CallBackForm form .Bigmain {
+    width: 100%;
+  }
+  .CallBackForm form .Bigmain textarea {
+    width: 90%;
+  }
+  .CallBackForm form button {
+    width: 80%;
+    margin-bottom: 5%;
+  }
+
+  .LocationModal {
+    max-height: 600px;
+    overflow: auto;
+  }
+  .LocationModal .search {
+    max-width: 400px;
+  }
+  .LocationModal .search i {
+    margin-top: 2px;
+    margin-right: 10px;
+  }
+  .LocationModal .sixSec {
+    grid-template-columns: auto auto auto;
+  }
+  .LocationModal .fourSec {
+    grid-template-columns: auto auto;
+  }
+
+  .ServiceModalTwo {
+    display: block;
+    max-height: 600px;
+    overflow: auto;
+  }
+  .ServiceModalTwo .main {
+    margin-top: 20px;
+  }
+  .ServiceModalTwo .main .head {
+    font-size: 28px;
+  }
+  .consultationModal .consultationRight {
+    margin-top: 0 !important;
+    padding-bottom: 5%;
+  }
+
+  .consultationModal .consultationRight .head {
+    margin-top: 0px;
+    padding-top: 20px;
+  }
+  .consultationModal .consultationRight .fa-x {
+    top: 20px;
+  }
+  .secondScreen {
+    background-size: cover;
+    display: block;
+    padding-bottom: 20%;
+  }
+  .secondScreen .right form {
+    width: 90%;
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+  }
+  .secondScreen .left .head {
+    text-align: center;
+  }
+  .secondScreen .left .desc {
+    text-align: center;
+    display: block;
+    margin: auto;
+  }
+  .secondScreen .left .two-sec {
+    margin-top: 4%;
+  }
+  .secondScreen .right form button {
+    width: 80%;
+  }
+  .secondScreenTwo-Sec {
+    display: block;
+  }
+  .secondScreenTwo-Sec .left {
+    display: block;
+    margin: auto;
+  }
+  .secondScreenTwo-Sec .right .main {
+    max-width: 450px;
+    margin: auto;
+    margin-top: 20px;
+    align-items: center;
+  }
+  .secondScreenTwo-Sec .right .main div .second {
+    max-width: 100%;
+  }
+  .secondScreenTwo2 {
+    display: block;
+    text-align: center;
+  }
+  .secondScreenTwo2 p {
+    max-width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .secondScreenTwo2 .right {
+    margin-top: 20px;
+  }
+  .secondScreenThreeSec {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-evenly;
+    gap: 20px;
+  }
+  .secondScreenThreeSec button {
+    grid-column: 1 / span 2 !important;
+    justify-self: center !important;
+  }
+
+  .seventScreen {
+    display: block;
+  }
+  .seventScreen .left {
+    width: 90%;
+    display: block;
+    margin: auto;
+  }
+
+  .seventScreen .seventScreenFivth .threeSec {
+    grid-template-columns: auto auto;
+    gap: 20px;
+    align-items: center !important;
+    justify-content: space-evenly;
+  }
+  .seventScreen .seventScreenFivth .threeSec .RightONe {
+    grid-column: 1 / span 2 !important;
+    justify-self: end !important;
+    text-align: left;
+  }
+
+  .seventScreen .seventScreenFivth .threeSec .centerONe h3 {
+    font-size: 20px;
+    margin: 0;
+    margin-bottom: 0 !important;
+  }
+  .seventScreen .seventScreenFivth .threeSec img {
+    width: 120px;
+  }
+  .seventScreen .seventScreenFivth .threeSec .centerONe h4 {
+    font-size: 18px;
+    margin: 0;
+    margin-top: 0 !important;
+  }
+  .seventScreen .seventScreenFivth .threeSec .centerONe h5 {
+    font-size: 16px;
+    margin: 0;
+    margin-top: 0 !important;
+  }
+  .seventScreen .seventScreenFivth .threeSec .centerONe .twoTwo h6 {
+    font-size: 14px;
+  }
+  .seventScreen .seventScreenFivth .threeSec .centerONe .twoTwo img {
+    width: 70px;
+  }
+  .seventScreen .seventScreenFivth .threeSec .centerONe h6 {
+    font-size: 16px;
+    margin: 0;
+  }
+  .seventScreen .seventScreenFivth .threeSec .RightONe h4 {
+    font-size: 20px;
+    margin: 0;
+  }
+  .seventScreen .seventScreenFivth .threeSec .RightONe h2 {
+    font-size: 22px;
+    margin: 0 !important;
+  }
+  .seventScreen .seventScreenFivth .threeSec .RightONe button {
+    margin-top: 5px;
+    font-size: 20px;
+    line-height: 35px;
+    color: #ffffff;
+    background: #0f2c64;
+    border-radius: 11.6451px;
+    border: 1px solid #0f295a;
+    padding: 10px;
+    bottom: 0;
+    width: 180px;
+  }
+  .seventScreen .right {
+    width: 90%;
+    display: block;
+    margin: auto;
+  }
+
+  .eightSecond {
+    width: 90%;
+  }
+  .eightThird {
+    display: block;
+  }
+  .eightThird .left {
+    width: 90%;
+    display: block;
+    margin: auto;
+  }
+  .eightThird .right {
+    display: block;
+    margin: auto;
+    width: 90%;
+    margin-top: 20px;
+  }
+  .Navbar2 .mid {
+    display: none;
+  }
+  .Navbar2 .right button {
+    display: none;
+  }
+
+  .Navbar2 .right .fa-bars {
+    display: block;
+    font-size: 25px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+  .thirdScreenBanner {
+    background-size: cover;
+    padding-bottom: 25%;
+  }
+  .thirdScreenBanner .main .head {
+    font-size: 28px;
+  }
+  .thirdScreenBanner .main .desc {
+    width: 80%;
+    display: block;
+    margin: auto;
+  }
+  .thirdScreenBanner p {
+    margin: 0;
+  }
+  .thirdScreenFirst {
+    height: 200px;
+  }
+  .thirdScreenFirst img {
+    width: 350px;
+    top: 12%;
+  }
+
+  .thirdScreenSecond {
+    display: block;
+  }
+  .thirdScreenSecond img {
+    width: 350px;
+    display: block !important;
+    margin: auto;
+  }
+  .secondScreenThreeSec {
+    display: block !important;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .fifthScreen {
+    background-size: cover;
+    display: block;
+    padding-bottom: 25%;
+  }
+  .fifthScreen .left img {
+    display: block;
+    margin: auto;
+  }
+  .fifthScreen .right {
+    margin-top: 20px;
+  }
+
+  .sixthScreen {
+    background-size: cover;
+    text-align: center;
+    padding-bottom: 25%;
+  }
+  .sixthScreen p {
+    display: block;
+    margin: auto;
+    width: 90%;
+    margin-top: 10px;
+  }
+  .sixthScreenSecond button {
+    min-width: 150px;
+  }
+
+  .HocSide {
+    display: none;
+  }
+  .HocNav {
+    width: 100%;
+    left: 0;
+  }
+  .UserNav .left .fa-bars {
+    display: block;
+    font-size: 25px;
+    margin-top: 7px;
+    cursor: pointer;
+  }
+  .UserNav .left {
+    display: flex;
+    gap: 30px;
+    justify-content: flex-start;
+  }
+  .UserNav .mid {
+    height: 30px;
+  }
+  .UserNav .mid .fa-magnifying-glass {
+    display: none;
+  }
+  .UserNav .mid .fa-filter {
+    border: none;
+  }
+  .UserNav .mid input {
+    display: none;
+  }
+  .UserNav .mid button {
+    width: 131px;
+  }
+  .UserNav .right {
+    display: none;
+  }
+
+  .UserSideBar {
+    width: 100%;
+  }
+  .centerNinthHeading {
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+
+  .NinthFirst {
+    display: block;
+  }
+  .NinthFirst .left {
+    width: 100%;
+    height: 300px;
+  }
+  .NinthFirst .left .two-sec {
+    height: 300px;
+    padding-top: 20px;
+  }
+
+  .NinthFirst .rightFirst {
+    width: 90%;
+    display: block;
+    margin: auto;
+    max-height: 400px;
+    margin-top: 5%;
+  }
+  .twelveFirst {
+    display: block;
+  }
+  .twelveFirst .left {
+    width: 90%;
+    display: block;
+    margin: auto;
+    height: 500px;
+  }
+
+  .twelveFirst .right {
+    width: 90%;
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    max-height: 300px;
+    overflow: auto;
+  }
+
+  .homeThreeSec .main {
+    width: 90%;
+    display: block;
+    margin: auto;
+  }
+  .HomeCenterInput {
+    width: 90%;
+  }
+
+  .consultationModal .right .threeSec {
+    grid-template-columns: auto auto;
+  }
+
+  .LocationModal .sixSec {
+    grid-template-columns: auto auto;
+  }
+
+  .paymentImage {
+    max-width: 100%;
+  }
+
+  .secondScreenTwo-Sec .left {
+    width: 90%;
+  }
+
+  .SignInModal form .icons {
+    display: block;
+  }
+  .SignInModal form .icons div {
+    width: 80%;
+    margin-top: 20px;
+    padding-top: 10px;
+  }
+
+  .FourthScreenFirst {
+    display: none;
+  }
+  .FourthScreenSecond {
+    display: block;
+  }
+  .FourthScreenSecond .main {
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+  }
+  .FourthScreenthird .one .MainBig {
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+  }
+  .FourthScreenthird .one .MainBig .main {
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+  }
+  .FourthScreenthird .one h3 {
+    text-align: center;
+    margin-left: 0;
+  }
+  .FourthScreen .right input {
+    background-color: #ffffff;
+  }
+
+  .fifthScreen .right {
+    width: 90%;
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+  }
+
+  .filterModal button {
+    width: 90%;
+  }
+  .homeThreeSec .second .under .two{
+    gap: 5px;
+  }
+  .homeThreeSec .second .under .two i {
+   margin-top:3px;
+  }
+  .homeThreeSec .second .under .two img {
+    margin-top: 3px;
+  }
+  .logoImage{
+    width: 150px !important;
+    height: 80px;
+  }
+  .home2btn{
+    margin-top: 5% !important;
+  }
+  .home2btn button{
+    font-size: 14px;
+    padding: 0;
+  }
+  .carouselPrev{
+    left: 88%;
+  }
+  .carouselNext{
+    left: 10%;
+  }
+  .homeThreeSec .main .first img{
+    margin-top: 10px;
+  }
+
+}
