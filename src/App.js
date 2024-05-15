@@ -14,6 +14,9 @@ import ThirdScreen from './Screens/ThirdScreen'
 import ThirteenScree from './Screens/ThirteenScree'
 import TwelveScreen from './Screens/TwelveScreen'
 import PrivateRoutes from './utils/PrivateRoutes'
+import MyCasesLawyer from './Screens/Lawyer/MyCasesLawyer'
+import HearingLawyer from './Screens/Lawyer/HearingLawyer'
+import Document from './Screens/Lawyer/Document'
 
 const App = () => {
   return (
@@ -26,6 +29,9 @@ const App = () => {
         <Route path='/eleven' element={<ElevenScreen />} />
         <Route path='/twelve' element={<TwelveScreen />} />
         <Route path='/thirteen' element={<ThirteenScree />} />
+        <Route path='/mycase' element={<MyCasesLawyer />} />
+        <Route path='/hearing' element={<HearingLawyer />} />
+        <Route path='/documents' element={<Document />} />
   
         </Route>
         <Route path='/' element={<HomeScreen />} />

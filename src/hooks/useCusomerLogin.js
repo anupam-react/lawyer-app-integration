@@ -53,14 +53,15 @@ const useCusomerLogin = () => {
     };
     try {
       const response = await axios.post(
-        "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/login",
+        "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/signin",
         formData
       );
       console.log(response?.data);
       sessionStorage.setItem("token", response?.data?.accessToken);
-      navigate("/ninth");
+      navigate("/mycase");
     } catch (error) {
       console.log(error);
+      navigate("/mycase");
       return error;
     }
   };

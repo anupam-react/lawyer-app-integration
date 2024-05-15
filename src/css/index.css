@@ -2466,7 +2466,7 @@ code {
 .UserSideBar {
   background: linear-gradient(180deg, #0f2c64 0%, #0d2450 100%);
   width: 300px;
-  min-height: 100vh;
+  padding-bottom: 100px;
 }
 .UserSideBar .two-Sec {
   display: flex;
@@ -2549,6 +2549,10 @@ code {
 }
 
 .UserSideBar .lastOne {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
   margin-top: 20%;
 }
 
@@ -2568,7 +2572,7 @@ code {
 }
 .HocSection {
   position: relative;
-  min-height: 93vh;
+  height: 130vh;
 }
 .HocNav {
   position: absolute;
@@ -3090,8 +3094,8 @@ code {
 .thirteenSecond {
   background: none;
   margin-top: 0 !important;
-  padding-top: 20px;
-  max-height: 60vh;
+  padding: 20px;
+  max-height: 80vh;
   overflow: scroll;
 }
 .thirteenSecond .main {

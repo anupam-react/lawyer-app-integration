@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PaymentModal from "../../Modals/PaymentModal";
 
-const UserSide = () => {
+const LawyerSidebar = () => {
   const navigate = useNavigate();
   const [paymentModal, setPaymentModal] = useState(false);
 
@@ -43,14 +43,14 @@ const UserSide = () => {
           <div className="empty"></div>
         </div>
 
-        <button onClick={() => navigate("/ten")}>My Lawyers</button>
-        <button onClick={() => navigate("/ninth")}>
-          Upcoming Consultation
+        <button onClick={() => navigate("/mycase")}>My Cases</button>
+        <button onClick={() => navigate("/hearing")}>
+        Upcoming hearing
         </button>
-        <button onClick={() => navigate("/eleven")}>Instant Appointment</button>
-        <button onClick={() => navigate("/twelve")}> Saved Documents</button>
-        <button onClick={() => navigate("/ten")}>Book Appointment</button>
-        <button onClick={() => navigate("/thirteen")}>Legal Services</button>
+        <button onClick={() => navigate("/documents")}>Saved Documents</button>
+        <button onClick={() => navigate("/add-case")}>Add Cases</button>
+        <button onClick={() => navigate("/consultations")}>My Consultations</button>
+        <button onClick={() => navigate("/reminder")}>Set Reminder</button>
         <button className="lastOne">
         <img src="./Vector (6).png" alt="" />
         <div>
@@ -65,4 +65,4 @@ const UserSide = () => {
   );
 };
 
-export default UserSide;
+export default LawyerSidebar;
