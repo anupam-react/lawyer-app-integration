@@ -4,11 +4,13 @@ import App from './App';
 import './css/index.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/Responsive.css'
+import { ToastContainer } from 'react-toastify';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <App />
+    <ToastContainer />
   </React.StrictMode>
 );
 

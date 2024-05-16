@@ -1,15 +1,27 @@
 /** @format */
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import LawyerHOC from "./LawyerHOC";
 import "./style.scss";
 import CaseCard from "./CaseCard";
 import ConsultationCard from "./ConsultationCard";
+import { fetchApiData } from "../../utils";
 
 const MyCasesLawyer = () => {
+  const [allCases , setAllCases] = useState([])
+  const getAllCase = async ()=>{
+    const caseData = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/case/all')
+    setAllCases(caseData?.data)
+  }
+  useEffect(() => {
+    getAllCase()
+  }, []);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  console.log(allCases)
 
   return (
     <>
@@ -17,11 +29,11 @@ const MyCasesLawyer = () => {
         <div className="case-left">
           <h4 className="heading">My Cases</h4>
           <div className="box-container">
-            <CaseCard />
-            <CaseCard />
-            <CaseCard />
-            <CaseCard />
-            <CaseCard />
+            {allCases?.map((d, i)=>(
+              <div key={i}>
+              <CaseCard data={d}/>
+              </div>
+            ))}
           </div>
         </div>
 

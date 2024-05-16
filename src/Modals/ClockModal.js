@@ -1,6 +1,6 @@
 /** @format */
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import "react-clock/dist/Clock.css";
 import Clock from "react-clock";
@@ -8,6 +8,19 @@ import Note from "./Note";
 
 function ClockModal(props) {
   const [NoteOpen, setNoteOpen] = useState(false);
+  const [selectedTime, setSelectedTime] = useState('');
+  
+  useEffect(() => {
+    const interval = setInterval(() =>setSelectedTime(new Date()), 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+  const handleTimeChange = (newTime) => {
+    setSelectedTime(newTime.toLocaleTimeString());
+  };
+
   return (
     <>
       <Note show={NoteOpen} onHide={() => setNoteOpen(false)} />
@@ -23,19 +36,20 @@ function ClockModal(props) {
             <p className="head">Set Reminder</p>
 
             <div className="two-btns">
-              <button>Hourly</button>
-              <button>Daily</button>
+              <button onClick={()=> props.setRemainderType('Hourly')}>Hourly</button>
+              <button onClick={()=> props.setRemainderType('Daily')}>Daily</button>
             </div>
             <div className="two-btns">
-              <button>Weekly</button>
-              <button>Monthly</button>
+              <button onClick={()=> props.setRemainderType('Weekly')}>Weekly</button>
+              <button onClick={()=> props.setRemainderType('Monthly')}>Monthly</button>
             </div>
 
             <p className="head2">Set Reminder Time</p>
 
             <div className="clock">
               <Clock
-                value={new Date()}
+                value={selectedTime}
+                onChange={handleTimeChange}
                 size={200}
                 renderNumbers={true}
                 style={{ color: "white" }}

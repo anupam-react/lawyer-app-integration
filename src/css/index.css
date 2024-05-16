@@ -3595,6 +3595,7 @@ abbr[title] {
 .clockModal .two-btns {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
   margin-top: 20px;
 }
 .clockModal .two-btns button {

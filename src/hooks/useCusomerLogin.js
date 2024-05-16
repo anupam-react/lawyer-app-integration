@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { successToast, warnToast } from "../Component/Toast";
 
 const useCusomerLogin = () => {
   const [name, setName] = useState("");
@@ -18,7 +19,7 @@ const useCusomerLogin = () => {
   const handleLogin = async (event) => {
     event.preventDefault();
     if (!email || !password) {
-      return alert("Fill all the fields");
+      return warnToast("Fill all the fields");
     }
 
     console.log(email, password);
@@ -43,7 +44,7 @@ const useCusomerLogin = () => {
   const handleAdminLogin = async (event) => {
     event.preventDefault();
     if (!email || !password) {
-      return alert("Fill all the fields");
+      return warnToast("Fill all the fields");
     }
 
     console.log(email, password);
@@ -69,10 +70,10 @@ const useCusomerLogin = () => {
   const handleRegister = async (event) => {
     event.preventDefault();
     if (!email || !password || !name || !phone) {
-      return alert("Fill all the fields");
+      return warnToast("Fill all the fields");
     }
     if (!isChecked) {
-      return alert("Please Agree all terms & conditions");
+      return warnToast("Please Agree all terms & conditions");
     }
     console.log(email, password);
     const formData = {
@@ -86,7 +87,7 @@ const useCusomerLogin = () => {
         "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/registration",
         formData
       );
-      alert("Regsiter Successfully");
+      successToast("Regsiter Successfully");
       setName("");
       setEmail("");
       setPassword("");

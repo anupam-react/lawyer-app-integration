@@ -17,6 +17,9 @@ import PrivateRoutes from './utils/PrivateRoutes'
 import MyCasesLawyer from './Screens/Lawyer/MyCasesLawyer'
 import HearingLawyer from './Screens/Lawyer/HearingLawyer'
 import Document from './Screens/Lawyer/Document'
+import AddCase from './Screens/Lawyer/AddCase'
+import Reminder from './Screens/Lawyer/Reminder'
+import Consultation from './Screens/Lawyer/Consultation'
 
 const App = () => {
   return (
@@ -32,6 +35,9 @@ const App = () => {
         <Route path='/mycase' element={<MyCasesLawyer />} />
         <Route path='/hearing' element={<HearingLawyer />} />
         <Route path='/documents' element={<Document />} />
+        <Route path='/add-case' element={<AddCase />} />
+        <Route path='/reminder' element={<Reminder />} />
+        <Route path='/consultations' element={<Consultation />} />
   
         </Route>
         <Route path='/' element={<HomeScreen />} />

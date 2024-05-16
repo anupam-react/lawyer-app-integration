@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { successToast, warnToast } from "../Component/Toast";
 
 const useAdminLogin = () => {
   const [name, setName] = useState("");
@@ -48,10 +49,10 @@ const useAdminLogin = () => {
   const handleRegister = async (event) => {
     event.preventDefault();
     if (!email || !password || !name || !phone) {
-      return alert("Fill all the fields");
+      return warnToast("Fill all the fields");
     }
     if (!isChecked) {
-      return alert("Please Agree all terms & conditions");
+      return warnToast("Please Agree all terms & conditions");
     }
     console.log(email, password);
     const formData = new FormData();
@@ -78,7 +79,7 @@ const useAdminLogin = () => {
         "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/registration",
         formData
       );
-      alert("Regsiter Successfully");
+      successToast("Regsiter Successfully");
     } catch (error) {
       console.log(error);
       return error;

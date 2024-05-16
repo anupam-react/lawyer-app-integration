@@ -1,11 +1,12 @@
 import React from 'react'
 import './style.scss'
-const CaseCard = () => {
+import { getDateFromISOString } from '../../utils'
+const CaseCard = ({data}) => {
   return (
     <div className='casebox-container'>
-        <img src="./Ellipse 14.png" alt="" style={{ borderRadius:"50%" , width:"90px" , height:"90px"}}/>
+        <img src={data?.userId?.image} alt="" style={{ borderRadius:"50%" , width:"90px" , height:"90px"}}/>
         <div>
-            <div className='case-name'>Yash Gupta</div>
+            <div className='case-name'>{data?.userId?.fullName || data?.userId?.firstName}</div>
             <div className='case-body'>
                 <div>
                 <div>Case Title:</div>
@@ -13,9 +14,9 @@ const CaseCard = () => {
                 <button>Notes</button>
                 </div>
                 <div className='case-value'>
-                <div>Real estate Case</div>
-                <div>2nd Hearing</div>
-                <div>(Monday)</div>
+                <div>{data?.caseTitle}</div>
+                <div>{data?.hearing} Hearing</div>
+                <div>{getDateFromISOString(data?.nextHearingDate)}</div>
                 </div>
             </div>
         </div>
