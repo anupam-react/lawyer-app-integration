@@ -436,7 +436,38 @@ const HomeScreen = () => {
 
       <LogoCarousel />
 
-      <ReviewCarousel />
+      <ReviewCarousel>
+      <div className='review-container'>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt minus illum, voluptate amet consequuntur molestias, quam nobis veniam beatae eum culpa nulla unde ab, totam corrupti asperiores. Alias, dolore voluptate.</p>
+<div className='reviwer-info'>
+        <img src="" alt="" style={{width:"50px" , height:"50px" , borderRadius:"50%"}}/>
+    <div className='reviwer-name'>
+        <div style={{color:"#2B2D3C" , fontSize:"14px", fontWeight:700}}>Rushil Narayan</div>
+        <div style={{color:"#A2A5B8" }}>RERA , Panchkula</div>
+    </div>
+</div>
+</div>
+      <div className='review-container'>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt minus illum, voluptate amet consequuntur molestias, quam nobis veniam beatae eum culpa nulla unde ab, totam corrupti asperiores. Alias, dolore voluptate.</p>
+<div className='reviwer-info'>
+        <img src="" alt="" style={{width:"50px" , height:"50px" , borderRadius:"50%"}}/>
+    <div className='reviwer-name'>
+        <div style={{color:"#2B2D3C" , fontSize:"14px", fontWeight:700}}>Rushil Narayan</div>
+        <div style={{color:"#A2A5B8" }}>RERA , Panchkula</div>
+    </div>
+</div>
+</div>
+      <div className='review-container'>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt minus illum, voluptate amet consequuntur molestias, quam nobis veniam beatae eum culpa nulla unde ab, totam corrupti asperiores. Alias, dolore voluptate.</p>
+<div className='reviwer-info'>
+        <img src="" alt="" style={{width:"50px" , height:"50px" , borderRadius:"50%"}}/>
+    <div className='reviwer-name'>
+        <div style={{color:"#2B2D3C" , fontSize:"14px", fontWeight:700}}>Rushil Narayan</div>
+        <div style={{color:"#A2A5B8" }}>RERA , Panchkula</div>
+    </div>
+</div>
+</div>
+      </ReviewCarousel>
 
       <div className="homeFistSec">
         <p className="head">Make legal simple with Us!</p>

@@ -20,6 +20,7 @@ import Document from './Screens/Lawyer/Document'
 import AddCase from './Screens/Lawyer/AddCase'
 import Reminder from './Screens/Lawyer/Reminder'
 import Consultation from './Screens/Lawyer/Consultation'
+import LawyerProfile from './Screens/Lawyer/LawyerProfile'
 
 const App = () => {
   return (
@@ -38,6 +39,7 @@ const App = () => {
         <Route path='/add-case' element={<AddCase />} />
         <Route path='/reminder' element={<Reminder />} />
         <Route path='/consultations' element={<Consultation />} />
+        <Route path='/laywer-profile' element={<LawyerProfile />} />
   
         </Route>
         <Route path='/' element={<HomeScreen />} />

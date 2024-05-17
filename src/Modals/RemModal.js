@@ -7,22 +7,12 @@ import ClockModal from "./ClockModal";
 import useAddCase from "../hooks/useAddCase";
 
 function RemModal(props) {
-  const {
-    remainderDate,
-    setRemainderDate,
-    hearingTime,
-    setHearingTime,
-    remainderType,
-    setRemainderType,
-    type,
-    setType,
-  } = useAddCase();
   const [date, setDate] = useState();
   const [clockModal, setClockModal] = useState(false);
 
   const [on, setOn] = useState(true);
   const onChange = (date) => {
-    setRemainderDate(date);
+    // setRemainderDate(date);
   };
 
   const handleClick = () => {
@@ -33,7 +23,7 @@ function RemModal(props) {
 
   return (
     <>
-      <ClockModal remainderType={remainderType} setRemainderType={setRemainderType}  show={clockModal} onHide={() => setClockModal(false)} />
+      <ClockModal show={clockModal} onHide={() => setClockModal(false)} />
       <Modal
         {...props}
         aria-labelledby="contained-modal-title-vcenter"
@@ -46,20 +36,20 @@ function RemModal(props) {
 
             <div className="two-btns">
               <button
-                onClick={() => {
-                  handleClick()
-                  setType("General")
-                }}
+                // onClick={() => {
+                //   handleClick()
+                //   setType("General")
+                // }}
                 className={`${on === true ? "on" : ""} `}
               >
                 General
               </button>
               <button
-                onClick={() => {
-                  handleClick()
-                  setType("Urgent")
+                // onClick={() => {
+                //   handleClick()
+                //   setType("Urgent")
 
-                } }
+                // } }
                 className={`${on === true ? "" : "on"} `}
               >
                 Urgent
@@ -69,7 +59,7 @@ function RemModal(props) {
             <div>
               <Calendar
                 onChange={onChange}
-                value={remainderDate}
+                // value={remainderDate}
                 showNeighboringMonth={false}
                 prev2Label={null}
                 next2Label={null}

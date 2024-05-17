@@ -1,21 +1,11 @@
 import { useEffect, useState } from "react";
 import { successToast } from "../Component/Toast";
 import { createApiData, fetchApiData } from "../utils";
+import { useRecoilState } from "recoil";
+import { formState } from "../Component/Atoms/caseAtom";
 
 const useAddCase = () => {
-  const [caseTitle, setCaseTitle] = useState("");
-  const [caseNumber, setCaseNumber] = useState("");
-  const [courtName, setCourtName] = useState("");
-  const [courtNumber, setCourtNumber] = useState("");
-  const [judge, setJudge] = useState("");
-  const [nextHearingDate, setNextHearingDate] = useState("");
-  const [lastDateOfHearing, setLastDateOfHearing] = useState("");
-  const [remainderDate, setRemainderDate] = useState('');
-  const [hearingTime, setHearingTime] = useState("");
-  const [remainderType, setRemainderType] = useState("");
-  const [remainderTime, setRemainderTime] = useState("");
-  const [type, setType] = useState("");
-  const [userId, setUserId] = useState("");
+  const [casedata, setCaseData] = useRecoilState(formState)
   const [allUsers, setAllUsers] = useState([])
 
   const getAllUsers = async ()=>{
@@ -26,25 +16,33 @@ const useAddCase = () => {
   useEffect(()=>{
     getAllUsers()
   },[])
-  console.log(remainderType , type)
+
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setCaseData((prevForm) => ({
+      ...prevForm,
+      [name]: value,
+    }));
+  };
 
   const handleAddCase = async (event) => {
     event.preventDefault();
-    console.log(remainderType , type)
     const formData = {
-      userId,
-      caseTitle,
-      caseNumber,
-      courtName,
-      courtNumber,
-      judge,
-      nextHearingDate,
-      lastDateOfHearing,
-      remainderDate,
-      hearingTime,
-      remainderType,
-      remainderTime,
-      type
+      userId: casedata?.userId,
+      caseTitle: casedata?.caseTitle,
+      caseNumber: casedata?.caseNumber,
+      courtName: casedata?.courtName,
+      courtNumber: casedata?.courtNumber,
+      judge: casedata?.judge,
+      nextHearingDate: casedata?.nextHearingDate,
+      lastDateOfHearing: casedata?.lastDateOfHearing,
+      remainderDate: casedata?.remainderDate,
+      hearingTime: casedata?.hearingTime,
+      remainderType: casedata?.remainderType,
+      remainderTime: casedata?.remainderTime,
+      type: casedata?.type,
+      setRemainder: casedata?.setRemainder
     };
 console.log(formData)
     try {
@@ -60,33 +58,11 @@ console.log(formData)
   };
 
   return {
-    caseTitle,
-    setCaseTitle,
-    caseNumber,
-    setCaseNumber,
-    courtName,
-    setCourtName,
-    courtNumber,
-    setCourtNumber,
-    judge,
-    setJudge,
-    nextHearingDate,
-    setNextHearingDate,
-    lastDateOfHearing,
-    setLastDateOfHearing,
-    remainderDate,
-    setRemainderDate,
-    hearingTime,
-    setHearingTime,
-    remainderType,
-    setRemainderType,
-    remainderTime,
-    setRemainderTime,
-    type,
-    setType,
-    userId, 
-    setUserId,
+
     allUsers,
+    casedata,
+    setCaseData,
+    handleChange,
 
     handleAddCase,
   };

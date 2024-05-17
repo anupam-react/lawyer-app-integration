@@ -1,10 +1,10 @@
 /** @format */
 
-import React , {useEffect , useState} from "react";
+import React , {Children, useEffect , useState} from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-const ReviewCarousel = () => {
+const ReviewCarousel = ({children}) => {
 
   const [centerSlidePercentage, setCenterSlidePercentage] = useState(100/4); 
 
@@ -51,17 +51,8 @@ const ReviewCarousel = () => {
           centerSlidePercentage={centerSlidePercentage}
           className="ReviewCarousel"
         >
-          <img src="./Images/11.png" alt="Image1" className="ReviewImage" />
-
-          <img src="./Images/11.png" alt="Image1" className="ReviewImage" />
-
-          <img src="./Images/11.png" alt="Image1" className="ReviewImage" />
-
-          <img src="./Images/11.png" alt="Image1" className="ReviewImage" />
-
-          <img src="./Images/11.png" alt="Image1" className="ReviewImage" />
-
-          <img src="./Images/11.png" alt="Image1" className="ReviewImage" />
+          {children}
+ 
         </Carousel>
       <div className="ReviewCarouselDiv2"></div>
       </div>

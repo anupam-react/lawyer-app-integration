@@ -1,8 +1,10 @@
 /** @format */
 
 import { Modal } from "react-bootstrap";
+import useAddCase from "../hooks/useAddCase";
 
 function Note(props) {
+  const { casedata, setCaseData } = useAddCase();
   return (
     <Modal
       {...props}
@@ -13,10 +15,15 @@ function Note(props) {
       <Modal.Body style={{ padding: "0" }}>
         <div className="NoteModal">
           <p>
-            You Reminder is set on <br /> 12:00 am Daily till <br />
-            9th April{" "}
+            You Reminder is set on <br /> {casedata?.remainderTime} {casedata?.remainderType} 
           </p>
-          <button onClick={() => props.onHide()}>Top to Start</button>
+          <button onClick={() => {
+             setCaseData((prevForm) => ({
+              ...prevForm,
+              setRemainder : true
+            }));
+            props.onHide()
+            }}>Top to Start</button>
         </div>
       </Modal.Body>
     </Modal>

@@ -4,14 +4,19 @@ import { Calendar } from "react-calendar";
 import "./style.scss";
 import Clock from "react-clock";
 import Note from "../../Modals/Note";
+import useAddCase from "../../hooks/useAddCase";
 
 const Reminder = () => {
+  const {casedata, setCaseData} = useAddCase();
   const [date, setDate] = useState(new Date());
   const [NoteOpen, setNoteOpen] = useState(false);
 
   const [on, setOn] = useState(true);
   const onChange = (date) => {
-    setDate(date);
+    setCaseData((prevForm) => ({
+      ...prevForm,
+      remainderDate : date
+    }));
   };
 
   const handleClick = () => {
@@ -23,13 +28,25 @@ const Reminder = () => {
         <p className="head">Reminder</p>
         <div className="two-btns">
           <button
-            onClick={() => handleClick()}
+            onClick={() => {
+              handleClick()
+              setCaseData((prevForm) => ({
+                ...prevForm,
+                type : "General"
+              }));
+            }}
             className={`${on === true ? "on" : ""} `}
           >
             General
           </button>
           <button
-            onClick={() => handleClick()}
+             onClick={() => {
+              handleClick()
+              setCaseData((prevForm) => ({
+                ...prevForm,
+                type : "Urgent"
+              }));
+            }}
             className={`${on === true ? "" : "on"} `}
           >
             Urgent
@@ -39,7 +56,7 @@ const Reminder = () => {
         <div>
           <Calendar
             onChange={onChange}
-            value={date}
+            value={casedata?.remainderDate}
             showNeighboringMonth={false}
             prev2Label={null}
             next2Label={null}
@@ -53,12 +70,32 @@ const Reminder = () => {
           <p className="head">Set Reminder</p>
 
           <div className="two-btns">
-            <button>Hourly</button>
-            <button>Daily</button>
+            <button  onClick={() => {
+              setCaseData((prevForm) => ({
+                ...prevForm,
+                remainderType : "Hourly"
+              }));
+            }}>Hourly</button>
+            <button onClick={() => {
+              setCaseData((prevForm) => ({
+                ...prevForm,
+                remainderType : "Daily"
+              }));
+            }}>Daily</button>
           </div>
           <div className="two-btns">
-            <button>Weekly</button>
-            <button>Monthly</button>
+            <button onClick={() => {
+              setCaseData((prevForm) => ({
+                ...prevForm,
+                remainderType : "Weekly"
+              }));
+            }}>Weekly</button>
+            <button onClick={() => {
+              setCaseData((prevForm) => ({
+                ...prevForm,
+                remainderType : "Monthly"
+              }));
+            }}>Monthly</button>
           </div>
 
           <p className="head2">Set Reminder Time</p>

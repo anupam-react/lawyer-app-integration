@@ -412,8 +412,27 @@
     margin-bottom: 5%;
     padding-bottom: 20px;
   }
-  
 
+  .review-container{
+    background-color: white;
+    height: 450px;
+    color: #606379;
+    font-family: Open Sans;
+    font-size: 12px;
+   
+    width: 300px;
+    padding: 0px 20px;
+    padding-top: 50px;
+    p{
+        text-align: left;
+    }
+  .reviwer-info{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  }
+  
   ::-webkit-scrollbar {
     width: 0px;
   }

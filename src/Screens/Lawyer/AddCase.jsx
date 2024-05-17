@@ -6,38 +6,40 @@ import useAddCase from "../../hooks/useAddCase";
 
 const AddCase = () => {
   const {
-    caseTitle,
-    setCaseTitle,
-    caseNumber,
-    setCaseNumber,
-    courtName,
-    setCourtName,
-    courtNumber,
-    setCourtNumber,
-    judge,
-    setJudge,
-    nextHearingDate,
-    setNextHearingDate,
-    lastDateOfHearing,
-    setLastDateOfHearing,
-    remainderDate,
-    setRemainderDate,
-    hearingTime,
-    setHearingTime,
-    remainderType,
-    setRemainderType,
-    remainderTime,
-    setRemainderTime,
-    type,
-    setType,
-    userId,
-    setUserId,
+    // caseTitle,
+    // setCaseTitle,
+    // caseNumber,
+    // setCaseNumber,
+    // courtName,
+    // setCourtName,
+    // courtNumber,
+    // setCourtNumber,
+    // judge,
+    // setJudge,
+    // nextHearingDate,
+    // setNextHearingDate,
+    // lastDateOfHearing,
+    // setLastDateOfHearing,
+    // remainderDate,
+    // setRemainderDate,
+    // hearingTime,
+    // setHearingTime,
+    // remainderType,
+    // setRemainderType,
+    // remainderTime,
+    // setRemainderTime,
+    // type,
+    // setType,
+    // userId,
+    // setUserId,
+    casedata,
+    handleChange,
     allUsers,
     handleAddCase,
   } = useAddCase();
   const navigate = useNavigate("");
 
-  console.log(allUsers);
+  console.log(casedata);
   return (
     <div className="addcase-container">
       <h4 className="addcase-heading">Add Cases</h4>
@@ -45,58 +47,67 @@ const AddCase = () => {
         <input
           type="text"
           placeholder="Case Title"
-          value={caseTitle}
-          onChange={(e) => setCaseTitle(e.target.value)}
+          name="caseTitle"
+          value={casedata?.caseTitle}
+          onChange={handleChange}
         />
         <input
           type="text"
           placeholder="Case Number"
-          value={caseNumber}
-          onChange={(e) => setCaseNumber(e.target.value)}
+          name="caseNumber"
+          value={casedata?.caseNumber}
+          onChange={handleChange}
         />
         <input
           type="text"
           placeholder="Court Name"
-          value={courtName}
-          onChange={(e) => setCourtName(e.target.value)}
+          name="courtName"
+          value={casedata?.courtName}
+          onChange={handleChange}
         />
         <input
           type="text"
           placeholder="Court Number"
-          value={courtNumber}
-          onChange={(e) => setCourtNumber(e.target.value)}
+          name="courtNumber"
+          value={casedata?.courtNumber}
+          onChange={handleChange}
         />
         <input
           type="text"
           placeholder="Name of the Judge"
-          value={judge}
-          onChange={(e) => setJudge(e.target.value)}
+          name="judge"
+          value={casedata?.judge}
+          onChange={handleChange}
         />
         <input
           type="text"
           placeholder="Hearing Time"
-          value={hearingTime}
-          onChange={(e) => setHearingTime(e.target.value)}
+          name="hearingTime"
+          value={casedata?.hearingTime}
+          onChange={handleChange}
         />
         <input
           type="text"
           placeholder="Reminder Time"
-          value={remainderTime}
-          onChange={(e) => setRemainderTime(e.target.value)}
+          name="remainderTime"
+          value={casedata?.remainderTime}
+          onChange={handleChange}
         />
         <input
           type="text"
           placeholder="Next date of hearing"
-          value={nextHearingDate}
-          onChange={(e) => setNextHearingDate(e.target.value)}
+          name="nextHearingDate"
+          value={casedata?.nextHearingDate}
+          onChange={handleChange}
         />
         <input
           type="text"
           placeholder="Last date of hearing"
-          value={lastDateOfHearing}
-          onChange={(e) => setLastDateOfHearing(e.target.value)}
+          name="lastDateOfHearing"
+          value={casedata?.lastDateOfHearing}
+          onChange={handleChange}
         />
-        <select value={userId} onChange={(e) => setUserId(e.target.value)}>
+        <select value={casedata?.userId}  name="userId" onChange={handleChange}>
           {allUsers?.map((d, i) => (
             <option value={d?._id}>{d?.fullName || d?.firstName}</option>
           ))}
