@@ -432,6 +432,202 @@
     gap: 20px;
   }
   }
+
+
+  .profile-container{
+    padding: 40px;
+    .profile-Body{
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        width: 100%;
+        .profile-left{
+            width: 60%;
+            .profile-left-top{
+                display: flex;
+                align-items: center;
+                gap:14px;
+                .profile-language{
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    span{
+                        color: #1D1D1D;
+                        font-weight: 600;
+                        font-size: 18px;
+                    }
+                }
+                .profile-info{
+                    display: flex;
+                    flex-direction: column;
+                gap: 6px;                }
+            }
+            .profile-edit-button{
+                display: flex;
+                justify-content: center;
+                margin: 10px 0px;
+                button{
+                    background: #0F2C64;
+                    color: white;
+                    font-weight: 500;
+                    font-size: 24px;
+                    width: 200px;
+                    padding: 5px 0px;
+                    border: none;
+                   border-radius: 10px;
+                }
+               
+            }
+            .skill-container{
+                margin: 14px 0px;
+                .skill-title{
+                    color: #0F2C64;
+                    font-size: 26px;
+                    font-weight: 600;
+                }
+                .skill-body{
+                    display: flex;
+                    gap: 20px;
+                    .skill-info{
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 5px;
+                        img{
+                            width: 70px;
+                            cursor: pointer;
+                        }
+                        p{
+                            color: #1D1D1D;
+                            font-size: 20px;
+                            font-weight: 500;
+                            text-align: center;
+                        }
+                    }
+                   
+                }
+            }
+            .profile-save-button{
+                display: flex;
+                justify-content: center;
+                margin: 10px 0px;
+                button{
+                    background: #0F2C64;
+                    color: white;
+                    font-weight: 500;
+                    font-size: 24px;
+                    width: 300px;
+                    padding: 5px 0px;
+                    border: none;
+                    border-radius: 30px;
+                }
+
+            }
+        }
+        .profile-right{
+            width: 40%;
+            .profile-fees{
+                width: fit-content;
+                padding: 10px;
+                box-shadow: 0px 5.96px 14.91px 0px #00000040;
+                border: 1.49px solid #1D1D1D;
+                border-radius: 10px;
+                p{
+                    font-size: 18px;
+                    font-weight: 700;
+                    color: #1D1D1D;
+                }
+            }
+            .profile-consultation{
+                margin: 30px 0px;
+                width: fit-content;
+                padding: 10px;
+                border-radius: 10px;
+                border: 1px solid #000000;
+                display: flex;
+                justify-content:space-between;
+                gap: 30px;
+            }
+            .profile-about{
+                margin-bottom: 20px;
+              .head{
+                display: flex;
+                align-items: center;
+                gap: 100px;
+                .title{
+                    color: #1D1D1D;
+                    font-weight: 600;
+                    font-size: 30px;
+                }
+                span{
+                    color: #0F2C64;
+                    font-weight: 700;
+                    font-size: 20px;
+                    padding-left: 10px;
+
+                }
+              } 
+              .desc{
+                font-size: 20px;
+                color: #1D1D1D;
+              } 
+            }
+            .consult-main{
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                .consult{
+                    display: flex;
+                    justify-content: space-between;
+                    box-shadow: 0px 4px 10px 0px #00000040;
+                   border-radius: 10px;
+                   padding: 14px 20px;
+                 
+
+                    .consult-Assistant{
+                        display: flex;
+                        gap:   10px;
+                        align-items: center;
+                        img{
+                            height: fit-content;
+                        }
+                        p{
+                            margin: 0;
+                            color: #1D1D1D;
+                            font-weight: 500;
+                        }
+                       
+                    }
+                    .edit{
+                        span{
+                            padding-left: 10px;
+                        }
+                        img{
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .star-rating{
+        margin-top: 40px;
+        display: flex;
+        align-items: center;
+        .number{
+            color: #1D1D1D;
+            font-weight: 900;
+            font-size: 38px;
+            padding: 0px 20px;
+        }
+        .descption{
+            color: #1D1D1D;
+            font-weight: 700;
+            font-size: 24px;
+        }
+    }
+  }
   
   ::-webkit-scrollbar {
     width: 0px;

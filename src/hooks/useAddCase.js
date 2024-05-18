@@ -12,7 +12,7 @@ const useAddCase = () => {
     const userData = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/admin/users')
     setAllUsers(userData?.data)
   }
-
+ 
   useEffect(()=>{
     getAllUsers()
   },[])

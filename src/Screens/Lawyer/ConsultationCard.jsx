@@ -1,47 +1,59 @@
-import React from 'react'
-import './style.scss'
+import React from "react";
+import "./style.scss";
 
-const ConsultationCard = () => {
+const ConsultationCard = ({ data }) => {
   return (
-    <div className='Consultation-container'>
-        <div className='Consultation-main'>
-            <div className='file-button'>
-            <button >View File</button>
-            </div>
-            <img src="./Ellipse 14 (2).png" alt="" style={{ borderRadius:"50%" , width:"100px" , height:"100px"}}/>
-            <div className='consult-name'>Adv. Yash</div>
-            <div className='consult-casename'>Real estate Case</div>
-            <div  className='consult-info'>Lorem ipsum dolor sit amet. At totam mollitia rem magni voluptate aut dolor delectus ut deleniti dolor eum exercitationem</div>
-            <div className='consult-otherinfo'>
-                <div className='consult-lang'>
-                English, hindi
-                </div>
-                <div className='consult-location'>
-               <div>Location:</div> 
-                <span style={{fontWeight:700 , fontSize:"20px"}}>5 Km Away</span> 
-                </div>
-            </div>
-            <div className='consult-buttons'>
-                <button>
-                    <img src="./Group.png" alt="" />
-                    <span>Voice Call</span>
-                </button>
-                <button>
-                    <img src="./Group (1).png" alt="" />
-                    <span>Chat</span>
-                </button>
-                <button>
-                    <img src="./Group 831.png" alt="" />
-                    <span>Video Call</span>
-                </button>
-            </div>
-            <div className='consult-time'>
-                <div>10 min Booked</div>
-                <span>Time: 12:00</span>
-            </div>
+    <div className="Consultation-container">
+      <div className="Consultation-main">
+        <div className="file-button">
+          <button>View File</button>
         </div>
+        <img
+          src={data?.image}
+          alt=""
+          style={{ borderRadius: "50%", width: "100px", height: "100px" }}
+        />
+        <div className="consult-name">
+          {data?.userId?.fullName || data?.userId?.firstName}
+        </div>
+        <div className="consult-casename">{data?.case?.caseName}</div>
+        <div className="consult-info">{}</div>
+        <div className="consult-otherinfo">
+        {data?.userId?.languages?.map((d,i)=>
+          <span key={i}>{d}</span>
+          )}
+          <div className="consult-location">
+            <div>Location:</div>
+            <span style={{ fontWeight: 700, fontSize: "20px" }}>
+              {data?.firstLineAddress}
+            </span>
+          </div>
+        </div>
+        <div className="consult-buttons">
+          {data?.appointmentType === "Call" ? (
+            <button>
+              <img src="./Group.png" alt="" />
+              <span>Voice Call</span>
+            </button>
+          ) : data?.appointmentType === "Chat" ? (
+            <button>
+              <img src="./Group (1).png" alt="" />
+              <span>Chat</span>
+            </button>
+          ) : (
+            <button>
+              <img src="./Group.png" alt="" />
+              <span>Voice Call</span>
+            </button>
+          )}
+        </div>
+        <div className="consult-time">
+          <div>10 min Booked</div>
+          <span>Time: {data?.appointmentTime}</span>
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default ConsultationCard
+export default ConsultationCard;

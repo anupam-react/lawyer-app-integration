@@ -9,12 +9,21 @@ import { fetchApiData } from "../../utils";
 
 const MyCasesLawyer = () => {
   const [allCases , setAllCases] = useState([])
+  const [allUpcomingConsult, setAllUpcomingConsult] = useState([])
+
   const getAllCase = async ()=>{
     const caseData = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/case/all')
     setAllCases(caseData?.data)
   }
+
+  const getAllUpcomingConsult = async ()=>{
+    const consultData = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/Appointment/upcomingAppointment')
+    setAllUpcomingConsult(consultData?.data)
+  }
+
   useEffect(() => {
     getAllCase()
+    getAllUpcomingConsult()
   }, []);
 
   useEffect(() => {
@@ -42,7 +51,7 @@ const MyCasesLawyer = () => {
        <p style={{fontSize:"30px" , marginTop:"26px"}}>Consultation</p> 
         </h4>
         <div>
-        <ConsultationCard />
+        <ConsultationCard data={allUpcomingConsult?.[0]}/>
         </div>
         </div>
       </div>
