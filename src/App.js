@@ -21,6 +21,7 @@ import AddCase from './Screens/Lawyer/AddCase'
 import Reminder from './Screens/Lawyer/Reminder'
 import Consultation from './Screens/Lawyer/Consultation'
 import LawyerProfile from './Screens/Lawyer/LawyerProfile'
+import Appointment from './Screens/Appointment'
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
       <Route element={<PrivateRoutes />}>
         <Route path='/ninth' element={<Ninth />} />
         <Route path='/ten' element={<TenScreen />} />
+        <Route path='/book-appointment' element={<Appointment />} />
         <Route path='/eleven' element={<ElevenScreen />} />
         <Route path='/twelve' element={<TwelveScreen />} />
         <Route path='/thirteen' element={<ThirteenScree />} />

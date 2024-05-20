@@ -21,7 +21,7 @@ const HearingCard = ({data}) => {
           <div className="hearing-Language">
             <div style={{ fontWeight:"normal" }}>Language:</div>
             {data?.userId?.languages?.map((d,i)=>
-          <span key={i}>{d}</span>
+          <span key={i}>{d +  ', '}</span>
           )}
           </div>
           <div style={{ color:"#0F2C64" }}>Time: {data?.case?.hearingTime}</div>

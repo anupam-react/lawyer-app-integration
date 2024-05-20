@@ -33,7 +33,6 @@ const Consultation = () => {
         {allCancelConsult?.map((d, i)=>(
             <ConsultCard data={d}/>
           ))}
-         
         </ConsultCarousel>
         
         </div>

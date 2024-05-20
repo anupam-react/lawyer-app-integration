@@ -1,102 +1,27 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import HOC from "./User/HOC";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import useAllLawyers from "../hooks/useAllLawyers";
 import LawyerCard from "./LawyerCard";
 
-const ElevenScreen = () => {
-  const { UserInfo } = useAllLawyers();
-  const [centerSlidePercentage, setCenterSlidePercentage] = useState(100 / 4);
-
-  useEffect(() => {
-    const handleResize = () => {
-      const viewportWidth = window.innerWidth;
-
-      if (viewportWidth <= 760) {
-        setCenterSlidePercentage(100 / 2);
-      } else if (viewportWidth <= 1220) {
-        setCenterSlidePercentage(100 / 4);
-      } else {
-        setCenterSlidePercentage(100 / 4);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-    handleResize();
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
+const Appointment = () => {
+  const { UserInfo } = useAllLawyers()
   return (
     <>
-      <h4 className="centerNinthHeading">Instant Appointment</h4>
-
-      <div className="ElevenCarousel">
-        <Carousel
-          dynamicHeight={false}
-          stopOnHover={true}
-          swipeable={true}
-          emulateTouch={true}
-          interval={1000}
-          infiniteLoop={true}
-          autoPlay={true}
-          showArrows={true}
-          showThumbs={false}
-          showStatus={false}
-          showIndicators={false}
-          centerMode={true}
-          renderArrowPrev={() => null}
-          renderArrowNext={() => null}
-          centerSlidePercentage={centerSlidePercentage}
-        >
-          <div className="main">
-            <p>Tax Lawyer</p>
-          </div>
-
-          <div className="main">
-            <p>Corporate Lawyers</p>
-          </div>
-
-          <div className="main">
-            <p>Real estate</p>
-          </div>
-
-          <div className="main">
-            <p>Criminal Lawyer</p>
-          </div>
-
-          <div className="main">
-            <p>Family Lawyer</p>
-          </div>
-
-          <div className="main">
-            <p>Corporate Lawyers</p>
-          </div>
-
-          <div className="main">
-            <p>Civil Rights Lawyer</p>
-          </div>
-
-          <div className="main">
-            <p>Corporate Lawyers</p>
-          </div>
-        </Carousel>
-      </div>
+      <h4 className="centerNinthHeading">Lawyers</h4>
 
       <div className="NinthFirst">
         <div className="left">
           {UserInfo?.map((d, i)=>(
-           <LawyerCard unique={i} data={d}/>
-
+         <LawyerCard unique={i} data={d}/>
           ))}
         
         </div>
 
         <div className="rightFirst">
+          <p className="head">Upcoming Consultation</p>
+
           <div className="two-Sec">
             <img src="./Images/90.png" alt="" className="profile" />
 
@@ -279,4 +204,4 @@ const ElevenScreen = () => {
   );
 };
 
-export default HOC(ElevenScreen);
+export default HOC(Appointment);

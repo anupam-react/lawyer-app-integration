@@ -19,7 +19,7 @@ const ConsultCard = ({data}) => {
       <div className="consult-bottom">
         <div className="consult-language">
           {data?.userId?.languages?.map((d,i)=>
-          <span key={i}>{d}</span>
+          <span key={i}>{d +  ', '}</span>
           )}
         </div>
         <div style={{ color:"#0F2C64" }}>Time: {data?.appointmentTime}</div>

@@ -2,9 +2,14 @@
 
 import React, { useEffect } from "react";
 import HOC from "./User/HOC";
+import useAllLawyers from "../hooks/useAllLawyers";
+import LawyerCard from "./LawyerCard";
+import useUpcomingAppointment from "../hooks/useUpcomingAppointment";
+import StarRating2 from "./User/StarRating2";
 
 const Ninth = () => {
-
+ const { UserInfo } = useAllLawyers();
+ const { upcomingAppointment } = useUpcomingAppointment() 
   useEffect(() => {
     window.scrollTo(0,0)
   },[])
@@ -15,104 +20,45 @@ const Ninth = () => {
 
       <div className="NinthFirst">
         <div className="left">
-          <div className="two-sec">
-            <img src="./Images/90.png" alt="" className="leftImage" />
-
-            <div className="mid">
-              <h3>Advocate. Yash</h3>
-              <h4>Legal Property Lawyer</h4>
-              <h5>English, Hindi, Panjabi</h5>
-              <div className="two">
-                <h6>Exp: 21 yrs</h6>
-                <img src="./Images/91.png" alt="" />
-              </div>
-
-              <h6>30 min. consultation</h6>
-            </div>
-
-            <div className="right">
-              <h4>consultation fee</h4>
-              <h5>₹2000</h5>
-
-              <button>Consult now</button>
-            </div>
-          </div>
-
-          <div className="two-sec">
-            <img src="./Images/90.png" alt="" className="leftImage" />
-
-            <div className="mid">
-              <h3>Advocate. Yash</h3>
-              <h4>Legal Property Lawyer</h4>
-              <h5>English, Hindi, Panjabi</h5>
-              <div className="two">
-                <h6>Exp: 21 yrs</h6>
-                <img src="./Images/91.png" alt="" />
-              </div>
-
-              <h6>30 min. consultation</h6>
-            </div>
-
-            <div className="right">
-              <h4>consultation fee</h4>
-              <h5>₹2000</h5>
-
-              <button>Consult now</button>
-            </div>
-          </div>
-
-          <div className="two-sec">
-            <img src="./Images/90.png" alt="" className="leftImage" />
-
-            <div className="mid">
-              <h3>Advocate. Yash</h3>
-              <h4>Legal Property Lawyer</h4>
-              <h5>English, Hindi, Panjabi</h5>
-              <div className="two">
-                <h6>Exp: 21 yrs</h6>
-                <img src="./Images/91.png" alt="" />
-              </div>
-
-              <h6>30 min. consultation</h6>
-            </div>
-
-            <div className="right">
-              <h4>consultation fee</h4>
-              <h5>₹2000</h5>
-
-              <button>Consult now</button>
-            </div>
-          </div>
-
-          <div className="two-sec">
-            <img src="./Images/90.png" alt="" className="leftImage" />
-
-            <div className="mid">
-              <h3>Advocate. Yash</h3>
-              <h4>Legal Property Lawyer</h4>
-              <h5>English, Hindi, Panjabi</h5>
-              <div className="two">
-                <h6>Exp: 21 yrs</h6>
-                <img src="./Images/91.png" alt="" />
-              </div>
-
-              <h6>30 min. consultation</h6>
-            </div>
-
-            <div className="right">
-              <h4>consultation fee</h4>
-              <h5>₹2000</h5>
-
-              <button>Consult now</button>
-            </div>
-          </div>
+          {UserInfo?.map((d, i)=>(
+           <LawyerCard unique={i} data={d}/>
+          ))}
         </div>
 
         <div className="rightFirst">
           <p className="head">Upcoming Consultation</p>
 
           <div className="two-Sec">
-            <img src="./Images/90.png" alt="" className="profile" />
+          <div>
+      <img
+        src=""
+        alt=""
+        style={{
+          width: "80px",
+          height: "80px",
+          borderRadius: "20px",
+        }}
+      />
+      <div style={{ position: "relative" }}>
+        <img
+          src="./Group 9457.png"
+          alt=""
+          style={{ width: "90px", height: "60px", marginTop: "-40px" }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            top: "-15px",
+            right: "14%",
+            color: "white",
+            fontSize: "10px",
+            fontWeight: 600,
+          }}
+        >
+          Legal Advisor
+        </div>
+      </div>
+    </div>
 
             <div>
               <p className="firstP">Adv. Suhani</p>
@@ -121,19 +67,38 @@ const Ninth = () => {
 
               <div className="two-Sec" style={{ marginTop: "0" }}>
                 <p className="secondP">Exp: 21 yrs</p>
-                <img src="./Images/91.png" alt="" style={{ width: "60px" }} />
+                <div style={{ position: "relative" }}>
+          <img src="./Group (2).png" alt="" />
+          <div
+            style={{
+              position: "absolute",
+              top: "5px",
+              left: "25%",
+              display: "flex",
+              alignItems: "center",
+              gap: "5px",
+            }}
+          >
+            <img
+              src="./Star 2.png"
+              alt=""
+              style={{ height: "12px", width: "10px" }}
+            />
+            <div style={{ color: "white", fontSize: "14px" }}>4.5</div>
+          </div>
+        </div>
               </div>
             </div>
           </div>
 
-          <button>Consult</button>
+          <button style={{ fontSize: "20px", fontWeight:700 , width:"120px" }}>Consult</button>
 
           <div className="NonthThird">
             <div>
               <p>/ Hearing Fees</p>
               <p>
                 {" "}
-                <span style={{ color: "red" }}>₹3300/Hearing </span>{" "}
+                <span style={{ color: "red" ,  textDecoration: "line-through", }}>₹3300/Hearing </span>{" "}
                 ₹3300/Hearing{" "}
               </p>
             </div>
@@ -199,13 +164,7 @@ const Ninth = () => {
           </div>
 
           <div className="Stars">
-            <div>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-            </div>
+            <StarRating2 rating="4.5"/>
             <p>4.95</p>
           </div>
 
