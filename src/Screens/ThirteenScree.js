@@ -2,9 +2,12 @@
 
 import React from "react";
 import HOC from "./User/HOC";
+import { useNavigate } from "react-router-dom";
 
 const ThirteenScree = () => {
   const [isOn, setIsOn] = React.useState(false);
+
+  const navigate = useNavigate('')
 
   const handleClick = () => {
     setIsOn(!isOn);
@@ -30,7 +33,7 @@ const ThirteenScree = () => {
       </div>
 
       <div className="homeThreeSec thirteenSecond">
-        <div className="main">
+        <div className="main" onClick={()=> navigate('/seven')}>
           <div className="first">
             <img src={"./Images/4.png"} alt="" />
             <p>Property Possession Delay - RERA</p>
@@ -69,7 +72,7 @@ const ThirteenScree = () => {
           </div>
         </div>
 
-        <div className="main">
+        <div className="main" >
           <div className="first">
             <img src={"./Images/4.png"} alt="" />
             <p>Property Possession Delay - RERA</p>

@@ -19,3 +19,27 @@ export const formState = atom({
      userId:'', 
   },
 });
+
+export const singleInfo = atom({
+  key: 'singleState',
+  default: {},
+});
+
+export const InstantsingleInfo = atom({
+  key: 'instantState',
+  default: {},
+});
+
+export const BookAppoint = atom({
+  key: 'BookAppointState',
+  default: {
+    email:'',
+    name:'',
+    phone:'',
+    state:'',
+    lawyerId:'',
+    appointmentDate:'',
+    appointmentType:'',
+    appointmentTime:'',
+  },
+});

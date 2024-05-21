@@ -42,6 +42,7 @@ const App = () => {
         <Route path='/reminder' element={<Reminder />} />
         <Route path='/consultations' element={<Consultation />} />
         <Route path='/laywer-profile' element={<LawyerProfile />} />
+        <Route path='/payment/:id' element={<EightScreen />} />
   
         </Route>
         <Route path='/' element={<HomeScreen />} />

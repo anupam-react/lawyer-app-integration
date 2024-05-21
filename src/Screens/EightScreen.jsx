@@ -4,9 +4,14 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../Component/Footer";
 import ThankYouModal from "../Modals/ThankYouModal";
+import useBookAppointment from "../hooks/useBookAppointment";
 
 const EightScreen = () => {
   const [ThankYouOpen, setThankYouOpen] = useState(false);
+  const {    appointmentType,
+    setAppointmentType,
+    handleBookAppointment,
+    handleChange}= useBookAppointment()
 
   const navigate = useNavigate();
 
@@ -26,7 +31,7 @@ const EightScreen = () => {
       />
 
       <div className="eightFirst">
-        <img src="./Images/logo2.png" onClick={() => navigate("/")} alt="" />
+        <img src="../Images/logo2.png" onClick={() => navigate("/")} alt="" />
         <i class="fa-solid fa-x" onClick={() => GoBack()}></i>
       </div>
 
@@ -40,23 +45,23 @@ const EightScreen = () => {
           <form>
             <div className="inputGroup">
               <p>Email</p>
-              <input type="text" />
+              <input type="text" value={appointmentType?.email} name="email" onChange={handleChange}/>
             </div>
             <div className="inputGroup">
               <p>Name</p>
-              <input type="text" />
+              <input type="text" value={appointmentType?.name} name="name" onChange={handleChange}/>
             </div>
             <div className="inputGroup">
               <p>Mobile Number</p>
-              <input type="text" />
+              <input type="text" value={appointmentType?.phone} name="phone" onChange={handleChange}/>
             </div>
             <div className="inputGroup">
               <p>State</p>
-              <input type="text" />
+              <input type="text" value={appointmentType?.state} name="state" onChange={handleChange}/>
             </div>
             <div className="inputGroup">
               <p>Consultation Date</p>
-              <input type="text" />
+              <input type="text" value={appointmentType?.appointmentDate} name="appointmentDate" onChange={handleChange}/>
             </div>
           </form>
         </div>
@@ -93,10 +98,20 @@ const EightScreen = () => {
             <p className="desc">
               You will be redirected to secure PayU payment page
             </p>
-            <button onClick={() => setThankYouOpen(true)}>Pay Now</button>
+            <button
+              style={{ padding: "5px 0px" }}
+              onClick={() => setThankYouOpen(true)}
+            >
+              Pay Now
+            </button>
           </div>
 
-          <img src="./Images/92.png" alt="" style={{ marginTop: "20px" }} className='paymentImage' />
+          <img
+            src="../Images/92.png"
+            alt=""
+            style={{ marginTop: "20px" }}
+            className="paymentImage"
+          />
           <div className="down">
             <div className="two-sec">
               <img src="./Images/93.png" alt="" />

@@ -201,7 +201,7 @@ const LawyerProfile = () => {
                         fontWeight: 600,
                       }}
                     >
-                      {UserInfo?.totalConsultancy} mins
+                      {UserInfo?.minofconsultance} mins
                     </div>
                   </div>
 

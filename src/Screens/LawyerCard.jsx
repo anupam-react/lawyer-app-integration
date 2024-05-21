@@ -1,8 +1,11 @@
 import React from 'react'
 
-const LawyerCard = ({unique, data}) => {
+const LawyerCard = ({unique, data , setSingleInstantLawyer = ()=>{} , setSingleLawyer = ()=>{}}) => {
   return (
-    <div className="two-sec" key={unique}>
+    <div className="two-sec" style={{cursor:"pointer"}} onClick={()=>{
+      setSingleInstantLawyer({...data})
+      setSingleLawyer({...data})
+    }} key={unique}>
     <div>
       <img
         src=""

@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../Component/Footer";
 import Navbar from "../Component/Navbar";
 import Phone from "../Component/Phone";
+import StarRating4 from "./User/StarRating4";
+import { Progress } from "./User/Progress";
 
 const SeventhScreen = () => {
   const navigate = useNavigate()
@@ -28,13 +30,7 @@ const SeventhScreen = () => {
               <p className="head">Property Possession Delay - RERA</p>
               <div className="three-sec">
                 <p>4.4</p>
-                <div>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star-half"></i>
-                </div>
+               <StarRating4 rating={4}/>
                 <p>15 reviews</p>
               </div>
             </div>
@@ -271,33 +267,24 @@ const SeventhScreen = () => {
             <div className="centerDiv newUU">
               <div className="up">
                 <p>4.4/5</p>
-                <div>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star-half"></i>
-                </div>
+               <StarRating4 rating={4}/>
               </div>
-              <img src="./Images/85.png" alt="" />
-              <img src="./Images/84.png" alt="" />
-              <img src="./Images/86.png" alt="" />
-              <img src="./Images/87.png" alt="" />
-              <img src="./Images/88.png" alt="" />
-              <img src="./Images/89.png" alt="" />
+              <div style={{display:"flex", flexDirection:"column", gap:"8px"}}>
+              <Progress />
+              <Progress />
+              <Progress />
+              <Progress />
+              <Progress />
+              <Progress />
+
+              </div>
             </div>
 
             <div className="NewTwoSec">
               <div className="side1">
                 <p className="head">Mansur :</p>
                 <p className="desc">Posted on 15-Sep-19</p>
-                <div>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star-half"></i>
-                </div>
+               <StarRating4 rating={4}/>
               </div>
               <div className="side2">
                 <p>
@@ -311,13 +298,7 @@ const SeventhScreen = () => {
               <div className="side1">
                 <p className="head">Devanand :</p>
                 <p className="desc">Posted on 15-Sep-19</p>
-                <div>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star-half"></i>
-                </div>
+               <StarRating4 rating={4}/>
               </div>
               <div className="side2">
                 <p>
@@ -335,13 +316,7 @@ const SeventhScreen = () => {
               <div className="side1">
                 <p className="head">Ali Mohammad :</p>
                 <p className="desc">Posted on 15-Sep-19</p>
-                <div>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star-half"></i>
-                </div>
+               <StarRating4 rating={4}/>
               </div>
               <div className="side2">
                 <p>
@@ -359,13 +334,7 @@ const SeventhScreen = () => {
               <div className="side1">
                 <p className="head">Siddharth :</p>
                 <p className="desc">Posted on 15-Sep-19</p>
-                <div>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star-half"></i>
-                </div>
+               <StarRating4 rating={4}/>
               </div>
               <div className="side2">
                 <p>

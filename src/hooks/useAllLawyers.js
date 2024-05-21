@@ -1,12 +1,18 @@
 import { useEffect, useState } from "react";
 import { fetchApiData } from "../utils";
+import { useRecoilState } from "recoil";
+import { InstantsingleInfo, singleInfo } from "../Component/Atoms/caseAtom";
 
 const useAllLawyers = () => {
   const [UserInfo, setUserInfo] = useState([])
+  const [singleLawyer , setSingleLawyer] = useRecoilState(singleInfo)
+  const [singleInstantLawyer , setSingleInstantLawyer] = useRecoilState(InstantsingleInfo)
 
   const getUserInfo = async ()=>{
     const userData = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/admin/lawyer')
     setUserInfo(userData?.data)
+    setSingleLawyer(userData?.data?.[0])
+    setSingleInstantLawyer(userData?.data?.[0])
   }
 
 
@@ -15,7 +21,11 @@ const useAllLawyers = () => {
   },[])
 
   return {
-    UserInfo
+    UserInfo,
+    singleLawyer,
+    singleInstantLawyer,
+    setSingleLawyer,
+    setSingleInstantLawyer
   };
 };
 
