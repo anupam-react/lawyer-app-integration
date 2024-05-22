@@ -1,8 +1,10 @@
 /** @format */
 
 import { Modal } from "react-bootstrap";
+import RangeSlider from "../Screens/User/RangeSlider";
 
 function FilterModal(props) {
+
 
   return (
     <Modal
@@ -68,7 +70,9 @@ function FilterModal(props) {
 
             <div className="bar">
                 <p>Consultation Fee</p>
-                <img src='./Images/101.png' alt='' />
+               <div>
+                <RangeSlider />
+               </div>
             </div>
 
 

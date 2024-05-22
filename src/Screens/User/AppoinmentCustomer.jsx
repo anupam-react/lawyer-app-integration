@@ -1,11 +1,10 @@
 import React from "react";
 import StarRating2 from "./StarRating2";
 import StarRating3 from "./StarRating3";
-import useAllLawyers from "../../hooks/useAllLawyers";
 import { useNavigate } from "react-router-dom";
 
 const AppoinmentCustomer = ({ data }) => {
-  const navigate= useNavigate('')
+  const navigate = useNavigate("");
   return (
     <div>
       <div className="rightFirst">
@@ -43,9 +42,7 @@ const AppoinmentCustomer = ({ data }) => {
 
           <div>
             <p className="firstP">
-              Adv.{" "}
-              {data?.fullName ||
-                data?.firstName + " " + data?.lastName}
+              Adv. {data?.fullName || data?.firstName + " " + data?.lastName}
             </p>
             {data?.expertises?.map((d, i) => (
               <span key={i} className="secondP">
@@ -86,7 +83,15 @@ const AppoinmentCustomer = ({ data }) => {
           </div>
         </div>
 
-        <button onClick={()=> navigate(`/payment/${data?._id}`)} style={{ fontSize: "20px", fontWeight: 700, width: "120px" , border:"none"}}>
+        <button
+          onClick={() => navigate(`/payment/${data?._id}`)}
+          style={{
+            fontSize: "20px",
+            fontWeight: 700,
+            width: "120px",
+            border: "none",
+          }}
+        >
           Consult
         </button>
 

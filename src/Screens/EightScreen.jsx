@@ -1,19 +1,18 @@
 /** @format */
 
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Footer from "../Component/Footer";
 import ThankYouModal from "../Modals/ThankYouModal";
 import useBookAppointment from "../hooks/useBookAppointment";
 
 const EightScreen = () => {
   const [ThankYouOpen, setThankYouOpen] = useState(false);
-  const {    appointmentType,
-    setAppointmentType,
-    handleBookAppointment,
-    handleChange}= useBookAppointment()
+  const { appointmentType, handleBookAppointment, handleChange}= useBookAppointment()
 
   const navigate = useNavigate();
+
+  const {id} = useParams()
 
   const GoBack = () => {
     navigate(-1);
@@ -52,18 +51,24 @@ const EightScreen = () => {
               <input type="text" value={appointmentType?.name} name="name" onChange={handleChange}/>
             </div>
             <div className="inputGroup">
-              <p>Mobile Number</p>
-              <input type="text" value={appointmentType?.phone} name="phone" onChange={handleChange}/>
+              <p>Consultation Type</p>
+              <input type="text" value={appointmentType?.appointmentType} name="appointmentType" onChange={handleChange}/>
             </div>
             <div className="inputGroup">
-              <p>State</p>
-              <input type="text" value={appointmentType?.state} name="state" onChange={handleChange}/>
+              <p>Consultation Time</p>
+              <input type="text" value={appointmentType?.appointmentTime} name="appointmentTime" onChange={handleChange}/>
             </div>
             <div className="inputGroup">
               <p>Consultation Date</p>
               <input type="text" value={appointmentType?.appointmentDate} name="appointmentDate" onChange={handleChange}/>
             </div>
           </form>
+          <div style={{display:"flex", justifyContent:"center" , marginTop:"30px"}}>
+          <button onClick={()=>handleBookAppointment(id)} style={{ fontSize: "18px", borderRadius:"10px", border:"none", backgroundColor:"white", fontWeight: 700, padding:"8px 0px", width: "150px" , marginBottom:"10px" }}>
+          Book Consult
+        </button>
+
+          </div>
         </div>
 
         <div className="right">

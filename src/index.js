@@ -12,8 +12,8 @@ root.render(
   <React.StrictMode>
     <RecoilRoot>
     <App />
-    </RecoilRoot>
     <ToastContainer />
+    </RecoilRoot>
   </React.StrictMode>
 );
 

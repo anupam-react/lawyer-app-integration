@@ -1,8 +1,11 @@
 /** @format */
 
 import { Modal } from "react-bootstrap";
+import useTransaction from "../hooks/useTransaction";
+import { getDateFromISOString } from "../utils";
 
 function PaymentModal(props) {
+  const { transaction } = useTransaction();
   return (
     <>
       <Modal
@@ -18,10 +21,10 @@ function PaymentModal(props) {
             <i class="fa-solid fa-x" onClick={() => props.onHide()}></i>
 
             <div className="payment1">
-              <p className='first'>Add Money to Wallet</p>
+              <p className="first">Add Money to Wallet</p>
               <div>
                 <p className="second">Total Balance</p>
-                <p className="third">₹5,000</p>
+                <p className="third">₹{transaction?.[0]?.user?.wallet}</p>
               </div>
             </div>
 
@@ -32,41 +35,26 @@ function PaymentModal(props) {
 
             <hr />
 
-            <p className='head2'>My Previous payments</p>
-
-            <div className="payment3">
-              <div>
-                <p className="head">Added From Bank Account</p>
-                <p className="desc">6 Days ago</p>
-              </div>
-              <p className='last' style={{color : '#0F2C64'}}>+₹500</p>
-            </div>
-            <hr />
-            <div className="payment3">
-              <div>
-                <p className="head">Transfer to Micheal </p>
-                <p className="desc">6 Days ago</p>
-              </div>
-              <p className='last' style={{color : '#ED1E24'}}>-₹150</p>
-            </div>
-
-            <hr />
-
-            <div className="payment3">
-              <div>
-                <p className="head">Added From Bank Account</p>
-                <p className="desc">6 Days ago</p>
-              </div>
-              <p className='last' style={{color : '#0F2C64'}}>+₹500</p>
-            </div>
-            <hr />
-            <div className="payment3">
-              <div>
-                <p className="head">Transfer to Micheal </p>
-                <p className="desc">6 Days ago</p>
-              </div>
-              <p className='last' style={{color : '#ED1E24'}}>-₹150</p>
-            </div>
+            <p className="head2">My Previous payments</p>
+            {transaction?.map((d, i) => (
+              <>
+                <div className="payment3">
+                  <div>
+                    <p className="head">{d?.type}</p>
+                    <p className="desc">{getDateFromISOString(d?.date)}</p>
+                  </div>
+                  <p
+                    className="last"
+                    style={{
+                      color: `${d?.type === "Credit" ? "#0F2C64" : "#ED1E24"}`,
+                    }}
+                  >
+                    +₹{d?.amount}
+                  </p>
+                </div>
+                <hr />
+              </>
+            ))}
 
             <button>View All</button>
           </div>

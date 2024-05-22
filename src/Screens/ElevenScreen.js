@@ -5,8 +5,8 @@ import HOC from "./User/HOC";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import useAllLawyers from "../hooks/useAllLawyers";
-import LawyerCard from "./LawyerCard";
 import AppoinmentCustomer from "./User/AppoinmentCustomer";
+import LawyerCard2 from "./LawyerCard2";
 
 const ElevenScreen = () => {
   const { UserInfo , singleInstantLawyer , setSingleInstantLawyer } = useAllLawyers();
@@ -90,7 +90,7 @@ const ElevenScreen = () => {
       <div className="NinthFirst">
         <div className="left">
           {UserInfo?.map((d, i)=>(
-           <LawyerCard unique={i} data={d} setSingleInstantLawyer={setSingleInstantLawyer}/>
+           <LawyerCard2 unique={i} data={d} setSingleInstantLawyer={setSingleInstantLawyer}/>
           ))}
         </div>
         <AppoinmentCustomer data={singleInstantLawyer} />

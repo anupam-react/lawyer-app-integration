@@ -17,11 +17,17 @@ const useBookAppointment = () => {
   };
 
 
-  const handleBookAppointment = async ()=>{
+  const handleBookAppointment = async (id)=>{
+    const formData = {
+      lawyerId: id,
+      appointmentDate: appointmentType?.appointmentDate,
+      appointmentType: appointmentType?.appointmentType,
+      appointmentTime: appointmentType?.appointmentTime
+    }
     try {
       const response = await createApiData(
-        "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/createAppointment",
-        {appointmentType}
+        "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/create/Appointment",
+        formData
       );
       successToast("Book Appointment Successfully");
     } catch (error) {

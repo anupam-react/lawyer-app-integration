@@ -38,6 +38,7 @@ export const BookAppoint = atom({
     phone:'',
     state:'',
     lawyerId:'',
+    caseId:'',
     appointmentDate:'',
     appointmentType:'',
     appointmentTime:'',

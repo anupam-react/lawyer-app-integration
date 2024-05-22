@@ -1,6 +1,8 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const LawyerCard = ({unique, data , setSingleInstantLawyer = ()=>{} , setSingleLawyer = ()=>{}}) => {
+  const navigate= useNavigate('')
   return (
     <div className="two-sec" style={{cursor:"pointer"}} onClick={()=>{
       setSingleInstantLawyer({...data})
@@ -78,7 +80,7 @@ const LawyerCard = ({unique, data , setSingleInstantLawyer = ()=>{} , setSingleL
       <div style={{ color: "#FF0808", fontSize: "14px" }}>consultation fee</div>
       <div style={{ color: "#FF0808", fontSize: "20px" , fontWeight:900 }}>₹{data?.hearingFee}</div>
 
-      <button style={{ fontSize: "14px", fontWeight:700 , width:"120px" }}>Consult now</button>
+      <button  onClick={() => navigate(`/payment/${data?._id}`)} style={{ fontSize: "14px", fontWeight:700 , padding:"5px 0px", width:"120px" }}>Consult now</button>
     </div>
   </div>
   )
