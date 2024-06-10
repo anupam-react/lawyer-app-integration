@@ -3,8 +3,15 @@
 import React from "react";
 import Footer from "../Component/Footer";
 import Navbar2 from "../Component/Navbar2";
+import useBlog from "../hooks/useBlog";
+import { getDateFromISOString } from "../utils";
 
 const Fourth = () => {
+  const {
+    category,
+    blogPopular,
+    blog} = useBlog();
+
   return (
     <>
       <Navbar2 />
@@ -13,7 +20,10 @@ const Fourth = () => {
         <div className="left">
           <h4>Blog</h4>
           <select>
-            <option>All Categories</option>
+          <option>All Category</option>
+            {category?.map((d, i )=>(
+              <option key={i}>{d?.title}</option>
+            ))}
           </select>
         </div>
         <div className="right">
@@ -46,280 +56,44 @@ const Fourth = () => {
       </div>
 
       <div className="FourthScreenSecond">
-        <div className="main">
-          <img src="./Images/49.png" alt="" />
+       {blog?.map((d, i)=>(
+        <div className="main" key={i}>
+          <img src={d?.image} alt="" />
           <div className="under">
-            <h5>Real Estate (Regulation & Development) Act, 2016</h5>
+            <p>{d?.title}</p>
           </div>
           <p className="desc">
             {" "}
             Prachi Darji <br />
-            16-Oct-19{" "}
+            {getDateFromISOString(d?.createdAt)}
           </p>
           <p className="last">Property Law</p>
         </div>
+       )) }
 
-        <div className="main">
-          <img src="./Images/50.png" alt="" />
-          <div className="under">
-            <h5>How RERA impacts buyers</h5>
-          </div>
-          <p className="desc">
-            {" "}
-            Prachi Darji <br />
-            16-Oct-19{" "}
-          </p>
-          <p className="last">Property Law</p>
-        </div>
 
-        <div className="main">
-          <img src="./Images/51.png" alt="" />
-          <div className="under">
-            <h5>How to send a Legal Notice to tenant to vacate premises</h5>
-          </div>
-          <p className="desc">
-            {" "}
-            Prachi Darji <br />
-            16-Oct-19{" "}
-          </p>
-          <p className="last">Property Law</p>
-        </div>
-
-        <div className="main">
-          <img src="./Images/52.png" alt="" />
-          <div className="under">
-            <h5>
-              How do you evict a tenant, as per Rights of Tenant in India?
-            </h5>
-          </div>
-          <p className="desc">
-            {" "}
-            Prachi Darji <br />
-            16-Oct-19{" "}
-          </p>
-          <p className="last">Property Law</p>
-        </div>
+      
       </div>
 
       <div className="FourthScreenthird">
         <div className="one">
           <h3>Most Viewed Posts</h3>
           <div className="MainBig">
-            <div className="main">
-              <img src="./Images/53.png" alt="" />
+          {blogPopular?.map((d, i )=>(
+              <div className="main" key={i}>
+              <img src={d?.image} alt="" />
               <div className="under">
-                <h5>The 11 Fundamental Duties of Indian Citizens</h5>
+                <p>{d?.title}</p>
               </div>
               <p className="desc">
                 {" "}
                 Prachi Darji <br />
-                16-Oct-19{" "}
-              </p>
-              <p className="last">General Legal</p>
-            </div>
-
-            <div className="main">
-              <img src="./Images/54.png" alt="" />
-              <div className="under">
-                <h5>What is a Writ Petition? How do you file one in Court?</h5>
-              </div>
-              <p className="desc">
-                {" "}
-                Prachi Darji <br />
-                16-Oct-19{" "}
-              </p>
-              <p className="last">Property Law</p>
-            </div>
-            <div className="main">
-              <img src="./Images/56.png" alt="" />
-              <div className="under">
-                <h5>Prostitution in India</h5>
-              </div>
-              <p className="desc">
-                {" "}
-                Prachi Darji <br />
-                16-Oct-19{" "}
-              </p>
-              <p className="last">Property Law</p>
-            </div>
-            <div className="main">
-              <img src="./Images/55.png" alt="" />
-              <div className="under">
-                <h5>Is Weed or Marijuana Legal in India?</h5>
-              </div>
-              <p className="desc">
-                {" "}
-                Prachi Darji <br />
-                16-Oct-19{" "}
-              </p>
-              <p className="last">Property Law</p>
-            </div>
-          </div>
-        </div>
-
-
-        <div className="one">
-          <h3>Most Viewed Posts</h3>
-          <div className="MainBig">
-            <div className="main">
-              <img src="./Images/57.png" alt="" />
-              <div className="under">
-                <h5>The 11 Fundamental Duties of Indian Citizens</h5>
-              </div>
-              <p className="desc">
-                {" "}
-                Prachi Darji <br />
-                16-Oct-19{" "}
+                {getDateFromISOString(d?.createdAt)}
               </p>
               <p className="last">Property Law</p>
             </div>
 
-            <div className="main">
-              <img src="./Images/58.png" alt="" />
-              <div className="under">
-                <h5>What is a Writ Petition? How do you file one in Court?</h5>
-              </div>
-              <p className="desc">
-                {" "}
-                Prachi Darji <br />
-                16-Oct-19{" "}
-              </p>
-              <p className="last">Property Law</p>
-            </div>
-            <div className="main">
-              <img src="./Images/59.png" alt="" />
-              <div className="under">
-                <h5>Prostitution in India</h5>
-              </div>
-              <p className="desc">
-                {" "}
-                Prachi Darji <br />
-                16-Oct-19{" "}
-              </p>
-              <p className="last">Property Law</p>
-            </div>
-            <div className="main">
-              <img src="./Images/60.png" alt="" />
-              <div className="under">
-                <h5>Is Weed or Marijuana Legal in India?</h5>
-              </div>
-              <p className="desc">
-                {" "}
-                Prachi Darji <br />
-                16-Oct-19{" "}
-              </p>
-              <p className="last">Property Law</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="one">
-          <h3>Most Viewed Posts</h3>
-          <div className="MainBig">
-            <div className="main">
-              <img src="./Images/61.png" alt="" />
-              <div className="under">
-                <h5>The 11 Fundamental Duties of Indian Citizens</h5>
-              </div>
-              <p className="desc">
-                {" "}
-                Prachi Darji <br />
-                16-Oct-19{" "}
-              </p>
-              <p className="last">Property Law</p>
-            </div>
-
-            <div className="main">
-              <img src="./Images/62.png" alt="" />
-              <div className="under">
-                <h5>What is a Writ Petition? How do you file one in Court?</h5>
-              </div>
-              <p className="desc">
-                {" "}
-                Prachi Darji <br />
-                16-Oct-19{" "}
-              </p>
-              <p className="last">Property Law</p>
-            </div>
-            <div className="main">
-              <img src="./Images/63.png" alt="" />
-              <div className="under">
-                <h5>Prostitution in India</h5>
-              </div>
-              <p className="desc">
-                {" "}
-                Prachi Darji <br />
-                16-Oct-19{" "}
-              </p>
-              <p className="last">Property Law</p>
-            </div>
-            <div className="main">
-              <img src="./Images/64.png" alt="" />
-              <div className="under">
-                <h5>Is Weed or Marijuana Legal in India?</h5>
-              </div>
-              <p className="desc">
-                {" "}
-                Prachi Darji <br />
-                16-Oct-19{" "}
-              </p>
-              <p className="last">Property Law</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="one">
-          <h3>Most Viewed Posts</h3>
-          <div className="MainBig">
-            <div className="main">
-              <img src="./Images/68.png" alt="" />
-              <div className="under">
-                <h5>The 11 Fundamental Duties of Indian Citizens</h5>
-              </div>
-              <p className="desc">
-                {" "}
-                Prachi Darji <br />
-                16-Oct-19{" "}
-              </p>
-              <p className="last">Property Law</p>
-            </div>
-
-            <div className="main">
-              <img src="./Images/65.png" alt="" />
-              <div className="under">
-                <h5>What is a Writ Petition? How do you file one in Court?</h5>
-              </div>
-              <p className="desc">
-                {" "}
-                Prachi Darji <br />
-                16-Oct-19{" "}
-              </p>
-              <p className="last">Property Law</p>
-            </div>
-            <div className="main">
-              <img src="./Images/66.png" alt="" />
-              <div className="under">
-                <h5>Prostitution in India</h5>
-              </div>
-              <p className="desc">
-                {" "}
-                Prachi Darji <br />
-                16-Oct-19{" "}
-              </p>
-              <p className="last">Property Law</p>
-            </div>
-            <div className="main">
-              <img src="./Images/67.png" alt="" />
-              <div className="under">
-                <h5>Is Weed or Marijuana Legal in India?</h5>
-              </div>
-              <p className="desc">
-                {" "}
-                Prachi Darji <br />
-                16-Oct-19{" "}
-              </p>
-              <p className="last">Property Law</p>
-            </div>
+          ))}
           </div>
         </div>
       </div>

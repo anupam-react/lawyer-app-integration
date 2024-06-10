@@ -9,15 +9,25 @@ import Phone from "../Component/Phone";
 import ReviewCarousel from "../Component/ReviewCarousel";
 import CallBackModal from "../Modals/CallBackModal";
 import SignInModal from "../Modals/SignInModal";
+import useHome from "../hooks/useHome";
+import useAbout from "../hooks/useAbout";
 
 const HomeScreen = () => {
   const [isOn, setIsOn] = useState(false);
   const [ modalShow , setModalShow] = useState(false)
   const [ modalShow2 , setModalShow2] = useState(false)
 
-  const handleClick = () => {
-    setIsOn(!isOn);
-  };
+  const {  
+    trusted,
+    userLove,
+    legal,
+    government,
+  }= useHome()
+
+  const { about } = useAbout()
+    console.log(    
+      about
+     )
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -31,29 +41,30 @@ const HomeScreen = () => {
       <Navbar />
       <HomeCarousel />
 
-    <Phone />
+    <Phone/>
  
 
       <div className="home2btn">
         <button
-          className={`${isOn ? "" : "btnOn"}`}
-          onClick={() => handleClick()}
+          className={`${!isOn ? "btnOn" : ""}`}
+          onClick={() =>  setIsOn(false)}
         >
           Legal Services
         </button>
         <button
           className={`${isOn ? "btnOn" : ""}`}
-          onClick={() => handleClick()}
+          onClick={() =>  setIsOn(true)}
         >
           Government Registrations
         </button>
       </div>
-
-      <div className="homeThreeSec">
+{!isOn ? 
+  <div className="homeThreeSec">
+    {legal?.map((d, i)=>(
         <div className="main">
           <div className="first">
-            <img src={"./Images/4.png"} alt="" />
-            <p>Property Possession Delay - RERA</p>
+            <img src={d?.image} alt="" />
+            <p>{d?.category}</p>
           </div>
 
           <div className="second">
@@ -89,313 +100,54 @@ const HomeScreen = () => {
           </div>
         </div>
 
-        <div className="main">
-          <div className="first">
-            <img src={"./Images/4.png"} alt="" />
-            <p>Property Possession Delay - RERA</p>
-          </div>
-
-          <div className="second">
-            <div className="under">
-              <div className="two">
-                <i class="fa-solid fa-star"></i>
-                <p>4.4/5</p>
-              </div>
-              <p className="alone">15 reviews</p>
-            </div>
-
-            <div className="empty"></div>
-
-            <div className="under">
-              <div className="two">
-                <img src={"./Images/6.png"} alt="" />
-                <p>300+</p>
-              </div>
-              <p className="alone">Verified Lawyers</p>
-            </div>
-          </div>
-
-          <hr />
-
-          <div className="three">
-            <p style={{ color: "Consultation starting from" }}>
-              Consultation starting from
-            </p>
-            <p style={{ fontWeight: "bold" }}>₹2,000</p>
-            <p style={{ color: "#0F2C64", fontWeight: "bolder" }}>
-              Book Now {">"}
-            </p>
-          </div>
-        </div>
-
-        <div className="main">
-          <div className="first">
-            <img src={"./Images/4.png"} alt="" />
-            <p>Property Possession Delay - RERA</p>
-          </div>
-
-          <div className="second">
-            <div className="under">
-              <div className="two">
-                <i class="fa-solid fa-star"></i>
-                <p>4.4/5</p>
-              </div>
-              <p className="alone">15 reviews</p>
-            </div>
-
-            <div className="empty"></div>
-
-            <div className="under">
-              <div className="two">
-                <img src={"./Images/6.png"} alt="" />
-                <p>300+</p>
-              </div>
-              <p className="alone">Verified Lawyers</p>
-            </div>
-          </div>
-
-          <hr />
-
-          <div className="three">
-            <p style={{ color: "Consultation starting from" }}>
-              Consultation starting from
-            </p>
-            <p style={{ fontWeight: "bold" }}>₹2,000</p>
-            <p style={{ color: "#0F2C64", fontWeight: "bolder" }}>
-              Book Now {">"}
-            </p>
-          </div>
-        </div>
-
-        <div className="main">
-          <div className="first">
-            <img src={"./Images/4.png"} alt="" />
-            <p>Property Possession Delay - RERA</p>
-          </div>
-
-          <div className="second">
-            <div className="under">
-              <div className="two">
-                <i class="fa-solid fa-star"></i>
-                <p>4.4/5</p>
-              </div>
-              <p className="alone">15 reviews</p>
-            </div>
-
-            <div className="empty"></div>
-
-            <div className="under">
-              <div className="two">
-                <img src={"./Images/6.png"} alt="" />
-                <p>300+</p>
-              </div>
-              <p className="alone">Verified Lawyers</p>
-            </div>
-          </div>
-
-          <hr />
-
-          <div className="three">
-            <p style={{ color: "Consultation starting from" }}>
-              Consultation starting from
-            </p>
-            <p style={{ fontWeight: "bold" }}>₹2,000</p>
-            <p style={{ color: "#0F2C64", fontWeight: "bolder" }}>
-              Book Now {">"}
-            </p>
-          </div>
-        </div>
-        <div className="main">
-          <div className="first">
-            <img src={"./Images/4.png"} alt="" />
-            <p>Property Possession Delay - RERA</p>
-          </div>
-
-          <div className="second">
-            <div className="under">
-              <div className="two">
-                <i class="fa-solid fa-star"></i>
-                <p>4.4/5</p>
-              </div>
-              <p className="alone">15 reviews</p>
-            </div>
-
-            <div className="empty"></div>
-
-            <div className="under">
-              <div className="two">
-                <img src={"./Images/6.png"} alt="" />
-                <p>300+</p>
-              </div>
-              <p className="alone">Verified Lawyers</p>
-            </div>
-          </div>
-
-          <hr />
-
-          <div className="three">
-            <p style={{ color: "Consultation starting from" }}>
-              Consultation starting from
-            </p>
-            <p style={{ fontWeight: "bold" }}>₹2,000</p>
-            <p style={{ color: "#0F2C64", fontWeight: "bolder" }}>
-              Book Now {">"}
-            </p>
-          </div>
-        </div>
-        <div className="main">
-          <div className="first">
-            <img src={"./Images/4.png"} alt="" />
-            <p>Property Possession Delay - RERA</p>
-          </div>
-
-          <div className="second">
-            <div className="under">
-              <div className="two">
-                <i class="fa-solid fa-star"></i>
-                <p>4.4/5</p>
-              </div>
-              <p className="alone">15 reviews</p>
-            </div>
-
-            <div className="empty"></div>
-
-            <div className="under">
-              <div className="two">
-                <img src={"./Images/6.png"} alt="" />
-                <p>300+</p>
-              </div>
-              <p className="alone">Verified Lawyers</p>
-            </div>
-          </div>
-
-          <hr />
-
-          <div className="three">
-            <p style={{ color: "Consultation starting from" }}>
-              Consultation starting from
-            </p>
-            <p style={{ fontWeight: "bold" }}>₹2,000</p>
-            <p style={{ color: "#0F2C64", fontWeight: "bolder" }}>
-              Book Now {">"}
-            </p>
-          </div>
-        </div>
-        <div className="main">
-          <div className="first">
-            <img src={"./Images/4.png"} alt="" />
-            <p>Property Possession Delay - RERA</p>
-          </div>
-
-          <div className="second">
-            <div className="under">
-              <div className="two">
-                <i class="fa-solid fa-star"></i>
-                <p>4.4/5</p>
-              </div>
-              <p className="alone">15 reviews</p>
-            </div>
-
-            <div className="empty"></div>
-
-            <div className="under">
-              <div className="two">
-                <img src={"./Images/6.png"} alt="" />
-                <p>300+</p>
-              </div>
-              <p className="alone">Verified Lawyers</p>
-            </div>
-          </div>
-
-          <hr />
-
-          <div className="three">
-            <p style={{ color: "Consultation starting from" }}>
-              Consultation starting from
-            </p>
-            <p style={{ fontWeight: "bold" }}>₹2,000</p>
-            <p style={{ color: "#0F2C64", fontWeight: "bolder" }}>
-              Book Now {">"}
-            </p>
-          </div>
-        </div>
-        <div className="main">
-          <div className="first">
-            <img src={"./Images/4.png"} alt="" />
-            <p>Property Possession Delay - RERA</p>
-          </div>
-
-          <div className="second">
-            <div className="under">
-              <div className="two">
-                <i class="fa-solid fa-star"></i>
-                <p>4.4/5</p>
-              </div>
-              <p className="alone">15 reviews</p>
-            </div>
-
-            <div className="empty"></div>
-
-            <div className="under">
-              <div className="two">
-                <img src={"./Images/6.png"} alt="" />
-                <p>300+</p>
-              </div>
-              <p className="alone">Verified Lawyers</p>
-            </div>
-          </div>
-
-          <hr />
-
-          <div className="three">
-            <p style={{ color: "Consultation starting from" }}>
-              Consultation starting from
-            </p>
-            <p style={{ fontWeight: "bold" }}>₹2,000</p>
-            <p style={{ color: "#0F2C64", fontWeight: "bolder" }}>
-              Book Now {">"}
-            </p>
-          </div>
-        </div>
-        <div className="main">
-          <div className="first">
-            <img src={"./Images/4.png"} alt="" />
-            <p>Property Possession Delay - RERA</p>
-          </div>
-
-          <div className="second">
-            <div className="under">
-              <div className="two">
-                <i class="fa-solid fa-star"></i>
-                <p>4.4/5</p>
-              </div>
-              <p className="alone">15 reviews</p>
-            </div>
-
-            <div className="empty"></div>
-
-            <div className="under">
-              <div className="two">
-                <img src={"./Images/6.png"} alt="" />
-                <p>300+</p>
-              </div>
-              <p className="alone">Verified Lawyers</p>
-            </div>
-          </div>
-
-          <hr />
-
-          <div className="three">
-            <p style={{ color: "Consultation starting from" }}>
-              Consultation starting from
-            </p>
-            <p style={{ fontWeight: "bold" }}>₹2,000</p>
-            <p style={{ color: "#0F2C64", fontWeight: "bolder" }}>
-              Book Now {">"}
-            </p>
-          </div>
-        </div>
+    ))}
       </div>
+      :
+      <div className="homeThreeSec">
+        {government?.map((d, i)=>(
+        <div className="main">
+          <div className="first">
+            <img src={d?.image} alt="" />
+            <p>{d?.category}</p>
+          </div>
+
+          <div className="second">
+            <div className="under">
+              <div className="two">
+                <i class="fa-solid fa-star"></i>
+                <p>4.4/5</p>
+              </div>
+              <p className="alone">15 reviews</p>
+            </div>
+
+            <div className="empty"></div>
+
+            <div className="under">
+              <div className="two">
+                <img src={"./Images/6.png"} alt="" />
+                <p>300+</p>
+              </div>
+              <p className="alone">Verified Lawyers</p>
+            </div>
+          </div>
+
+          <hr />
+
+          <div className="three">
+            <p style={{ color: "Consultation starting from" }}>
+              Consultation starting from
+            </p>
+            <p style={{ fontWeight: "bold" }}>₹2,000</p>
+            <p style={{ color: "#0F2C64", fontWeight: "bolder" }}>
+              Book Now {">"}
+            </p>
+          </div>
+        </div>
+
+    ))}
+      </div>
+}
+      
 
       <div className="HomeCenterInput">
         <i class="fa-solid fa-magnifying-glass"></i>
@@ -407,7 +159,18 @@ const HomeScreen = () => {
       </div>
 
       <div className="HomeThreeSec">
-        <div>
+        {userLove?.map((d,i)=>(
+        <div key={i}>
+          <img src={d?.image} alt="" style={{width:'300px'}}/>
+          <p className="heading">{d?.title}</p>
+          <p className="desc">
+           {d?.description}
+          </p>
+        </div>
+
+        ))}
+      
+        {/* <div>
           <img src="./Images/8.png" alt="" />
           <p className="heading">Fixed Pricing</p>
           <p className="desc">
@@ -427,14 +190,14 @@ const HomeScreen = () => {
           <p className="desc">
             Case Manager assist you throughout the <br /> case lifecycle
           </p>
-        </div>
+        </div> */}
       </div>
 
       <div className="centerHeading">
         <p>Trusted by 400+ Businesses</p>
       </div>
 
-      <LogoCarousel />
+      <LogoCarousel data={trusted}/>
 
       <ReviewCarousel>
       <div className='review-container'>

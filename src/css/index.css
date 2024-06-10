@@ -153,6 +153,7 @@ code {
   display: grid;
   grid-template-columns: auto auto auto;
   justify-content: space-evenly;
+  gap: 20px;
   background-image: url("../../public/Images/102.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -160,7 +161,7 @@ code {
   height: 100%;
   padding-top: 100px;
   padding-bottom: 8%;
-  gap: 20px;
+
 }
 .homeThreeSec .main {
   background-color: #fff;
@@ -272,6 +273,7 @@ code {
   margin-top: 3%;
   margin-bottom: 2%;
   text-align: center;
+  gap: 20px;
 }
 .HomeThreeSec p {
   margin: 0;
@@ -1278,6 +1280,7 @@ code {
   grid-template-columns: auto auto auto auto;
   justify-content: space-evenly;
   margin-bottom: 5%;
+  gap: 20px;
 }
 .FourthScreenSecond .main {
   width: 260px;
@@ -1294,12 +1297,13 @@ code {
   padding: 20px;
   position: relative;
 }
-.FourthScreenSecond .main .under h5 {
+.FourthScreenSecond .main .under p {
   font-family: Open Sans;
   font-weight: bold;
   font-size: 15.7328px;
   line-height: 24px;
   color: #1d1d1d;
+
 }
 .FourthScreenSecond .main .desc {
   font-family: Open Sans;
@@ -1370,6 +1374,7 @@ code {
   display: grid;
   grid-template-columns: auto auto auto auto;
   justify-content: space-evenly;
+  gap: 20px;
 }
 .FourthScreenthird .one h3 {
   font-family: Open Sans;
@@ -1712,10 +1717,9 @@ code {
 .LocationModal .fourSec {
   display: grid;
   justify-content: space-evenly;
-  grid-template-columns: auto auto auto auto;
-  gap: 20px;
+  grid-template-columns: auto auto auto auto ;
 }
-.LocationModal .fourSec ul li {
+.LocationModal .fourSec p{
   list-style: none;
   /* font-family: Open Sans; */
   font-family: "Poppins", sans-serif;

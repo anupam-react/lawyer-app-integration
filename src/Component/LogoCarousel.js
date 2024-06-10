@@ -4,7 +4,7 @@ import React , {useState , useEffect} from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-const LogoCarousel = () => {
+const LogoCarousel = ({data}) => {
 
   const [centerSlidePercentage, setCenterSlidePercentage] = useState(100/4); 
 
@@ -50,31 +50,15 @@ const LogoCarousel = () => {
         // centerSlidePercentage={100 / 4}
         centerSlidePercentage={centerSlidePercentage}
       >
-      <img
-          src="https://techcrunch.com/wp-content/uploads/2013/03/youtube-logo.jpg"
-          alt="Image1"
-          className="logoImage"
-        />
-        <img
-          src="https://thumbs.dreamstime.com/b/golden-falcon-bird-vector-logo-design-white-background-182823944.jpg"
-          alt="Image2"
-          className="logoImage"
-        />
-        <img
-          src="https://thumbs.dreamstime.com/b/paypal-logo-white-background-vector-image-eps-72682465.jpg"
-          alt="Image3"
-          className="logoImage"
-        />
-        <img
-          src="https://www.seekpng.com/png/detail/397-3971371_tata-logo-vector-symbol-tata-logo-png.png"
-          alt="Image3"
-          className="logoImage"
-        />
-        <img
-          src="https://cdn.zeebiz.com/sites/default/files/styles/zeebiz_850x478/public/2022/08/10/194330-tata-chemicals-twitter.png?itok=szqYh2H6"
-          alt="Image3"
-          className="logoImage"
-        />
+        {data?.map((d, i)=>(
+          <img
+             key={i} src={d?.image}
+              alt="Image1"
+              className="logoImage"
+            />
+
+        ))}
+      
       </Carousel>
     </>
   );

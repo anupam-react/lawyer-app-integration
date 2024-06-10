@@ -1,8 +1,11 @@
 /** @format */
 
 import { Modal } from "react-bootstrap";
+import useCity from "../hooks/useCity";
 
 function LocationModal(props) {
+  const {  popularCity,
+    city,} = useCity()
   return (
     <Modal
       {...props}
@@ -26,36 +29,24 @@ function LocationModal(props) {
           <p className='Populas'>Popular Cities</p>
 
           <div className='sixSec'>
-            <div>
-                <img src='./Images/70.png' alt='' />
-                <p>New Delhi</p>
+            {popularCity?.map((d, i)=>(
+            <div key={i}>
+                <img src={d?.image} alt='' />
+                <p>{d?.city}</p>
             </div>
-            <div>
-                <img src='./Images/70.png' alt='' />
-                <p>Mumbai</p>
-            </div>
-            <div>
-                <img src='./Images/70.png' alt='' />
-                <p>Chennai</p>
-            </div>
-            <div>
-                <img src='./Images/70.png' alt='' />
-                <p>Hyderabad</p>
-            </div>
-            <div>
-                <img src='./Images/70.png' alt='' />
-                <p>Kolkata</p>
-            </div>
-            <div>
-                <img src='./Images/70.png' alt='' />
-                <p>Bangalore</p>
-            </div>
+
+            ))}
+        
           </div>
 
           <hr className="LocationHr" />
 
           <div className="fourSec">
-            <ul>
+          {city?.map((d, i)=>(
+
+                <p key={i}>{'>'}{d?.city}</p>
+            ))}
+            {/* <ul>
                 <li>{'>'}Lucknow</li>
                 <li>{'>'}Noida</li>
                 <li>{'>'}Jaipur</li>
@@ -82,7 +73,7 @@ function LocationModal(props) {
                 <li>{'>'}Dehradun</li>
                 <li>{'>'}Bhopal</li>
                 <li>{'>'}Nagpur</li>
-            </ul>
+            </ul> */}
           </div>
         </div>
       </Modal.Body>

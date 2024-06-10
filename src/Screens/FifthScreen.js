@@ -3,11 +3,12 @@
 import React, { useEffect } from "react";
 import Footer from "../Component/Footer";
 import Navbar2 from "../Component/Navbar2";
+import useSupport from "../hooks/useSupport";
 
 const FifthScreen = () => {
+  const { support } = useSupport()
 
   useEffect(() => {
-    alert('dsad')
     window.scrollTo(0,0)
   },[])
 
@@ -27,11 +28,11 @@ const FifthScreen = () => {
           <div className="two-sec">
             <div>
               <i class="fa-solid fa-envelope"></i>
-              <p>support@advo.in</p>
+              <p>{support?.email}</p>
             </div>
             <div>
               <i class="fa-solid fa-phone"></i>
-              <p>+91-88514-92215</p>
+              <p>{support?.mobileNumber}</p>
             </div>
           </div>
 

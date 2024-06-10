@@ -14,7 +14,7 @@ const HearingLawyer = () => {
   }, []);
 
   const getAllUpcomingConsult = async ()=>{
-    const consultData = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/Appointment/upcomingAppointment')
+    const consultData = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/case/upcommingCase')
     setAllUpcomingConsult(consultData?.data)
   }
 

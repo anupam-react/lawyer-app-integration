@@ -2,9 +2,11 @@
 
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import useFooter from "../hooks/useFooter";
 
 const Footer = () => {
   const navigate = useNavigate();
+  const { policy } = useFooter()
   return (
     <>
       <div className="footer">
@@ -12,10 +14,7 @@ const Footer = () => {
           <div>
             <p className="head specialHead">Policy</p>
             <p className="desc">
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-              erat, sed diam voluptua. At vero eos et accusam et justo duo
-              dolores et ea rebum.{" "}
+           {policy[0]?.content}
             </p>
             <img
               src="./Images/logo2.png"
