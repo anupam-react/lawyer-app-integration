@@ -1,8 +1,21 @@
 /** @format */
 
 import { Modal } from "react-bootstrap";
+import useQuery from "../hooks/useQuery";
 
 function CallBackModal(props) {
+  const {  
+    name,
+    setName,
+    email,
+    setEmail,
+    mobile,
+    setMobile,
+    query,
+    setQuery,
+    handleRequest
+  } = useQuery()
+
   return (
     <Modal
       {...props}
@@ -61,22 +74,22 @@ function CallBackModal(props) {
                         <div className="main">
                         <i class="fa-solid fa-user"></i>
                         <div className="empty"></div>
-                        <input type='text' placeholder="Full Name" />
+                        <input type='text' placeholder="Full Name" value={name} onChange={(e)=> setName(e.target.value)} />
                         </div>
                         <div className="main">
                         <i class="fa-solid fa-envelope"></i>
                         <div className="empty"></div>
-                        <input type='email' placeholder=" Email Id" />
+                        <input type='email' placeholder=" Email Id" value={email} onChange={(e)=> setEmail(e.target.value)} />
                         </div>
                         <div className="main">
                         <i class="fa-solid fa-phone"></i>
                         <div className="empty"></div>
-                        <input type='tel' pattern="[0-9]{10}" placeholder="Phone Number" />
+                        <input type='tel' pattern="[0-9]{10}" placeholder="Phone Number" value={mobile} onChange={(e)=> setMobile(e.target.value)} />
                         </div>
                         <div className="Bigmain">
-                        <textarea placeholder="Write your query...." />
+                        <textarea placeholder="Write your query...." value={query} onChange={(e)=> setQuery(e.target.value)}/>
                         </div>
-                        <button>Give Me a Call Back</button>
+                        <button onClick={handleRequest}>Give Me a Call Back</button>
                     </form>
                 </div>
 

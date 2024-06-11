@@ -4,9 +4,21 @@ import React, { useEffect } from "react";
 import Footer from "../Component/Footer";
 import Navbar2 from "../Component/Navbar2";
 import useSupport from "../hooks/useSupport";
+import useQuery from "../hooks/useQuery";
 
 const FifthScreen = () => {
   const { support } = useSupport()
+  const {  
+    name,
+    setName,
+    email,
+    setEmail,
+    mobile,
+    setMobile,
+    query,
+    setQuery,
+    handleRequest
+  } = useQuery()
 
   useEffect(() => {
     window.scrollTo(0,0)
@@ -54,24 +66,24 @@ const FifthScreen = () => {
             <div>
               <label>Name</label>
               <br />
-              <input type="text" />
+              <input type="text" value={name} onChange={(e)=> setName(e.target.value)}/>
             </div>
             <div>
               <label>Email Address</label>
               <br />
-              <input type="text" />
+              <input type="text" value={email} onChange={(e)=> setEmail(e.target.value)}/>
             </div>
             <div>
               <label>Mobile Number</label>
               <br />
-              <input type="text" />
+              <input type="text" value={mobile} onChange={(e)=> setMobile(e.target.value)}/>
             </div>
             <div>
               <label>Details</label>
               <br />
-              <textarea />
+              <textarea value={query} onChange={(e)=> setQuery(e.target.value)}/>
             </div>
-            <button>Submit</button>
+            <button onClick={handleRequest}>Submit</button>
           </form>
         </div>
       </div>

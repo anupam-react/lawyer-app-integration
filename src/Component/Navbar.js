@@ -27,7 +27,7 @@ const Navbar = () => {
       <div className="nav">
         <div className="left">
           <img
-            src="./Images/logo.png"
+            src="../Images/logo.png"
             alt="logo"
             onClick={() => navigate("/")}
             style={{ cursor: "pointer" }}

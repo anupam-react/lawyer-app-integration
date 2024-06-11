@@ -3,8 +3,13 @@
 import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import HomeCard from "./HomeCard";
+import HomeCard2 from "./HomeCard2";
+import useAbout from "../hooks/useAbout";
 
 const HomeCarousel = () => {
+  const {about} = useAbout()
+  console.log(about)
   return (
     <>
       <Carousel
@@ -56,12 +61,10 @@ const HomeCarousel = () => {
           );
         }}
       >
-        <img src="./Images/carousel1.png" alt="Image1" className="CImage" />
-
-        <img src="./Images/carousel2 (1).png" alt="Image2" className="CImage" />
-
-        <img src="./Images/carousel2 (2).png" alt="Image3" className="CImage" />
-        <img src="./Images/carousel2 (3).png" alt="Image3" className="CImage" />
+        <HomeCard title="About Us" desc={about?.[0]?.content}/>
+        <HomeCard2 title={about?.[0]?.descriptionArray?.[0]?.title}  desc={about?.[0]?.descriptionArray?.[0]?.description}/>
+        <HomeCard title={about?.[0]?.descriptionArray?.[1]?.title}  desc={about?.[0]?.descriptionArray?.[1]?.description}/>
+        <HomeCard2 title={about?.[0]?.descriptionArray?.[2]?.title}  desc={about?.[0]?.descriptionArray?.[2]?.description}/>
       </Carousel>
     </>
   );

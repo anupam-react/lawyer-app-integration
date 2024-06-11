@@ -10,7 +10,7 @@ import ReviewCarousel from "../Component/ReviewCarousel";
 import CallBackModal from "../Modals/CallBackModal";
 import SignInModal from "../Modals/SignInModal";
 import useHome from "../hooks/useHome";
-import useAbout from "../hooks/useAbout";
+import useReview from "../hooks/useReview";
 
 const HomeScreen = () => {
   const [isOn, setIsOn] = useState(false);
@@ -24,9 +24,9 @@ const HomeScreen = () => {
     government,
   }= useHome()
 
-  const { about } = useAbout()
+  const { review } = useReview()
     console.log(    
-      about
+      review
      )
 
   useEffect(() => {
@@ -161,7 +161,7 @@ const HomeScreen = () => {
       <div className="HomeThreeSec">
         {userLove?.map((d,i)=>(
         <div key={i}>
-          <img src={d?.image} alt="" style={{width:'300px'}}/>
+          <img src={d?.image} alt="" style={{width:'250px', height:"120px"}}/>
           <p className="heading">{d?.title}</p>
           <p className="desc">
            {d?.description}
@@ -200,36 +200,20 @@ const HomeScreen = () => {
       <LogoCarousel data={trusted}/>
 
       <ReviewCarousel>
-      <div className='review-container'>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt minus illum, voluptate amet consequuntur molestias, quam nobis veniam beatae eum culpa nulla unde ab, totam corrupti asperiores. Alias, dolore voluptate.</p>
+        {review?.map((d, i)=>(
+      <div className='review-container' key={i}>
+    <p>{d?.comment}
+</p>
 <div className='reviwer-info'>
         <img src="" alt="" style={{width:"50px" , height:"50px" , borderRadius:"50%"}}/>
     <div className='reviwer-name'>
-        <div style={{color:"#2B2D3C" , fontSize:"14px", fontWeight:700}}>Rushil Narayan</div>
-        <div style={{color:"#A2A5B8" }}>RERA , Panchkula</div>
+        <div style={{color:"#2B2D3C" , fontSize:"14px", fontWeight:700}}>{d?.userId?.fullName || d?.userId?.firstName + " " + d?.userId?.lastName  }</div>
+        <div style={{color:"#A2A5B8" }}>{d?.userId?.district} , {d?.userId?.country} </div>
     </div>
 </div>
 </div>
-      <div className='review-container'>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt minus illum, voluptate amet consequuntur molestias, quam nobis veniam beatae eum culpa nulla unde ab, totam corrupti asperiores. Alias, dolore voluptate.</p>
-<div className='reviwer-info'>
-        <img src="" alt="" style={{width:"50px" , height:"50px" , borderRadius:"50%"}}/>
-    <div className='reviwer-name'>
-        <div style={{color:"#2B2D3C" , fontSize:"14px", fontWeight:700}}>Rushil Narayan</div>
-        <div style={{color:"#A2A5B8" }}>RERA , Panchkula</div>
-    </div>
-</div>
-</div>
-      <div className='review-container'>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt minus illum, voluptate amet consequuntur molestias, quam nobis veniam beatae eum culpa nulla unde ab, totam corrupti asperiores. Alias, dolore voluptate.</p>
-<div className='reviwer-info'>
-        <img src="" alt="" style={{width:"50px" , height:"50px" , borderRadius:"50%"}}/>
-    <div className='reviwer-name'>
-        <div style={{color:"#2B2D3C" , fontSize:"14px", fontWeight:700}}>Rushil Narayan</div>
-        <div style={{color:"#A2A5B8" }}>RERA , Panchkula</div>
-    </div>
-</div>
-</div>
+        ))}
+ 
       </ReviewCarousel>
 
       <div className="homeFistSec">

@@ -6,7 +6,10 @@ import useFooter from "../hooks/useFooter";
 
 const Footer = () => {
   const navigate = useNavigate();
-  const { policy } = useFooter()
+  const { 
+    policy ,  
+     legal,
+    government } = useFooter()
   return (
     <>
       <div className="footer">
@@ -27,33 +30,22 @@ const Footer = () => {
           <div>
             <ul>
               <p className="head">Legal Services</p>
-              <li>{">"}Property Possession Delay - RERA</li>
-              <li>{">"}Mutual Consent Divorce</li>
-              <li>{">"}Cheque Bounce Complaint</li>
-              <li>{">"}Unpaid Salary - Legal Notice</li>
-              <li>{">"}Consumer Matter - Legal Notice</li>
-              <li>{">"}Consumer Case</li>
-              <li>{">"}Suit - Recovery of Money</li>
-              <li>{">"}Possession Delay - NCLT</li>
-              <li>{">"}Trademark Registration</li>
-              <li>{">"}Legal Notice</li>
-              <li>{">"}Wrongful Termination - Legal Notice</li>
-              <li>{">"}Canada Immigration (PR)</li>
-              <li>{">"}Legal Documentation</li>
-              <li>{">"}Posh</li>
+              {legal?.map((d, i)=>(
+                <li key={i}>{">"}{d?.category}</li>
+
+              ))}
+           
             </ul>
           </div>
 
           <div>
             <ul>
               <p className="head">Government Registrations</p>
-              <li>{">"}Marriage Certificate</li>
-              <li>{">"}Name Change</li>
-              <li>{">"}GST Registration</li>
-              <li>{">"}Legal Heir Certificate</li>
-              <li>{">"}Court Marriage</li>
-              <li>{">"}Company Incorporation</li>
-              <li>{">"}FSSAI License</li>
+              {government?.map((d, i)=>(
+                <li key={i}>{">"}{d?.category}</li>
+
+              ))}
+          
             </ul>
           </div>
 
