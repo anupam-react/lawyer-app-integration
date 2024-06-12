@@ -6,11 +6,13 @@ import CunsultationModal from "../Modals/ConsultationModal";
 import { useNavigate } from "react-router-dom";
 import SignInModal from "../Modals/SignInModal";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import LocationModal from "../Modals/LocationModal";
 
 const Navbar = () => {
   const [modalShow, setModalShow] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const [show, setShow] = useState(false);
+  const [showLocation, setShowLocation] = useState(false);
   const navigate = useNavigate();
 
   const [off, setOff] = useState(false);
@@ -23,6 +25,10 @@ const Navbar = () => {
       <ServiceModal show={modalShow} onHide={() => setModalShow(false)} />
       <CunsultationModal show={open} onHide={() => setOpen(false)} />
       <SignInModal show={show} onHide={() => setShow(false)} />
+      <LocationModal
+        show={showLocation}
+        onHide={() => setShowLocation(false)}
+      />
 
       <div className="nav">
         <div className="left">
@@ -46,6 +52,7 @@ const Navbar = () => {
             <input
               type="search"
               placeholder="Search for Lawyer, Services etc."
+              onClick={() => setShowLocation(true)}
             />
           </div>
         </div>

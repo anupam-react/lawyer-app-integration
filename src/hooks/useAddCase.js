@@ -58,12 +58,10 @@ console.log(formData)
   };
 
   return {
-
     allUsers,
     casedata,
     setCaseData,
     handleChange,
-
     handleAddCase,
   };
 };

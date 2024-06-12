@@ -51,16 +51,17 @@ code {
 }
 
 .nav .left .search {
-  height: 30px;
+  height: 35px;
   margin-top: 15px;
   width: 290px;
   margin-left: 20px;
   border-radius: 20px;
   position: relative;
+  color: #0F2C6480;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .nav .left .search i {
-  top: 5px;
+  top: 10px;
   left: 20px;
   position: absolute;
 }
@@ -341,7 +342,6 @@ code {
 }
 .mainCarosel {
   position: relative;
-  margin-top: 5%;
 }
 
 /*  */
@@ -842,7 +842,6 @@ code {
   justify-content: space-evenly;
   padding-top: 5%;
   padding-bottom: 5%;
-  margin-bottom: 5%;
 }
 .secondScreenThreeSec p {
   max-width: 650px;
@@ -1659,6 +1658,7 @@ code {
   border-radius: 78.5146px;
   padding: 10px;
   padding-left: 10px;
+  color: #0F2C6480;
 }
 .LocationModal input {
   width: 96%;
@@ -1669,7 +1669,7 @@ code {
   font-weight: 800;
   font-size: 15.7029px;
   line-height: 18px;
-  color: rgba(15, 44, 100, 0.5);
+  color: #0F2C6480;
 }
 .LocationModal .Populas {
   font-family: "Poppins";

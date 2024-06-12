@@ -264,7 +264,7 @@ const SeventhScreen = () => {
             <p className="over">15 Reviews</p>
             <hr style={{ border: "1px solid #0F2C64" }} />
 
-            <div className="centerDiv newUU">
+            <div className="centerDiv ">
               <div className="up">
                 <p>4.4/5</p>
                <StarRating4 rating={4}/>

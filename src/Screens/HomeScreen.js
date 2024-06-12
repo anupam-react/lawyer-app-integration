@@ -25,9 +25,7 @@ const HomeScreen = () => {
   }= useHome()
 
   const { review } = useReview()
-    console.log(    
-      review
-     )
+    
 
   useEffect(() => {
     window.scrollTo(0, 0)

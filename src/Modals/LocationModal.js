@@ -2,11 +2,17 @@
 
 import { Modal } from "react-bootstrap";
 import useCity from "../hooks/useCity";
+import ServiceModal from "./ServiceModal";
+import { useState } from "react";
 
 function LocationModal(props) {
+
   const {  popularCity,
     city,} = useCity()
+    const [modalShow, setModalShow] = useState(false);
   return (
+    <>
+     <ServiceModal show={modalShow} onHide={() => setModalShow(false)} />
     <Modal
       {...props}
       size="xl"
@@ -23,6 +29,7 @@ function LocationModal(props) {
             <input
               type="search"
               placeholder="Search for Lawyer, Services etc."
+              onClick={() => setModalShow(true)}
             />
           </div>
 
@@ -78,6 +85,7 @@ function LocationModal(props) {
         </div>
       </Modal.Body>
     </Modal>
+    </>
   );
 }
 

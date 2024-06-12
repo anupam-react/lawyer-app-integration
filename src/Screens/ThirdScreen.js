@@ -5,9 +5,10 @@ import Footer from "../Component/Footer";
 import Navbar2 from "../Component/Navbar2";
 import Phone from "../Component/Phone";
 import ReviewCarousel from "../Component/ReviewCarousel";
+import useReview from "../hooks/useReview";
 
 const ThirdScreen = () => {
-
+  const { review } = useReview()
   useEffect(() => {
   window.scrollTo(0,0)
   },[])
@@ -143,10 +144,24 @@ const ThirdScreen = () => {
         </div>
         <button>Get Listed Now</button>
       </div>
+      <p style={{textAlign:"center", color:"#0F2C64", fontSize:"24px" , marginTop:"30px"}}>Testimonials</p>
+      <ReviewCarousel>
+        {review?.map((d, i)=>(
+      <div className='review-container' key={i}>
+    <p>{d?.comment}
+</p>
+<div className='reviwer-info'>
+        <img src="" alt="" style={{width:"50px" , height:"50px" , borderRadius:"50%"}}/>
+    <div className='reviwer-name'>
+        <div style={{color:"#2B2D3C" , fontSize:"14px", fontWeight:700}}>{d?.userId?.fullName || d?.userId?.firstName + " " + d?.userId?.lastName  }</div>
+        <div style={{color:"#A2A5B8" }}>{d?.userId?.district} , {d?.userId?.country} </div>
     </div>
-
-
-    <ReviewCarousel />
+</div>
+</div>
+        ))}
+ 
+      </ReviewCarousel>
+    </div>
     <Footer />
     </>
   );
