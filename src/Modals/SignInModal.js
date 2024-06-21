@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import useCusomerLogin from "../hooks/useCusomerLogin";
 import AdminSignInModal from "./AdminSignInModal";
 import useAdminLogin from "../hooks/useAdminLogin";
+import axios from "axios";
 
 function SignInModal(props) {
   const {
@@ -17,6 +18,9 @@ function SignInModal(props) {
     setPassword,
     phone,
     setPhone,
+    otp, setOtp,
+    newPass , setNewPass,
+    confirmPass , setConfirmPass,
     isChecked,
     handleCheckboxChange,
     handleRegister,
@@ -24,7 +28,8 @@ function SignInModal(props) {
     handleAdminLogin
   } = useCusomerLogin();
 
-  const [second, setSecond] = useState(false);
+  const [active, setActive] = useState(0);
+
   const navigate = useNavigate();
 
   const [selectedOption, setSelectedOption] = useState("Costumer");
@@ -39,6 +44,111 @@ function SignInModal(props) {
     setSelectedOption2(event.target.value);
   };
 
+
+  const handleGenerateCustomerOtp = async(event)=>{
+    event.preventDefault();
+    const formData = {
+      email
+    };
+    try {
+      const response = await axios.post(
+        "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/forgetPassword",
+        formData
+      );
+      setActive(3)
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
+  const handleGenerateLawyerOtp = async(event)=>{
+    event.preventDefault();
+    const formData = {
+      email
+    };
+    try {
+      const response = await axios.post(
+        "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/forgetPassword",
+        formData
+      );
+      setActive(3)
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
+  const handleCustomerVerifyOtp = async(event)=>{
+    event.preventDefault();
+    const formData = {
+      email, otp
+    };
+    try {
+      const response = await axios.post(
+        "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/forgotVerifyotp",
+        formData
+      );
+      console.log(response?.data)
+      sessionStorage.setItem("customerId", response?.data?.data?.userId)
+      setActive(4)
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+  const handleLawyerVerifyOtp = async(event)=>{
+    event.preventDefault();
+    const formData = {
+      email, otp
+    };
+    try {
+      const response = await axios.post(
+        "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/forgotVerifyotp",
+        formData
+      );
+      sessionStorage.setItem("lawyerId", response?.data?.data?.userId)
+      setActive(4)
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+  const handleCustomerResetPass = async(event)=>{
+    event.preventDefault();
+    const id =  sessionStorage.getItem("customerId");
+    const formData = {
+      newPassword : newPass, confirmPassword: confirmPass
+    };
+    try {
+      const response = await axios.post(
+        `https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/changePassword/${id}`,
+        formData
+      );
+      setActive(0)
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+  const handleLawyerResetPass = async(event)=>{
+    event.preventDefault();
+    const id =  sessionStorage.getItem("lawyerId");;
+    const formData = {
+      newPassword : newPass, confirmPassword: confirmPass
+    };
+    try {
+      const response = await axios.post(
+        `https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/changePassword/${id}`,
+        formData
+      );
+      setActive(0)
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
   return (
     <>
       <Modal
@@ -49,11 +159,11 @@ function SignInModal(props) {
         centered
       >
         <Modal.Body>
-          {second ? (
+          {active === 1 && (
             <>
               <div className="SignInModal">
                 <div className="twoBtn">
-                  <button onClick={() => setSecond(false)}>Login</button>
+                  <button onClick={() => setActive(0)}>Login</button>
                   <button className="btn1">Sign Up</button>
                 </div>
 
@@ -157,12 +267,14 @@ function SignInModal(props) {
                 )}
               </div>
             </>
-          ) : (
+          )  
+        } 
+           {active === 0 && (
             <>
               <div className="SignInModal">
                 <div className="twoBtn">
                   <button className="btn1">Login</button>
-                  <button onClick={() => setSecond(true)}>Sign Up</button>
+                  <button onClick={() => setActive(1)}>Sign Up</button>
                 </div>
 
                 <form>
@@ -217,7 +329,129 @@ function SignInModal(props) {
                   >
                     LOG IN
                   </button>
-                  <p style={{ marginTop: "10px" }}>Forgot Password</p>
+                  <p onClick={()=>setActive(2)} style={{ marginTop: "10px" , fontWeight:600 , color:"#1D1D1D", cursor:"pointer" }}>Forgot Password</p>
+                </form>
+              </div>
+            </>
+          )}
+           {active === 2 && (
+            <>
+              <div className="SignInModal">
+              <p style={{fontSize:"22px" , fontWeight:"bold"}}>Generate OTP</p>
+
+                <form>
+        
+                  <div>
+                    <i class="fa-solid fa-envelope"></i>
+                    <input
+                      type="email"
+                      placeholder="Email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      style={{ paddingLeft: "65px" }}
+                    />
+                  </div>
+                
+                  <button
+                    className="login"
+                    onClick={
+                      selectedOption === "Costumer"
+                        ? handleGenerateCustomerOtp
+                        : handleGenerateLawyerOtp
+                    
+                    }
+                  >
+                    Next
+                  </button>
+
+                </form>
+              </div>
+            </>
+          )}
+           {active === 3 && (
+            <>
+              <div className="SignInModal">
+              <p style={{fontSize:"22px" , fontWeight:"bold"}}>Verify OTP</p>
+
+                <form>
+        
+                  <div>
+                    <i class="fa-solid fa-envelope"></i>
+                    <input
+                      type="email"
+                      placeholder="Email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      style={{ paddingLeft: "65px" }}
+                    />
+                  </div>
+                  <div>
+                    
+                    <input
+                      type="text"
+                      placeholder="otp"
+                      value={otp}
+                      onChange={(e) => setOtp(e.target.value)}
+                      
+                    />
+                  </div>
+                
+                  <button
+                    className="login"
+                    onClick={
+                      selectedOption === "Costumer"
+                        ? handleCustomerVerifyOtp
+                        : handleLawyerVerifyOtp
+                    
+                    }
+                  >
+                    Verify
+                  </button>
+
+                </form>
+              </div>
+            </>
+          )}
+           {active === 4 && (
+            <>
+              <div className="SignInModal">
+              <p style={{fontSize:"22px" , fontWeight:"bold"}}>Reset Password</p>
+
+                <form>
+        
+                  <div>
+      
+                    <input
+                      type="text"
+                      placeholder="New Password"
+                     value={newPass}
+                     onChange={(e)=> setNewPass(e.target.value)}
+                
+                    />
+                  </div>
+                  <div>
+                    
+                    <input
+                     type="text"
+                      placeholder="Confirm Password"
+                      value={confirmPass}
+                     onChange={(e)=> setConfirmPass(e.target.value)}
+                      
+                    />
+                  </div>
+                
+                  <button
+                    className="login"
+                    onClick={
+                      selectedOption === "Costumer"
+                        ? handleCustomerResetPass
+                        : handleLawyerResetPass
+                  
+                    }
+                  >
+                    Done
+                  </button>
+
                 </form>
               </div>
             </>

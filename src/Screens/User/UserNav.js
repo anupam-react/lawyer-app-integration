@@ -45,7 +45,7 @@ const UserNav = () => {
           <button onClick={() => setRemModal(true)}>Set Reminder</button>
         </div>
 
-        <div className="right">
+        <div style={{cursor:"pointer"}} onClick={() => navigate('/notification-user')} className="right">
           <img src="./Images/98.png" alt="" />
         </div>
       </div>

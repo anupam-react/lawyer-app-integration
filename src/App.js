@@ -22,6 +22,8 @@ import Reminder from './Screens/Lawyer/Reminder'
 import Consultation from './Screens/Lawyer/Consultation'
 import LawyerProfile from './Screens/Lawyer/LawyerProfile'
 import Appointment from './Screens/Appointment'
+import Notification from './Screens/Notification'
+import NotificationUser from './Screens/User/NotificationUser'
 
 const App = () => {
   return (
@@ -43,6 +45,8 @@ const App = () => {
         <Route path='/consultations' element={<Consultation />} />
         <Route path='/laywer-profile' element={<LawyerProfile />} />
         <Route path='/payment/:id' element={<EightScreen />} />
+        <Route path='/notification' element={<Notification />} />
+        <Route path='/notification-user' element={<NotificationUser />} />
   
         </Route>
         <Route path='/' element={<HomeScreen />} />

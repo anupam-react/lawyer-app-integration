@@ -9,12 +9,17 @@ const useCusomerLogin = () => {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [isChecked, setIsChecked] = useState(false);
+  const [otp, setOtp] = useState("")
+  const [newPass , setNewPass] = useState("")
+  const [confirmPass , setConfirmPass] = useState("")
 
   const navigate = useNavigate();
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
+
+ 
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -107,6 +112,9 @@ const useCusomerLogin = () => {
     setPassword,
     phone,
     setPhone,
+    otp, setOtp,
+    newPass , setNewPass,
+    confirmPass , setConfirmPass,
     isChecked,
     handleCheckboxChange,
     handleRegister,
