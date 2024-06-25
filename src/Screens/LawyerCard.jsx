@@ -34,7 +34,7 @@ const LawyerCard = ({unique, data , setSingleInstantLawyer = ()=>{} , setSingleL
             fontWeight: 600,
           }}
         >
-          Legal Advisor
+         { data?.categoryId?.[0]?.type}
         </div>
       </div>
     </div>
@@ -43,7 +43,7 @@ const LawyerCard = ({unique, data , setSingleInstantLawyer = ()=>{} , setSingleL
            fontSize:"20px",
             fontWeight:900,
           }}>Advocate. {data?.fullName || data?.firstName + ' ' + data?.lastName}</p>
-      <span  style={{ fontWeight: 700 }}>Legal Property Lawyer</span>
+      <span  style={{ fontWeight: 700 }}>{data?.categoryId?.[0]?.name}</span>
       <br />
       {data?.languages?.map((d, i)=>(
           <span key={i} style={{ fontWeight: 500 , fontSize:"12px" }}>{d +  ', '}</span>
@@ -73,12 +73,12 @@ const LawyerCard = ({unique, data , setSingleInstantLawyer = ()=>{} , setSingleL
         </div>
       </div>
 
-      <h6>30 min. consultation</h6>
+      <h6>{data?.consultancyCost} min. consultation</h6>
     </div>
 
     <div className="right">
       <div style={{ color: "#FF0808", fontSize: "14px" }}>consultation fee</div>
-      <div style={{ color: "#FF0808", fontSize: "20px" , fontWeight:900 }}>₹{data?.hearingFee}</div>
+      <div style={{ color: "#FF0808", fontSize: "20px" , fontWeight:900 }}>₹{data?.consultancyCost}</div>
 
       <button  onClick={() => navigate(`/payment/${data?._id}`)} style={{ fontSize: "14px", fontWeight:700 , padding:"5px 0px", width:"120px" }}>Consult now</button>
     </div>

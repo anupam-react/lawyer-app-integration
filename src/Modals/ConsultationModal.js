@@ -2,10 +2,22 @@
 
 import { Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { fetchApiData } from "../utils";
+import { useEffect, useState } from "react";
 
 function CunsultationModal(props) {
+  const [data , setData] = useState([])
 
   const navigate = useNavigate()
+
+  async function fetchCategory() {
+    const data = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/category');
+    setData(data?.data);
+  }
+
+  useEffect(()=>{
+    fetchCategory()
+  },[])
 
   return (
     <Modal
@@ -62,55 +74,14 @@ function CunsultationModal(props) {
             <p className="head">Select Category</p>
 
             <div className="threeSec">
-              <div onClick={() => navigate('/seven')}  style={{cursor : 'pointer'}}>
-                <img src={"./Images/20.png"} alt="" />
-                <p>Property Possession Delay - RERA</p>
+              {data?.length && data?.map((item,i)=>(
+              <div onClick={() => navigate('/seven')} key={i}  style={{cursor : 'pointer'}}>
+                <img src={item?.image} alt="" className="w-[60px] h-[40px]" />
+                <p>{item?.name}</p>
               </div>
-              <div onClick={() => navigate('/seven')}  style={{cursor : 'pointer'}}>
-                <img src={"./Images/22.png"} alt="" />
-                <p>Possession Delay - <br /> NCLT</p>
-              </div>
-              <div onClick={() => navigate('/seven')}  style={{cursor : 'pointer'}}>
-                <img src={"./Images/23.png"} alt="" />
-                <p>Mutual Consent <br /> Divorce</p>
-              </div>
-              <div onClick={() => navigate('/seven')}  style={{cursor : 'pointer'}}>
-                <img src={"./Images/24.png"} alt="" />
-                <p>Trademark <br /> Registration</p>
-              </div>
-              <div onClick={() => navigate('/seven')}  style={{cursor : 'pointer'}}>
-                <img src={"./Images/25.png"} alt="" />
-                <p>Cheque Bounce <br /> Complaint</p>
-              </div>
-              <div onClick={() => navigate('/seven')}  style={{cursor : 'pointer'}}>
-                <img src={"./Images/26.png"} alt="" />
-                <p>Wrongful Termination - <br /> Legal Notice</p>
-              </div>
+
+              ))}
              
-              <div onClick={() => navigate('/seven')}  style={{cursor : 'pointer'}}>
-                <img src={"./Images/20.png"} alt="" />
-                <p>Property Possession Delay - RERA</p>
-              </div>
-              <div onClick={() => navigate('/seven')}  style={{cursor : 'pointer'}}>
-                <img src={"./Images/22.png"} alt="" />
-                <p>Possession Delay - <br /> NCLT</p>
-              </div>
-              <div onClick={() => navigate('/seven')}  style={{cursor : 'pointer'}}>
-                <img src={"./Images/23.png"} alt="" />
-                <p>Mutual Consent <br /> Divorce</p>
-              </div>
-              <div onClick={() => navigate('/seven')}  style={{cursor : 'pointer'}}>
-                <img src={"./Images/24.png"} alt="" />
-                <p>Trademark <br /> Registration</p>
-              </div>
-              <div onClick={() => navigate('/seven')}  style={{cursor : 'pointer'}}>
-                <img src={"./Images/25.png"} alt="" />
-                <p>Cheque Bounce <br /> Complaint</p>
-              </div>
-              <div onClick={() => navigate('/seven')}  style={{cursor : 'pointer'}}>
-                <img src={"./Images/26.png"} alt="" />
-                <p>Wrongful Termination - <br /> Legal Notice</p>
-              </div>
              
             </div>
           </div>

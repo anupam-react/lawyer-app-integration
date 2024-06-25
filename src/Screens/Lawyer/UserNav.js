@@ -6,11 +6,14 @@ import FilterModal from "../../Modals/FilterModal";
 import RemModal from "../../Modals/RemModal";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import PaymentModal from "../../Modals/PaymentModal";
+import { fetchApiData } from "../../utils";
 
 const UserNav = () => {
   const [filterModal, setFilterModal] = useState(false);
   const [RemModalOpen, setRemModal] = useState(false);
   const [paymentModal, setPaymentModal] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -21,6 +24,19 @@ const UserNav = () => {
     sessionStorage.removeItem("token");
     navigate('/')
   }
+
+  const handleInputChange = async(event) => {
+    setSearchTerm(event.target.value);
+    let item = event.target.value;
+   let  rating=2;
+    let location="kolkata"
+    try {
+      const response = await fetchApiData(`https://shlok-mittal-lawyer-backend.vercel.app/api/v1/user/getLawyersWithFilter?${item}&rating=${rating}&location=${location}`);
+      setSearchResults(response.results); // Assuming the API returns an array of results
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
   return (
     <>
@@ -36,7 +52,8 @@ const UserNav = () => {
 
         <div className="mid">
           <i className="fa-solid fa-magnifying-glass"></i>
-          <input type="search" placeholder="search" />
+          <input type="search" placeholder="search" value={searchTerm}
+        onChange={handleInputChange}/>
           <i
             className="fa-solid fa-filter"
             onClick={() => setFilterModal(true)}

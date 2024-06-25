@@ -3,10 +3,16 @@
 import { Modal } from "react-bootstrap";
 import useTransaction from "../hooks/useTransaction";
 import { getDateFromISOString } from "../utils";
+import useSaveDocument from "../hooks/useSaveDocument";
+import { useState } from "react";
+import BillModal from "./BillModal";
 
 function PaymentModal(props) {
   const { transaction } = useTransaction();
+  const [billModal, setBillModal] = useState(false)
   return (
+    <>
+    <BillModal show={billModal} onHide={() => setBillModal(false)} />
     <>
       <Modal
         {...props}
@@ -24,12 +30,15 @@ function PaymentModal(props) {
               <p className="first">Add Money to Wallet</p>
               <div>
                 <p className="second">Total Balance</p>
-                <p className="third">₹{transaction?.[0]?.user?.wallet}</p>
+                <p className="third">₹{transaction?.[0]?.user?.wallet || 0}</p>
               </div>
             </div>
 
             <div className="payment2">
-              <button>Send Bill</button>
+              <button o onClick={() => {
+                props.onHide();
+                setBillModal(true);
+              }}>Send Bill</button>
               <button> Withdrawal </button>
             </div>
 
@@ -60,6 +69,7 @@ function PaymentModal(props) {
           </div>
         </Modal.Body>
       </Modal>
+    </>
     </>
   );
 }

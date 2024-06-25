@@ -58,7 +58,7 @@ const LawyerCard2 = ({
           Advocate. {data?.fullName || data?.firstName + " " + data?.lastName}
           <span style={{ fontSize:"24px", color:"#FF0000"  }}>.</span>
         </p>
-        <span style={{ fontWeight: 700 }}>Legal Property Lawyer</span>
+        <span style={{ fontWeight: 700 }}>{data?.categoryId?.[0]?.name}</span>
         <br />
         {data?.languages?.map((d, i) => (
           <span key={i} style={{ fontWeight: 500, fontSize: "12px" }}>
@@ -91,7 +91,7 @@ const LawyerCard2 = ({
           </div>
         </div>
         <div>
-          <span>₹20/min</span>
+          <span>₹{data?.consultancyCost}/min</span>
           <span style={{color:"#FF0808" , textDecoration: "line-through", marginLeft:"20px"}}>₹20/min</span>
         </div>
       </div>

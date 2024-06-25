@@ -87,7 +87,7 @@ const LawyerSidebar = () => {
             </div>
           </div>
 
-          <p>{UserInfo?.fullName || UserInfo?.firstName}</p>
+          <p>{UserInfo?.fullName || UserInfo?.firstName + ' '+ UserInfo?.lastName}</p>
           <div className="empty"></div>
         </div>
 

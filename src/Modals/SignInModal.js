@@ -117,6 +117,7 @@ function SignInModal(props) {
   const handleCustomerResetPass = async(event)=>{
     event.preventDefault();
     const id =  sessionStorage.getItem("customerId");
+    if(newPass !== confirmPass || newPass === "" || confirmPass === "" ) return;
     const formData = {
       newPassword : newPass, confirmPassword: confirmPass
     };
@@ -128,12 +129,14 @@ function SignInModal(props) {
       setActive(0)
     } catch (error) {
       console.log(error);
+
       return error;
     }
   }
   const handleLawyerResetPass = async(event)=>{
     event.preventDefault();
-    const id =  sessionStorage.getItem("lawyerId");;
+    const id =  sessionStorage.getItem("lawyerId");
+    if(newPass !== confirmPass || newPass === "" || confirmPass === "" ) return;
     const formData = {
       newPassword : newPass, confirmPassword: confirmPass
     };
@@ -145,6 +148,7 @@ function SignInModal(props) {
       setActive(0)
     } catch (error) {
       console.log(error);
+ 
       return error;
     }
   }

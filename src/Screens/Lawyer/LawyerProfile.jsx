@@ -6,6 +6,7 @@ import ReviewCarousel from "../../Component/ReviewCarousel";
 import "./style.scss";
 import StarRating from "./StarRating";
 import useLawyerProfile from "../../hooks/useLawyerProfile";
+import userEvent from "@testing-library/user-event";
 const LawyerProfile = () => {
     const { UserInfo } = useLawyerProfile();
     console.log(UserInfo)
@@ -26,7 +27,7 @@ const LawyerProfile = () => {
                   <div className="profile-left-top">
                     <div>
                       <img
-                        src="./Ellipse 14.png"
+                        src={UserInfo?.image || "./Ellipse 14.png"}
                         alt=""
                         style={{
                           width: "160px",
@@ -61,7 +62,7 @@ const LawyerProfile = () => {
                           fontSize: "30px",
                         }}
                       >
-                        Adv. {UserInfo?.fullName}
+                        Adv. {UserInfo?.fullName || UserInfo?.firstName + " " + UserInfo?.lastName}
                       </div>
                       <div className="profile-language">
                        {UserInfo?.expertises?.map((d, i)=>(

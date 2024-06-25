@@ -34,7 +34,7 @@ const ConsultCustomer = ({ data }) => {
                   fontWeight: 600,
                 }}
               >
-                Legal Advisor
+            {data?.lawyer?.categoryId?.[0]?.type}
               </div>
             </div>
           </div>
