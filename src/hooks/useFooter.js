@@ -5,6 +5,15 @@ const useFooter = () => {
   const [policy, setPolicy] = useState([])
   const [legal, setLegal] = useState([])
   const [government, setGovernment] = useState([])
+  const [catInfo, setCatInfo] = useState([])
+  
+
+  
+  async function fetchCategory() {
+    const data = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/category');
+    setCatInfo(data?.data);
+  }
+
 
   const getPolicy = async ()=>{
     const userData = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/privacy/all')
@@ -23,12 +32,14 @@ const useFooter = () => {
     getPolicy()
     getLegal()
     getGovernment()
+    fetchCategory()
   },[])
 
   return {
     policy,
     legal,
-    government
+    government,
+    catInfo
   };
 };
 

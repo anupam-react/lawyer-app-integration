@@ -6,7 +6,7 @@ const useUpcomingAppointment = () => {
 
   const getUpcomingAppointmentInfo = async ()=>{
     const userData = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/upcomingAppointment')
-    setUpcomingAppointment(userData?.data)
+    setUpcomingAppointment(userData?.data?.filter((d)=> d?.joinStatus !== "Pending"))
   }
 
 

@@ -45,18 +45,19 @@ function CunsultationModal(props) {
                   <div class="circle"></div>
                   <div class="line"></div>
                 </div>
+                <div class="content">
+                  Choose Lawyer Experience, Time Slot, Mode of Communication
+                </div>
 
-                <div class="content">Click “Book a Consultation”</div>
+               
               </div>
               <div class="step completed">
                 <div class="v-stepper">
                   <div class="circle"></div>
                   <div class="line"></div>
                 </div>
-
-                <div class="content">
-                  Choose Lawyer Experience, Time Slot, Mode of Communication
-                </div>
+                <div class="content">Click “Book a Consultation”</div>
+              
               </div>
               <div class="step completed">
                 <div class="v-stepper">
@@ -75,7 +76,7 @@ function CunsultationModal(props) {
 
             <div className="threeSec">
               {data?.length && data?.map((item,i)=>(
-              <div onClick={() => navigate('/seven')} key={i}  style={{cursor : 'pointer'}}>
+              <div onClick={() => navigate(`/category-info/${item?._id}`)} key={i}  style={{cursor : 'pointer'}}>
                 <img src={item?.image} alt="" className="w-[60px] h-[40px]" />
                 <p>{item?.name}</p>
               </div>

@@ -40,11 +40,13 @@ const Navbar = () => {
           />
           <ul>
             <li onClick={() => setModalShow(true)}>Services</li>
-            <li onClick={() => setOpen(true)}>Consultation</li>
+         
+            <li style={{width:"140px"}} onClick={() => setOpen(true)}>Consult Now</li>
             <li className="specialNavList" onClick={() => navigate("/second")}>
               For Lawyers
             </li>
-            <li onClick={() => navigate("/third")}>Businesses</li>
+          
+            <li onClick={() => navigate("/third")}>About</li>
           </ul>
 
           <div className="search">

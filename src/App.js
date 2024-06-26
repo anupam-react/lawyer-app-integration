@@ -24,6 +24,8 @@ import LawyerProfile from './Screens/Lawyer/LawyerProfile'
 import Appointment from './Screens/Appointment'
 import Notification from './Screens/Notification'
 import NotificationUser from './Screens/User/NotificationUser'
+import CategoryDetails from './Screens/CategoryDetails'
+import ServiceDetails from './Screens/ServiceDetails'
 
 const App = () => {
   return (
@@ -57,6 +59,8 @@ const App = () => {
         <Route path='/sixth' element={<SixthScreen />} />
         <Route path='/seven' element={<SeventhScreen />} />
         <Route path='/eight' element={<EightScreen />} />
+        <Route path='/category-info/:id' element={<CategoryDetails />} />
+        <Route path='/service-info/:id' element={<ServiceDetails />} />
 
        </Routes>
     </BrowserRouter>

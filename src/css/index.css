@@ -33,21 +33,25 @@ code {
 }
 .nav .left {
   display: flex;
+  gap: 20px;
 }
 .nav .left .specialNavList {
   min-width: 120px;
 }
 .nav .left ul {
   display: flex;
+  flex: 1;
   margin-top: 20px;
+  gap: 20px;
 }
 .nav .left ul li {
   list-style-type: none;
   font-weight: 700;
   font-size: 20px;
   font-family: Poppins;
-  margin-right: 2rem;
+
   cursor: pointer;
+  width: fit-content;
 }
 
 .nav .left .search {
@@ -186,11 +190,12 @@ code {
 }
 .homeThreeSec .second {
   display: flex;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
   gap: 20px;
 }
 .homeThreeSec .second .under .two {
   display: flex;
+  align-items: center;
   gap: 20px;
 }
 .homeThreeSec .second .under .two i {
@@ -212,7 +217,7 @@ code {
 .homeThreeSec .second .under .two img {
   width: 16.93px;
   height: 19.89px;
-  margin-top: 20px;
+
 }
 .homeThreeSec .second .empty {
   width: 2px;

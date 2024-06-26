@@ -38,6 +38,9 @@ const AdminSignInModal = ({ selectedOption2, handleSingUpChange }) => {
     setBarRegistrationNo,
     skills,
     setSkills,
+    categoryId,
+    setCategoryId,
+    category,
     isChecked,
     handleCheckboxChange,
     handleRegister,
@@ -194,7 +197,7 @@ const AdminSignInModal = ({ selectedOption2, handleSingUpChange }) => {
             />
             <label for="bar-file">
               <img
-                src="./Vector (5).png"
+                src="../Vector (5).png"
                 alt=""
                 style={{ position: "absolute", top: "60%", right: "6%" }}
               />
@@ -231,6 +234,14 @@ const AdminSignInModal = ({ selectedOption2, handleSingUpChange }) => {
               onChange={(e) => setSkills(e.target.value)}
             />
           </div>
+          <div>
+          <select name="" id=""  value={categoryId} onChange={(e)=> setCategoryId(e.target.value)}>
+                {category?.map((d, i)=>(
+                    <option value={d?._id}>{d?.name}</option>
+
+                ))}
+              </select>
+          </div>
           <div style={{ position: "relative" }}>
             <input
               type="text"
@@ -240,7 +251,7 @@ const AdminSignInModal = ({ selectedOption2, handleSingUpChange }) => {
             />
             <label for="bar-file1">
               <img
-                src="./Vector (5).png"
+                src="../Vector (5).png"
                 alt=""
                 style={{ position: "absolute", top: "60%", right: "6%" }}
               />
@@ -262,7 +273,7 @@ const AdminSignInModal = ({ selectedOption2, handleSingUpChange }) => {
             />
             <label for="bar-file2">
               <img
-                src="./Vector (5).png"
+                src="../Vector (5).png"
                 alt=""
                 style={{ position: "absolute", top: "60%", right: "6%" }}
               />

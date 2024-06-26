@@ -12,7 +12,7 @@ function ServiceModal(props) {
 
   function handler() {
     props.onHide();
-    navigate("/seven");
+    // navigate("/seven");
   }
 
   return (
@@ -34,7 +34,7 @@ function ServiceModal(props) {
 
             <div className="two-sec">
               {legal?.map((d, i)=>(
-                <p key={i}>{">"}{d?.category}</p>
+                <p onClick={()=> navigate(`/service-info/${d?._id}`)} key={i}>{">"}{d?.category}</p>
 
               ))}
                
@@ -49,7 +49,7 @@ function ServiceModal(props) {
 
             <div className="two-sec">
               {government?.map((d, i)=>(
-                <p key={i}>{">"}{d?.category}</p>
+                <p onClick={()=> navigate(`/service-info/${d?._id}`)} key={i}>{">"}{d?.category}</p>
 
               ))}
                

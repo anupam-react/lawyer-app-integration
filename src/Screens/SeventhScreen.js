@@ -5,8 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../Component/Footer";
 import Navbar from "../Component/Navbar";
 import Phone from "../Component/Phone";
-import StarRating4 from "./User/StarRating4";
-import { Progress } from "./User/Progress";
+
 
 const SeventhScreen = () => {
   const navigate = useNavigate()
@@ -28,23 +27,12 @@ const SeventhScreen = () => {
             <img src="./Images/76.png" alt="" />
             <div>
               <p className="head">Property Possession Delay - RERA</p>
-              <div className="three-sec">
-                <p>4.4</p>
-               <StarRating4 rating={4}/>
-                <p>15 reviews</p>
-              </div>
+              
             </div>
           </div>
 
           <div className="mid">
-            <div className="fiveSec">
-              <p>OVERVIEW</p>
-              <p>DOCUMENTS</p>
-              <p>PAYMENT</p>
-              <p>REVIEWS</p>
-              <p>FAQS</p>
-            </div>
-            <hr style={{ border: "1px solid #0F2C64" }} />
+
 
             <p className="over">Overview</p>
             <hr style={{ border: "1px solid #0F2C64" }} />
@@ -132,226 +120,7 @@ const SeventhScreen = () => {
             </div>
           </div>
 
-          <div className="mid">
-            <p className="over">Required Documents</p>
-            <hr style={{ border: "1px solid #0F2C64" }} />
-
-            <p className="desc">
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor,{" "}
-            </p>
-            <p className="desc">
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor,{" "}
-            </p>
-            <p className="desc">
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor,{" "}
-            </p>
-            <p className="desc">
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor,{" "}
-            </p>
-            <p className="desc">
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor,{" "}
-            </p>
-
-            <p className="head2">Download Sample Files</p>
-
-            <div className="two-sec2">
-              <div className="main">
-                <div>
-                  <img
-                    src={
-                      "https://data.unhcr.org/images/documents/big_aa2c81585e808b644ef70587136c23601d33a2e9.jpg"
-                    }
-                    alt=""
-                  />
-                  <img src="./Images/81.png" alt="" className="img2" />
-                </div>
-                <p>Sample RERA Complaint</p>
-              </div>
-              <div className="main">
-                <div>
-                  <img
-                    src={
-                      "https://data.unhcr.org/images/documents/big_aa2c81585e808b644ef70587136c23601d33a2e9.jpg"
-                    }
-                    alt=""
-                  />
-                  <img src="./Images/81.png" alt="" className="img2" />
-                </div>
-                <p>Guide: RERA Complaint</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="mid">
-            <p className="over">Advo Assurance</p>
-            <hr style={{ border: "1px solid #0F2C64" }} />
-
-            <div className="two-sec-2">
-              <div className="main">
-                <img src="./Images/82.png" alt="" />
-                <div>
-                  <p className="head">Verified Lawyers</p>
-                  <p className="desc">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor
-                  </p>
-                </div>
-              </div>
-              <div className="main">
-                <img src="./Images/83 (1).png" alt="" />
-                <div>
-                  <p className="head">Fixed Quotes</p>
-                  <p className="desc">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor
-                  </p>
-                </div>
-              </div>
-              <div className="main">
-                <img src="./Images/83 (3).png" alt="" />
-                <div>
-                  <p className="head">Dedicated Case Manager</p>
-                  <p className="desc">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor
-                  </p>
-                </div>
-              </div>
-              <div className="main">
-                <img src="./Images/83 (2).png" alt="" />
-                <div>
-                  <p className="head">100% Confidentiality</p>
-                  <p className="desc">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="mid">
-            <p className="over">Payment Structure</p>
-            <hr style={{ border: "1px solid #0F2C64" }} />
-            <p className="head2">Without Execution</p>
-
-            <p className="desc" style={{ marginLeft: "5%" }}>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor
-            </p>
-            <p className="desc" style={{ marginLeft: "5%" }}>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor
-            </p>
-            <p className="head2">Without Execution</p>
-
-            <p className="desc" style={{ marginLeft: "5%" }}>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor
-            </p>
-            <p className="desc" style={{ marginLeft: "5%" }}>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor
-            </p>
-          </div>
-
-          <div className="mid" >
-            <p className="over">15 Reviews</p>
-            <hr style={{ border: "1px solid #0F2C64" }} />
-
-            <div className="centerDiv ">
-              <div className="up">
-                <p>4.4/5</p>
-               <StarRating4 rating={4}/>
-              </div>
-              <div style={{display:"flex", flexDirection:"column", gap:"8px"}}>
-              <Progress />
-              <Progress />
-              <Progress />
-              <Progress />
-              <Progress />
-              <Progress />
-
-              </div>
-            </div>
-
-            <div className="NewTwoSec">
-              <div className="side1">
-                <p className="head">Mansur :</p>
-                <p className="desc">Posted on 15-Sep-19</p>
-               <StarRating4 rating={4}/>
-              </div>
-              <div className="side2">
-                <p>
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  diam nonumy eirmod tempor
-                </p>
-              </div>
-            </div>
-
-            <div className="NewTwoSec">
-              <div className="side1">
-                <p className="head">Devanand :</p>
-                <p className="desc">Posted on 15-Sep-19</p>
-               <StarRating4 rating={4}/>
-              </div>
-              <div className="side2">
-                <p>
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                  aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                  justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                  sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
-                  ipsum dolor sit amet, consetetur sadipscing elitr,
-                </p>
-              </div>
-            </div>
-
-            <div className="NewTwoSec">
-              <div className="side1">
-                <p className="head">Ali Mohammad :</p>
-                <p className="desc">Posted on 15-Sep-19</p>
-               <StarRating4 rating={4}/>
-              </div>
-              <div className="side2">
-                <p>
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                  aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                  justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                  sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
-                  ipsum dolor sit amet, consetetur sadipscing elitr,
-                </p>
-              </div>
-            </div>
-
-            <div className="NewTwoSec">
-              <div className="side1">
-                <p className="head">Siddharth :</p>
-                <p className="desc">Posted on 15-Sep-19</p>
-               <StarRating4 rating={4}/>
-              </div>
-              <div className="side2">
-                <p>
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                  aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                  justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                  sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
-                  ipsum dolor sit amet, consetetur sadipscing elitr,
-                </p>
-              </div>
-            </div>
-
-            <hr style={{ border: "1px solid #0F2C64" }} />
-          </div>
-
-          <div className="seventScreenThird">
+          {/* <div className="seventScreenThird">
             <div className="mina">
               <img
                 src="https://ps.w.org/user-avatar-reloaded/assets/icon-256x256.png?rev=2540745"
@@ -368,7 +137,7 @@ const SeventhScreen = () => {
               possession delay. Smooth and transparent service that I highly
               recommend!
             </p>
-          </div>
+          </div> */}
 
           <div className="seventScreenFourth">
             <p className="head">Frequently Asked Questions</p>
@@ -549,136 +318,10 @@ const SeventhScreen = () => {
             </div>
             <hr />
 
-            <div className="threeSec">
-              <img src="./Images/90.png" alt="" />
-              <div className="centerONe">
-                <h3>Advocate. Yash</h3>
-                <h4>Legal Property Lawyer</h4>
-                <h5>English, Hindi, Panjabi</h5>
-
-                <div className="twoTwo">
-                  <h6>Exp: 21 yrs</h6>
-                  <img src="./Images/91.png" alt="" />
-                </div>
-
-                <h6>30 min. consultation</h6>
-              </div>
-
-              <div className="RightONe">
-                <h4>consultation fee</h4>
-                <h2> ₹2000</h2>
-
-                <button>Consult now</button>
-              </div>
-            </div>
-            <hr />
-            <div className="threeSec">
-              <img src="./Images/90.png" alt="" />
-              <div className="centerONe">
-                <h3>Advocate. Yash</h3>
-                <h4>Legal Property Lawyer</h4>
-                <h5>English, Hindi, Panjabi</h5>
-
-                <div className="twoTwo">
-                  <h6>Exp: 21 yrs</h6>
-                  <img src="./Images/91.png" alt="" />
-                </div>
-
-                <h6>30 min. consultation</h6>
-              </div>
-
-              <div className="RightONe">
-                <h4>consultation fee</h4>
-                <h2> ₹2000</h2>
-
-                <button>Consult now</button>
-              </div>
-            </div>
-            <hr />
-            <div className="threeSec">
-              <img src="./Images/90.png" alt="" />
-              <div className="centerONe">
-                <h3>Advocate. Yash</h3>
-                <h4>Legal Property Lawyer</h4>
-                <h5>English, Hindi, Panjabi</h5>
-
-                <div className="twoTwo">
-                  <h6>Exp: 21 yrs</h6>
-                  <img src="./Images/91.png" alt="" />
-                </div>
-
-                <h6>30 min. consultation</h6>
-              </div>
-
-              <div className="RightONe">
-                <h4>consultation fee</h4>
-                <h2> ₹2000</h2>
-
-                <button>Consult now</button>
-              </div>
-            </div>
-            <hr />
           </div>
         </div>
 
-        <div className="right" onClick={() => navigate('/eight')}>
-          <div className="upper">
-            <h5 className="head">Consultation Price</h5>
-
-            <div>
-              <p className="head">₹2,000</p>
-              <p className="down">Excl. of taxes</p>
-            </div>
-          </div>
-
-          <p className="head2">
-            Pay securely with major Credit and Debit cards, online Wallets and
-            UPI
-          </p>
-
-          <button>Book Consultation</button>
-
-          <p className="head2">
-            By booking this consultation, you agree to our T&C
-          </p>
-
-          <div className="twoSec">
-            <img src="./Images/77.png" alt="" />
-            <p>
-              {" "}
-              <span style={{ fontWeight: "bolder" }}> 1,200+ </span> Cases Filed
-              in RERA{" "}
-            </p>
-          </div>
-          <div className="twoSec">
-            <img src="./Images/79.png" alt="" />
-            <p>
-              {" "}
-              <strong> 1,200+ </strong> Cases Filed in RERA{" "}
-            </p>
-          </div>
-          <div className="twoSec">
-            <img src="./Images/78.png" alt="" />
-            <p>
-              {" "}
-              <strong> 1,200+ </strong> Cases Filed in RERA{" "}
-            </p>
-          </div>
-          <div className="twoSec">
-            <img src="./Images/77.png" alt="" />
-            <p>
-              {" "}
-              <strong> 1,200+ </strong> Cases Filed in RERA{" "}
-            </p>
-          </div>
-          <div className="twoSec">
-            <img src="./Images/80.png" alt="" />
-            <p>
-              {" "}
-              <strong> 1,200+ </strong> Cases Filed in RERA{" "}
-            </p>
-          </div>
-        </div>
+        
       </div>
 
       <Footer />

@@ -66,7 +66,7 @@ const HomeScreen = () => {
           </div>
 
           <div className="second">
-            <div className="under">
+            {/* <div className="under">
               <div className="two">
                 <i class="fa-solid fa-star"></i>
                 <p>4.4/5</p>
@@ -74,7 +74,7 @@ const HomeScreen = () => {
               <p className="alone">15 reviews</p>
             </div>
 
-            <div className="empty"></div>
+            <div className="empty"></div> */}
 
             <div className="under">
               <div className="two">
@@ -110,7 +110,7 @@ const HomeScreen = () => {
           </div>
 
           <div className="second">
-            <div className="under">
+            {/* <div className="under">
               <div className="two">
                 <i class="fa-solid fa-star"></i>
                 <p>4.4/5</p>
@@ -118,7 +118,7 @@ const HomeScreen = () => {
               <p className="alone">15 reviews</p>
             </div>
 
-            <div className="empty"></div>
+            <div className="empty"></div> */}
 
             <div className="under">
               <div className="two">

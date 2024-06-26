@@ -5,10 +5,13 @@ import HOC from "./User/HOC";
 import useUpcomingAppointment from "../hooks/useUpcomingAppointment";
 import ConsultCustomer from "./User/ConsultCustomer";
 import { fetchApiData } from "../utils";
+import { useNavigate } from "react-router-dom";
 
 const TenScreen = () => {
   const [ myLawyer , setMyLawyer] = useState([])
   const { upcomingAppointment } = useUpcomingAppointment()
+
+  const navigate = useNavigate("")
 
   const getAllLawyer = async ()=>{
     const data = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/getmyLawyer')
@@ -91,14 +94,14 @@ const TenScreen = () => {
                         </div>
               </div>
 
-              <h6>{data?.lawyer?.minofconsultance}min. consultation</h6>
+              <h6>{data?.lawyer?.minofconsultance || 0}min. consultation</h6>
             </div>
 
             <div className="right">
               <h4>consultation fee</h4>
-              <h5>₹{data?.lawyer?.consultancyCost}</h5>
+              <h5>₹{data?.lawyer?.consultancyCost || 0}</h5>
 
-              <button>Consult now</button>
+              <button onClick={() => navigate(`/payment/${data?.lawyer?._id}`)}>Consult now</button>
             </div>
           </div>
 

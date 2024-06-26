@@ -3,13 +3,17 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import useFooter from "../hooks/useFooter";
+import useSupport from "../hooks/useSupport";
 
 const Footer = () => {
   const navigate = useNavigate();
   const { 
     policy ,  
      legal,
-    government } = useFooter()
+    government,
+    catInfo
+   } = useFooter()
+   const { support } = useSupport()
   return (
     <>
       <div className="footer">
@@ -52,22 +56,11 @@ const Footer = () => {
           <div>
             <ul>
               <p className="head">Book Consultation</p>
-              <li>{">"}Property Law</li>
-              <li>{">"}Recovery of Money</li>
-              <li>{">"}General Legal</li>
-              <li>{">"}Corporate and Individual Taxation</li>
-              <li>{">"}Divorce</li>
-              <li>{">"}Startup</li>
-              <li>{">"}Criminal</li>
-              <li>{">"}Licenses</li>
-              <li>{">"}Family</li>
-              <li>{">"}IPR</li>
-              <li>{">"}Consumer Protection</li>
-              <li>{">"}Immigration Services</li>
-              <li>{">"}Employment</li>
-              <li>{">"}Corporate</li>
-              <li>{">"}Civil</li>
-              <li>{">"}Marriage</li>
+              {catInfo?.map((d, i)=>(
+                <li key={i}>{">"}{d?.name}</li>
+
+              ))}
+              
             </ul>
           </div>
 
@@ -94,7 +87,7 @@ const Footer = () => {
               <li>
                 <i class="fa-solid fa-phone"></i>
               </li>
-              <li> 0120 408 0513</li>
+              <li>{support?.mobileNumber}</li>
             </ul>
           </div>
 
@@ -103,7 +96,7 @@ const Footer = () => {
               <li>
                 <i class="fa-solid fa-envelope"></i>
               </li>
-              <li> Email456@gmail.com</li>
+              <li>{support?.email}</li>
             </ul>
           </div>
         </div>

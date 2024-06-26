@@ -1,11 +1,54 @@
 /** @format */
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../Component/Footer";
 import Navbar from "../Component/Navbar";
 import Phone from "../Component/Phone";
+import axios from "axios";
+import { successToast, warnToast } from "../Component/Toast";
+import { fetchApiData } from "../utils";
 
 const SecondScreen = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [caseInfo, setCaseInfo] = useState([]);
+
+  const getCase = async ()=>{
+    const userData = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/Blog/getCaseManager')
+    setCaseInfo(userData?.data)
+  }
+
+  useEffect(()=>{
+    getCase()
+  },[])
+
+  const handleRegister = async (event) => {
+    event.preventDefault();
+    if (!email || !password || !name || !phone) {
+      return warnToast("Fill all the fields");
+    }
+
+    const formData = new FormData();
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("fullName", name);
+    formData.append("phone", phone);
+  
+    try {
+      const response = await axios.post(
+        "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/registration",
+        formData
+      );
+      successToast("Regsiter Successfully");
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  };
+
+
 
   useEffect(() => {
     window.scrollTo(0,0)
@@ -50,17 +93,16 @@ const SecondScreen = () => {
 
         <div className="right">
           <form>
-            <input type="text" placeholder="Name :" />
+            <input type="text" placeholder="Name :" value={name} onChange={(e)=> setName(e.target.value)} />
             <br />
-            <input type="text" placeholder="Email Addresss :" />
+            <input type="text" placeholder="Email Addresss :" value={email} onChange={(e)=> setEmail(e.target.value)}/>
             <br />
-            <input type="text" placeholder="Mobile :" />
+            <input type="text" placeholder="Mobile :"  value={password} onChange={(e)=> setPassword(e.target.value)}/>
             <br />
-            <input type="text" placeholder="Password :" />
+            <input type="text" placeholder="Password :" value={phone} onChange={(e)=> setPhone(e.target.value)}/>
             <br />
-            <input type="text" placeholder="Bar Council ID :" />
-            <br />
-            <button>Sign Up</button>
+           
+            <button onClick={handleRegister}>Sign Up</button>
           </form>
         </div>
       </div>
@@ -74,127 +116,29 @@ const SecondScreen = () => {
           sed diam voluptua. At vero eos et accusam et justo duo dolores et
         </p>
       </div>
+      {caseInfo?.map((d, i)=>(
+<>
+<div className="secondScreenTwo-Sec">
+ 
 
-      <div className="secondScreenTwo-Sec">
-        <div className="left">
-          <img src="./Images/30.gif" alt="" />
-        </div>
-
-        <div className="right">
-          <div className="main">
-            <img src={"./Images/31.png"} alt="" />
-            <div>
-              <p className="first">Instant Notification</p>
-              <p className="second">
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed dia
-              </p>
-            </div>
-          </div>
-
-          <div className="main">
-            <img src={"./Images/32.png"} alt="" style={{ height: "29.92px" }} />
-            <div>
-              <p className="first">Save Time & Money</p>
-              <p className="second">
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed dia
-              </p>
-            </div>
-          </div>
-
-          <div className="main">
-            <img
-              src={"./Images/33.png"}
-              alt=""
-              style={{ height: "41.88px", width: "35.4px", marginLeft: "5px" }}
-            />
-            <div>
-              <p className="first"> Develop Trust</p>
-              <p className="second">
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed dia
-              </p>
-            </div>
-          </div>
-        </div>
+  <div className="right">
+    <div className="main">
+     
+      <div>
+        <p className="first" style={{fontSize:"20px", fontWeight:"bold", paddingBottom:"10px"}}>{d?.title}</p>
+        <p className="second">
+        {d?.description}
+        </p>
       </div>
+    </div>
 
-      <div className="secondScreenTwo2">
-        <div className="left">
-          <p className="head">The Problem</p>
-          <p className="desc">
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-            erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-            et
-          </p>
-          <p className="desc">
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            nonumy{" "}
-          </p>
-        </div>
-        <div className="right">
-          <img src="./Images/35.png" alt="" />
-        </div>
-      </div>
-      <hr className="secondHr" />
-
-      <div className="secondScreenTwo2">
-        <div className="right">
-          <img src="./Images/37.png" alt="" />
-        </div>
-        <div className="left">
-          <p className="head">The Solution</p>
-          <p className="desc">
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-            erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-            et
-          </p>
-          <p className="desc">
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-            erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-            et
-          </p>
-          <p className="desc">
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            nonumy{" "}
-          </p>
-        </div>
-      </div>
-      <hr className="secondHr" />
-
-      <div className="secondScreenTwo2">
-        <div className="left">
-          <p className="head">Technology</p>
-          <p className="desc">
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-            erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-            et
-          </p>
-          <p className="desc">
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            nonumy{" "}
-          </p>
-        </div>
-        <div className="right">
-          <img src="./Images/38.png" alt="" />
-        </div>
-      </div>
-      <hr className="secondHr" />
+  </div>
+</div>
+   <hr className="secondHr" />
+</>
+      ))}
 
 
-      <div className="secondScreenThreeSec">
-        <img src='./Images/39.png' alt='' />
-
-        <div>
-          <p className="head">Advo Mission</p>
-          <p className="desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et</p>
-          <p className="desc2">10,000+ Advocates have joined MyAdvo family. Have you?</p>
-        </div>
-
-        <button>Get Listed Now</button>
-      </div>
 
 
       </div>

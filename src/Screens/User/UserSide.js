@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PaymentModal from "../../Modals/PaymentModal";
+import PaymentModalUser from "../../Modals/PaymentModalUser";
 
 
 const UserSide = ({UserInfo, WalletInfo}) => {
@@ -17,7 +18,7 @@ const UserSide = ({UserInfo, WalletInfo}) => {
 
   return (
     <>
-      <PaymentModal show={paymentModal} onHide={() => setPaymentModal(false)} />
+      <PaymentModalUser show={paymentModal} onHide={() => setPaymentModal(false)} />
 
       <div className="UserSideBar">
         <div className="two-Sec">

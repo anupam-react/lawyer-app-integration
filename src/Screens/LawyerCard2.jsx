@@ -101,7 +101,7 @@ const LawyerCard2 = ({
           <p>Wait time - 2h:8 m</p>
         </div>
         <button onClick={handleInstantAppointment} style={{ fontSize: "18px", fontWeight: 700, padding:"5px 0px", width: "120px" , marginBottom:"10px" }}>
-          Consult
+         Request
         </button>
       </div>
     </div>
