@@ -36,7 +36,7 @@ const ElevenScreen = () => {
   return (
     <>
       <h4 className="centerNinthHeading">Instant Appointment</h4>
-      <div className="ElevenCarousel">
+      {/* <div className="ElevenCarousel">
         <Carousel
           dynamicHeight={false}
           stopOnHover={true}
@@ -86,7 +86,7 @@ const ElevenScreen = () => {
             <p>Corporate Lawyers</p>
           </div>
         </Carousel>
-      </div>
+      </div> */}
       <div className="NinthFirst">
         <div className="left">
           {UserInfo?.map((d, i)=>(

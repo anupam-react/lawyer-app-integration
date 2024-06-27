@@ -6,7 +6,7 @@ import Footer from "../Component/Footer";
 import ThankYouModal from "../Modals/ThankYouModal";
 import useBookAppointment from "../hooks/useBookAppointment";
 
-const EightScreen = () => {
+const Order = () => {
   const [ThankYouOpen, setThankYouOpen] = useState(false);
   const { appointmentType, handleBookAppointment, handleChange}= useBookAppointment()
 
@@ -41,28 +41,20 @@ const EightScreen = () => {
       <div className="eightThird">
         <div className="left">
           <p className="head">Order Details</p>
-          <form>
-            <div className="inputGroup">
-              <p>Email</p>
-              <input type="text" value={appointmentType?.email} name="email" onChange={handleChange}/>
-            </div>
-            <div className="inputGroup">
-              <p>Name</p>
-              <input type="text" value={appointmentType?.name} name="name" onChange={handleChange}/>
-            </div>
+          <div>
             <div className="inputGroup">
               <p>Consultation Type</p>
               <input type="text" value={appointmentType?.appointmentType} name="appointmentType" onChange={handleChange}/>
             </div>
             <div className="inputGroup">
               <p>Consultation Time</p>
-              <input type="text" value={appointmentType?.appointmentTime} name="appointmentTime" onChange={handleChange}/>
+              <input type="time" value={appointmentType?.appointmentTime} name="appointmentTime" onChange={handleChange}/>
             </div>
             <div className="inputGroup">
               <p>Consultation Date</p>
-              <input type="text" value={appointmentType?.appointmentDate} name="appointmentDate" onChange={handleChange}/>
+              <input type="date" value={appointmentType?.appointmentDate} name="appointmentDate" onChange={handleChange}/>
             </div>
-          </form>
+          </div>
           <div style={{display:"flex", justifyContent:"center" , marginTop:"30px"}}>
           <button onClick={()=>handleBookAppointment(id)} style={{ fontSize: "18px", borderRadius:"10px", border:"none", backgroundColor:"white", fontWeight: 700, padding:"8px 0px", width: "150px" , marginBottom:"10px" }}>
           Book Consult
@@ -143,4 +135,4 @@ const EightScreen = () => {
   );
 };
 
-export default EightScreen;
+export default Order;

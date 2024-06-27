@@ -11,11 +11,11 @@ const HearingCard = ({data}) => {
       <div>
         <div className="hearing-title">
           <div className="hearing-name"> {data?.userId?.fullName || data?.userId?.firstName}</div>
-          <div className="hearing-booked">30 min Booked</div>
+          {/* <div className="hearing-booked">30 min Booked</div> */}
         </div>
         <div className="hearing-Reason">
           <div  style={{ fontWeight:"normal" }}>Reason:</div>
-          <div>{data?.case?.caseTitle}</div>
+          <div>{data?.caseTitle}</div>
         </div>
         <div className="hearing-bottom">
           <div className="hearing-Language">
@@ -24,7 +24,7 @@ const HearingCard = ({data}) => {
           <span key={i}>{d +  ', '}</span>
           )}
           </div>
-          <div style={{ color:"#0F2C64" }}>Time: {data?.case?.hearingTime}</div>
+          <div style={{ color:"#0F2C64" }}>Time: {data?.hearingTime}</div>
         </div>
       </div>
     </div>

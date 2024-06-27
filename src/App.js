@@ -1,6 +1,5 @@
 import React from 'react'
 import { BrowserRouter , Route , Routes } from 'react-router-dom'
-import EightScreen from './Screens/EightScreen'
 import ElevenScreen from './Screens/ElevenScreen'
 import FifthScreen from './Screens/FifthScreen'
 import Fourth from './Screens/Fourth'
@@ -26,6 +25,9 @@ import Notification from './Screens/Notification'
 import NotificationUser from './Screens/User/NotificationUser'
 import CategoryDetails from './Screens/CategoryDetails'
 import ServiceDetails from './Screens/ServiceDetails'
+import UserProfile from './Screens/User/UserProfile'
+import Order from './Screens/EightScreen'
+import ServiceCustomer from './Screens/ServiceCustomer'
 
 const App = () => {
   return (
@@ -46,9 +48,11 @@ const App = () => {
         <Route path='/reminder' element={<Reminder />} />
         <Route path='/consultations' element={<Consultation />} />
         <Route path='/laywer-profile' element={<LawyerProfile />} />
-        <Route path='/payment/:id' element={<EightScreen />} />
+        <Route path='/user-profile' element={<UserProfile />} />
+        <Route path='/payment/:id' element={<Order />} />
         <Route path='/notification' element={<Notification />} />
         <Route path='/notification-user' element={<NotificationUser />} />
+        <Route path='/service/:id' element={<ServiceCustomer />} />
   
         </Route>
         <Route path='/' element={<HomeScreen />} />
@@ -58,7 +62,7 @@ const App = () => {
         <Route path='/fifth' element={<FifthScreen />} />
         <Route path='/sixth' element={<SixthScreen />} />
         <Route path='/seven' element={<SeventhScreen />} />
-        <Route path='/eight' element={<EightScreen />} />
+        {/* <Route path='/eight' element={<EightScreen />} /> */}
         <Route path='/category-info/:id' element={<CategoryDetails />} />
         <Route path='/service-info/:id' element={<ServiceDetails />} />
 

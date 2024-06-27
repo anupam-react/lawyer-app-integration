@@ -9,8 +9,6 @@ const ThirteenScree = () => {
   const [isOn, setIsOn] = React.useState(false);
 
   const navigate = useNavigate('')
-
-
   const {  
     legal,
     government,
@@ -37,24 +35,15 @@ const ThirteenScree = () => {
 
       {!isOn ? 
   <div className="homeThreeSec thirteenSecond">
-    {legal?.map((d, i)=>(
-        <div className="main">
+    {legal?.map((d, i)=>( 
+        <div className="main" style={{cursor:"pointer"}} key={i}  onClick={()=> navigate(`/service/${d?._id}`)}>
           <div className="first">
             <img src={d?.image} alt="" />
             <p>{d?.category}</p>
           </div>
 
           <div className="second">
-            <div className="under">
-              <div className="two">
-                <i class="fa-solid fa-star"></i>
-                <p>4.4/5</p>
-              </div>
-              <p className="alone">15 reviews</p>
-            </div>
-
-            <div className="empty"></div>
-
+      
             <div className="under">
               <div className="two">
                 <img src={"./Images/6.png"} alt="" />
@@ -82,23 +71,13 @@ const ThirteenScree = () => {
       :
       <div className="homeThreeSec thirteenSecond">
         {government?.map((d, i)=>(
-        <div className="main"  onClick={()=> navigate('/seven')}>
+        <div className="main" style={{cursor:"pointer"}} key={i}  onClick={()=> navigate(`/service/${d?._id}`)}>
           <div className="first">
             <img src={d?.image} alt="" />
             <p>{d?.category}</p>
           </div>
 
           <div className="second">
-            <div className="under">
-              <div className="two">
-                <i class="fa-solid fa-star"></i>
-                <p>4.4/5</p>
-              </div>
-              <p className="alone">15 reviews</p>
-            </div>
-
-            <div className="empty"></div>
-
             <div className="under">
               <div className="two">
                 <img src={"./Images/6.png"} alt="" />

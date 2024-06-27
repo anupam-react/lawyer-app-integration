@@ -6,13 +6,16 @@ import ReviewCarousel from "../../Component/ReviewCarousel";
 import "./style.scss";
 import StarRating from "./StarRating";
 import useLawyerProfile from "../../hooks/useLawyerProfile";
-import userEvent from "@testing-library/user-event";
+import UpdateLawyerprofile from "../../Modals/UpdateLawyerprofile";
+
 const LawyerProfile = () => {
     const { UserInfo } = useLawyerProfile();
+    const [updateProfile, setupdateProfile] = useState(false)
     console.log(UserInfo)
   const [hamb, setHamb] = useState(true);
   return (
     <div>
+         <UpdateLawyerprofile show={updateProfile} onHide={() => setupdateProfile(false)} />
       <section className="HocSection" style={{ height: "200vh" }}>
         <div className="HocSide">
           <LawyerSidebar hamb={hamb} setHamb={setHamb} />
@@ -27,7 +30,7 @@ const LawyerProfile = () => {
                   <div className="profile-left-top">
                     <div>
                       <img
-                        src={UserInfo?.image || "./Ellipse 14.png"}
+                        src={UserInfo?.image }
                         alt=""
                         style={{
                           width: "160px",
@@ -50,7 +53,7 @@ const LawyerProfile = () => {
                             fontWeight: 600,
                           }}
                         >
-                          Legal Advisor
+                        {UserInfo?.categoryId?.[0]?.name}
                         </div>
                       </div>
                     </div>
@@ -66,15 +69,15 @@ const LawyerProfile = () => {
                       </div>
                       <div className="profile-language">
                        {UserInfo?.expertises?.map((d, i)=>(
-                            <span key={i}>{d}</span>
+                            <span key={i}>{d?.expertise}</span>
                         ))}
-                        <img src="./Group (4).png" alt="" />
+                        {/* <img src="./Group (4).png" alt="" /> */}
                       </div>
                       <div className="profile-language">
                       {UserInfo?.languages?.map((d, i)=>(
                             <span key={i}>{d}</span>
                         ))}
-                        <img src="./Group (4).png" alt="" />
+                        {/* <img src="./Group (4).png" alt="" /> */}
                       </div>
                       <div
                         style={{
@@ -116,43 +119,43 @@ const LawyerProfile = () => {
                       <div></div>
                     </div>
                   </div>
-                  <div className="profile-edit-button">
+                  {/* <div className="profile-edit-button">
                     <button>Edit</button>
-                  </div>
+                  </div> */}
                   <div className="skill-container">
-                    <p className="skill-title">Advocate Suhani Expertise</p>
+                    <p className="skill-title">Advocate  {UserInfo?.fullName || UserInfo?.firstName + " " + UserInfo?.lastName} Expertise</p>
 
                     <div className="skill-body">
                     {UserInfo?.expertises?.map((d, i)=>(
                             <div className="skill-info" key={i}>
                             <img src="./Group 9572.png" alt="" />
                             <p>
-                             {d}
+                             {d?.expertise}
                             </p>
                           </div>
                         ))}
-                      <div className="skill-info">
+                      {/* <div className="skill-info">
                         <img src="./Group 9750.png" alt="" />
                         <p>
                           Add <br /> Services
                         </p>
-                      </div>
+                      </div> */}
                     </div>
-                    <p className="skill-title">Advocate Suhani Skills</p>
+                    <p className="skill-title">Advocate  {UserInfo?.fullName || UserInfo?.firstName + " " + UserInfo?.lastName} Skills</p>
                     <div className="skill-body">
                     {UserInfo?.skills?.map((d, i)=>(
-                             <div className="skill-info">
+                             <div className="skill-info" key={i}>
                              <img src="./Group 9572.png" alt="" />
                              <p>
-                               {d}
+                               {d?.skill}
                              </p>
                            </div>
                         ))}
                   
                     </div>
                   </div>
-                  <div className="profile-save-button">
-                    <button>Save Changes</button>
+                  <div className="profile-edit-button">
+                    <button onClick={()=>setupdateProfile(true)}>Edit</button>
                   </div>
                 </div>
                 <div className="profile-right">
@@ -165,11 +168,11 @@ const LawyerProfile = () => {
                       }}
                     >
                       <p>/ Hearing Fees</p>
-                      <img
+                      {/* <img
                         src="./Group (4).png"
                         alt=""
                         style={{ height: "fit-content" }}
-                      />
+                      /> */}
                     </div>
 
                     <p>
@@ -210,8 +213,8 @@ const LawyerProfile = () => {
                     <div className="head">
                       <div className="title">About Me</div>
                       <div>
-                        <img src="./Group (4).png" alt="" />
-                        <span>Edit</span>
+                        {/* <img src="./Group (4).png" alt="" />
+                        <span>Edit</span> */}
                       </div>
                     </div>
                     <p className="desc">
@@ -242,8 +245,8 @@ const LawyerProfile = () => {
                         <p>Availability</p>
                       </div>
                       <div className="edit">
-                        <img src="./Group (4).png" alt="" />
-                        <span>Edit</span>
+                        {/* <img src="./Group (4).png" alt="" />
+                        <span>Edit</span> */}
                       </div>
                     </div>
                     <div className="consult">
@@ -252,8 +255,8 @@ const LawyerProfile = () => {
                         <p>Consultancy Cost @{UserInfo?.consultancyCost}/min</p>
                       </div>
                       <div className="edit">
-                        <img src="./Group (4).png" alt="" />
-                        <span>Edit</span>
+                        {/* <img src="./Group (4).png" alt="" />
+                        <span>Edit</span> */}
                       </div>
                     </div>
                   </div>
@@ -296,69 +299,7 @@ const LawyerProfile = () => {
                 </div>
               </div>
 
-              <div className="review-container">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
-                  minus illum, voluptate amet consequuntur molestias, quam nobis
-                  veniam beatae eum culpa nulla unde ab, totam corrupti
-                  asperiores. Alias, dolore voluptate.
-                </p>
-                <div className="reviwer-info">
-                  <img
-                    src=""
-                    alt=""
-                    style={{
-                      width: "50px",
-                      height: "50px",
-                      borderRadius: "50%",
-                    }}
-                  />
-                  <div className="reviwer-name">
-                    <div
-                      style={{
-                        color: "#2B2D3C",
-                        fontSize: "14px",
-                        fontWeight: 700,
-                      }}
-                    >
-                      Rushil Narayan
-                    </div>
-                    <div style={{ color: "#A2A5B8" }}>RERA , Panchkula</div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="review-container">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
-                  minus illum, voluptate amet consequuntur molestias, quam nobis
-                  veniam beatae eum culpa nulla unde ab, totam corrupti
-                  asperiores. Alias, dolore voluptate.
-                </p>
-                <div className="reviwer-info">
-                  <img
-                    src=""
-                    alt=""
-                    style={{
-                      width: "50px",
-                      height: "50px",
-                      borderRadius: "50%",
-                    }}
-                  />
-                  <div className="reviwer-name">
-                    <div
-                      style={{
-                        color: "#2B2D3C",
-                        fontSize: "14px",
-                        fontWeight: 700,
-                      }}
-                    >
-                      Rushil Narayan
-                    </div>
-                    <div style={{ color: "#A2A5B8" }}>RERA , Panchkula</div>
-                  </div>
-                </div>
-              </div>
+             
             </ReviewCarousel>
           </div>
         </div>

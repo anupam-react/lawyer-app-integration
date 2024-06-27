@@ -6,13 +6,16 @@ import { getDateFromISOString } from "../utils";
 import useSaveDocument from "../hooks/useSaveDocument";
 import { useState } from "react";
 import BillModal from "./BillModal";
+import Withdrawal from "./Withdrawal";
 
 function PaymentModalUser(props) {
   const { transaction } = useTransaction();
   const [billModal, setBillModal] = useState(false)
+  const [withdrawal, setWithdrawal] = useState(false)
   return (
     <>
     <BillModal show={billModal} onHide={() => setBillModal(false)} />
+    <Withdrawal show={withdrawal} onHide={() => setWithdrawal(false)} />
     <>
       <Modal
         {...props}
@@ -39,7 +42,10 @@ function PaymentModalUser(props) {
                 props.onHide();
                 setBillModal(true);
               }}>Add Money</button>
-              <button> Withdrawal </button>
+              <button onClick={() => {
+                props.onHide();
+                setWithdrawal(true);
+              }}> Withdrawal </button>
             </div>
 
             <hr />

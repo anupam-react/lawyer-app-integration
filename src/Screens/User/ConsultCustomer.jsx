@@ -47,7 +47,7 @@ const ConsultCustomer = ({ data }) => {
             </p>
             {data?.lawyer?.expertises?.map((d, i) => (
               <span key={i} className="secondP">
-                {d + ", " || "null"}
+                {d?.expertise + ", " || "null"}
               </span>
             ))}
             {data?.lawyer?.languages?.map((d, i) => (
@@ -119,7 +119,7 @@ const ConsultCustomer = ({ data }) => {
           {data?.lawyer?.expertises?.map((d, i) => (
             <div>
               <img src="./Images/99.png" alt="" />
-              <p>{d}</p>
+              <p>{d?.expertise}</p>
             </div>
           ))}
         </div>
@@ -129,7 +129,7 @@ const ConsultCustomer = ({ data }) => {
           {data?.lawyer?.skills?.map((d, i) => (
             <div>
               <img src="./Images/99.png" alt="" />
-              <p>{d}</p>
+              <p>{d?.skill}</p>
             </div>
           ))}
         </div>

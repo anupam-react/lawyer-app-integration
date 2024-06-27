@@ -45,7 +45,7 @@ const UserSide = ({UserInfo, WalletInfo}) => {
             <img
               src={UserInfo?.image}
               alt=""
-              // onClick={}
+              onClick={() => navigate("/user-profile")}
               style={{
                 width: "120px",
                 cursor: "pointer",

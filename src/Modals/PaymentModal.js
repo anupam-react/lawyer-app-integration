@@ -6,13 +6,16 @@ import { getDateFromISOString } from "../utils";
 import useSaveDocument from "../hooks/useSaveDocument";
 import { useState } from "react";
 import BillModal from "./BillModal";
+import Withdrawal from "./Withdrawal";
 
 function PaymentModal(props) {
   const { transaction } = useTransaction();
   const [billModal, setBillModal] = useState(false)
+  const [withdrawal, setWithdrawal] = useState(false)
   return (
     <>
     <BillModal show={billModal} onHide={() => setBillModal(false)} />
+    <Withdrawal show={withdrawal} onHide={() => setWithdrawal(false)} />
     <>
       <Modal
         {...props}
@@ -35,11 +38,14 @@ function PaymentModal(props) {
             </div>
 
             <div className="payment2">
-              <button o onClick={() => {
+              <button onClick={() => {
                 props.onHide();
                 setBillModal(true);
               }}>Send Bill</button>
-              <button> Withdrawal </button>
+              <button onClick={() => {
+                props.onHide();
+                setWithdrawal(true);
+              }} > Withdrawal </button>
             </div>
 
             <hr />
@@ -58,7 +64,7 @@ function PaymentModal(props) {
                       color: `${d?.type === "Credit" ? "#0F2C64" : "#ED1E24"}`,
                     }}
                   >
-                    +₹{d?.amount}
+                   {d?.type === "Credit" ? "+" : "-"}₹{d?.amount}
                   </p>
                 </div>
                 <hr />
