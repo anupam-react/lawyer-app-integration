@@ -8,14 +8,18 @@ import { useState } from "react";
 import BillModal from "./BillModal";
 import Withdrawal from "./Withdrawal";
 
+import AddMoney from "./AddMoney";
+
 function PaymentModalUser(props) {
   const { transaction } = useTransaction();
-  const [billModal, setBillModal] = useState(false)
   const [withdrawal, setWithdrawal] = useState(false)
+  const [add, setAdd] = useState(false)
+
   return (
     <>
-    <BillModal show={billModal} onHide={() => setBillModal(false)} />
+  
     <Withdrawal show={withdrawal} onHide={() => setWithdrawal(false)} />
+    <AddMoney show={add} onHide={() => setAdd(false)} />
     <>
       <Modal
         {...props}
@@ -38,9 +42,9 @@ function PaymentModalUser(props) {
             </div>
 
             <div className="payment2">
-              <button o onClick={() => {
+              <button onClick={() => {
                 props.onHide();
-                setBillModal(true);
+                setAdd(true);
               }}>Add Money</button>
               <button onClick={() => {
                 props.onHide();

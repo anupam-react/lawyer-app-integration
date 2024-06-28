@@ -1,17 +1,26 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 import LawyerHOC from "./LawyerHOC";
 import useSaveDocument from "../../hooks/useSaveDocument";
+import Select from "react-select";
 import { Link } from "react-router-dom";
 
 const Document = () => {
+  const [selectedUser, setSelectedUser] = useState(null);
   const { allDocuments, singleDocument, allUsers,  handleSeveDocument,
     getDocumentInfo,
     caseId, setCaseId,
 
     desc , setDesc,
     image , setImage } = useSaveDocument();
+
+    const handleChange = (option) => {
+      setSelectedUser(option)
+      setCaseId(option?.value);
+    };
+
+    console.log(caseId)
   return (
     <>
       <div className="twelveFirst">
@@ -36,12 +45,23 @@ const Document = () => {
           <p className="head">Case notes</p>
           <div style={{display:"flex", flexDirection:"column", gap:"5px" , padding:"10px 20px"}}>
                 <label style={{color:"#1D1D1D" , fontWeight:500}}>Select Case</label>
-              <select name="" id=""  value={caseId} onChange={(e)=> setCaseId(e.target.value)}>
+                <Select
+                        className="item"
+                        styles={{ width: "20px" }}
+                        value={selectedUser}
+                        options={allUsers?.map(user => ({
+                          value: user._id,
+                          label: user?.caseTitle
+                        }))}
+                        defaultValue={allUsers?.[0]?._id}
+                        onChange={handleChange}
+                    />
+              {/* <select name="" id=""  defaultValue={allUsers?.[0]?._id}>
                 {allUsers?.map((d, i)=>(
-                    <option value={d?._id}>{d?.caseTitle}</option>
+                    <option value={d?._id} selected>{d?.caseTitle}</option>
 
                 ))}
-              </select>
+              </select> */}
             </div>
 
           <div className="desc">

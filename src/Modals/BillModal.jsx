@@ -6,6 +6,7 @@ import { createApiData, fetchApiData, getDateFromISOString } from "../utils";
 
 import { useEffect, useState } from "react";
 import { successToast } from "../Component/Toast";
+import Select from "react-select";
 
 function BillModal(props) {
 
@@ -16,7 +17,14 @@ const [houseNo , setHouseNo] = useState("")
 const [mobileNumber , setMobileNumber] = useState("")
 const [completeAddress , setCompleteAddress] = useState("")
 const [pinCode , setPin] = useState("")
+const [selectedUser, setSelectedUser] = useState(null);
 const [allUsers  , setAllUsers] = useState([])
+
+const handleChange = (option) => {
+  setSelectedUser(option)
+  setCustomerId(option?.value);
+};
+
 
 const getAllCase = async ()=>{
     const caseData = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/case/all')
@@ -74,12 +82,23 @@ console.log(formData)
             </div>
             <div style={{display:"flex", flexDirection:"column", gap:"5px"}}>
                 <label style={{color:"#1D1D1D" , fontWeight:500}}>Select Customer</label>
-              <select name="" id=""  value={customerId} onChange={(e)=> setCustomerId(e.target.value)}>
+                <Select
+                        className="item"
+                        styles={{ width: "20px" }}
+                        value={selectedUser}
+                        options={allUsers?.map(d => ({
+                          value: d?.userId?._id,
+                          label: d?.userId?.fullName || d?.userId?.firstName + " " + d?.userId?.lastName
+                        }))}
+                        defaultValue={allUsers?.[0]?.userId?._id}
+                        onChange={handleChange}
+                    />
+              {/* <select name="" id=""  value={customerId} onChange={(e)=> setCustomerId(e.target.value)}>
                 {allUsers?.map((d, i)=>(
                     <option value={d?.userId?._id}>{d?.userId?.fullName || d?.userId?.firstName + " " + d?.userId?.lastName }</option>
 
                 ))}
-              </select>
+              </select> */}
             </div>
             <div style={{display:"flex", flexDirection:"column", gap:"5px"}}>
                 <label style={{color:"#1D1D1D" , fontWeight:500}}>Pincode*</label>

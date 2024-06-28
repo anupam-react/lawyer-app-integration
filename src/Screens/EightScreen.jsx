@@ -1,18 +1,75 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Footer from "../Component/Footer";
 import ThankYouModal from "../Modals/ThankYouModal";
 import useBookAppointment from "../hooks/useBookAppointment";
+import useRazorpay from "react-razorpay";
+import { fetchApiData } from "../utils";
 
 const Order = () => {
   const [ThankYouOpen, setThankYouOpen] = useState(false);
+  const [userInfo, setUserInfo] = useState()
   const { appointmentType, handleBookAppointment, handleChange}= useBookAppointment()
+
+  const {id} = useParams()
+
+  const getUserInfo = async ()=>{
+    const userData = await fetchApiData(`https://shlok-mittal-lawyer-backend.vercel.app/api/v1/admin/User/${id}`)
+    setUserInfo(userData?.data)
+  }
+
+  useEffect(()=>{
+    getUserInfo()
+  },[id])
+  
+  const totalPay =  userInfo?.hearingFee + Math.round(userInfo?.hearingFee /18)
+
+
+
+  const [Razorpay, isLoaded] = useRazorpay();
+
+  const handlePayment =  useCallback( async () => {
+    // const order = await createOrder(params);
+
+    const options = {
+      key: "rzp_test_SIyQ7CGdRlVT9y",
+      amount: totalPay * 100,
+      currency: "INR",
+      name: "Lawbstar",
+      description: "Test Transaction",
+      image: "https://example.com/your_logo",
+    //   order_id: order.id,
+      handler: (res) => {
+        console.log(res);
+      },
+      prefill: {
+        name: "Piyush Garg",
+        email: "youremail@example.com",
+        contact: "9999999999",
+      },
+      notes: {
+        address: "Razorpay Corporate Office",
+      },
+      theme: {
+        color: "#3399cc",
+      },
+    };
+
+    const rzpay = new Razorpay(options);
+    rzpay.open();
+  }, [Razorpay]);
+
+  // useEffect(() => {
+  //   if (isLoaded) {
+  //     handlePayment();
+  //   }
+  // }, [isLoaded, handlePayment])
 
   const navigate = useNavigate();
 
-  const {id} = useParams()
+
 
   const GoBack = () => {
     navigate(-1);
@@ -72,14 +129,14 @@ const Order = () => {
             <div className="main">
               <div className="two-Sec">
                 <p>Booking Charges</p>
-                <p>₹2,000</p>
+                <p>₹{userInfo?.hearingFee}</p>
               </div>
               <input type="text" placeholder="Enter promo code here" />
             </div>
             <div className="main">
               <div className="two-Sec">
                 <p>IGST (18%)</p>
-                <p>₹360</p>
+                <p>₹{Math.round(userInfo?.hearingFee /18)}</p>
               </div>
             </div>
 
@@ -88,7 +145,7 @@ const Order = () => {
             <div className="main">
               <div className="two-Sec">
                 <p style={{ color: "black" }}>TOTAL PAYABLE AMOUNT</p>
-                <p style={{ color: "black" }}>₹2,360</p>
+                <p style={{ color: "black" }}>₹{totalPay}</p>
               </div>
             </div>
 
@@ -97,7 +154,7 @@ const Order = () => {
             </p>
             <button
               style={{ padding: "5px 0px" }}
-              onClick={() => setThankYouOpen(true)}
+              onClick={handlePayment}
             >
               Pay Now
             </button>

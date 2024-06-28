@@ -55,7 +55,7 @@ const [hamb, setHamb] = useState(true);
           <div className="upper">
             <img src={categoryInfo?.data?.image} alt="" />
             <div>
-              <p className="head">{categoryInfo?.data?.name}</p>
+              <p className="head">{categoryInfo?.data?.category}</p>
               
             </div>
           </div>
