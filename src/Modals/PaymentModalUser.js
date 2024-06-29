@@ -55,6 +55,7 @@ function PaymentModalUser(props) {
             <hr />
 
             <p className="head2">My Previous payments</p>
+            <div style={{height:"40vh" , overflow:"scroll"}}>
             {transaction?.map((d, i) => (
               <>
                 <div className="payment3">
@@ -75,7 +76,9 @@ function PaymentModalUser(props) {
               </>
             ))}
 
-            <button>View All</button>
+            </div>
+
+            {/* <button>View All</button> */}
           </div>
         </Modal.Body>
       </Modal>

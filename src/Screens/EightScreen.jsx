@@ -6,12 +6,15 @@ import Footer from "../Component/Footer";
 import ThankYouModal from "../Modals/ThankYouModal";
 import useBookAppointment from "../hooks/useBookAppointment";
 import useRazorpay from "react-razorpay";
-import { fetchApiData } from "../utils";
+import { createApiData, fetchApiData } from "../utils";
 
 const Order = () => {
   const [ThankYouOpen, setThankYouOpen] = useState(false);
   const [userInfo, setUserInfo] = useState()
-  const { appointmentType, handleBookAppointment, handleChange}= useBookAppointment()
+  const [appointmentDate, setAppointmentDate] = useState()
+  const [appointmentType, setAppointmentType] = useState()
+  const [appointmentTime, setAppointmentTime] = useState()
+
 
   const {id} = useParams()
 
@@ -22,9 +25,10 @@ const Order = () => {
 
   useEffect(()=>{
     getUserInfo()
+   
   },[id])
-  
-  const totalPay =  userInfo?.hearingFee + Math.round(userInfo?.hearingFee /18)
+  const totalPay =  userInfo?.consultancyCost + Math.round(userInfo?.consultancyCost /18)
+ console.log(totalPay)
 
 
 
@@ -39,15 +43,39 @@ const Order = () => {
       currency: "INR",
       name: "Lawbstar",
       description: "Test Transaction",
-      image: "https://example.com/your_logo",
+      image: "../Images/logo.png",
     //   order_id: order.id,
-      handler: (res) => {
-        console.log(res);
-      },
+    handler: async (response) => {
+      try {
+        const paymentId = response.razorpay_payment_id;
+        console.log(paymentId)
+        const formData = {
+          lawyerId: id,
+          appointmentDate: appointmentDate,
+          appointmentType: appointmentType,
+          appointmentTime: appointmentTime
+        }
+        await createApiData(
+          "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/create/Appointment",
+          formData
+        );
+        await createApiData(
+          "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/user/payNowForWebsite",
+          {amount: `${totalPay}`,
+          reciverId: id,
+          id:paymentId
+          }
+        );
+       } catch (err) {
+         console.log(err);
+       }
+     
+      
+    },
       prefill: {
-        name: "Piyush Garg",
-        email: "youremail@example.com",
-        contact: "9999999999",
+        name: userInfo?.fullName,
+        email: userInfo?.email,
+        contact: userInfo?.phone,
       },
       notes: {
         address: "Razorpay Corporate Office",
@@ -59,7 +87,7 @@ const Order = () => {
 
     const rzpay = new Razorpay(options);
     rzpay.open();
-  }, [Razorpay]);
+  }, [Razorpay , totalPay]);
 
   // useEffect(() => {
   //   if (isLoaded) {
@@ -101,23 +129,23 @@ const Order = () => {
           <div>
             <div className="inputGroup">
               <p>Consultation Type</p>
-              <input type="text" value={appointmentType?.appointmentType} name="appointmentType" onChange={handleChange}/>
+              <input type="text" value={appointmentType} name="appointmentType" onChange={(e)=>setAppointmentType(e.target.value)}/>
             </div>
             <div className="inputGroup">
               <p>Consultation Time</p>
-              <input type="time" value={appointmentType?.appointmentTime} name="appointmentTime" onChange={handleChange}/>
+              <input type="time" value={appointmentTime} name="appointmentTime" onChange={(e)=>setAppointmentTime(e.target.value)}/>
             </div>
             <div className="inputGroup">
               <p>Consultation Date</p>
-              <input type="date" value={appointmentType?.appointmentDate} name="appointmentDate" onChange={handleChange}/>
+              <input type="date" value={appointmentDate} name="appointmentDate" onChange={(e)=>setAppointmentDate(e.target.value)}/>
             </div>
           </div>
-          <div style={{display:"flex", justifyContent:"center" , marginTop:"30px"}}>
+          {/* <div style={{display:"flex", justifyContent:"center" , marginTop:"30px"}}>
           <button onClick={()=>handleBookAppointment(id)} style={{ fontSize: "18px", borderRadius:"10px", border:"none", backgroundColor:"white", fontWeight: 700, padding:"8px 0px", width: "150px" , marginBottom:"10px" }}>
           Book Consult
         </button>
 
-          </div>
+          </div> */}
         </div>
 
         <div className="right">
@@ -129,14 +157,14 @@ const Order = () => {
             <div className="main">
               <div className="two-Sec">
                 <p>Booking Charges</p>
-                <p>₹{userInfo?.hearingFee}</p>
+                <p>₹{userInfo?.consultancyCost}</p>
               </div>
               <input type="text" placeholder="Enter promo code here" />
             </div>
             <div className="main">
               <div className="two-Sec">
                 <p>IGST (18%)</p>
-                <p>₹{Math.round(userInfo?.hearingFee /18)}</p>
+                <p>₹{Math.round(userInfo?.consultancyCost /18)}</p>
               </div>
             </div>
 

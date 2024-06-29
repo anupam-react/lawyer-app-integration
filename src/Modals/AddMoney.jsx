@@ -7,8 +7,11 @@ import { createApiData, } from "../utils";
 import { useCallback, useState } from "react";
 import useRazorpay from "react-razorpay";
 import { successToast } from "../Component/Toast";
+import useLawyerProfile from "../hooks/useLawyerProfile";
 
 function AddMoney(props) {
+  const { cusomerInfo  } = useLawyerProfile();
+
 
 const [amount , setAmount] = useState("")
 const [Razorpay, isLoaded] = useRazorpay();
@@ -22,15 +25,22 @@ const handlePayment =  useCallback( async () => {
     currency: "INR",
     name: "Lawbstar",
     description: "Test Transaction",
-    image: "https://example.com/your_logo",
+    image: "./Images/logo.png",
   //   order_id: order.id,
-    handler: (res) => {
-      console.log(res);
-    },
+  handler: async (response) => {
+    try {
+     const paymentId = response.razorpay_payment_id;
+     console.log(paymentId)
+     const addMoney = await createApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/user/addMoney', {amount: amount , id: paymentId})
+     console.log(addMoney);
+    } catch (err) {
+      console.log(err);
+    }
+  },
     prefill: {
-      name: "Piyush Garg",
-      email: "youremail@example.com",
-      contact: "9999999999",
+      name: cusomerInfo?.fullName ,
+      email: cusomerInfo?.email,
+      contact: cusomerInfo?.phone,
     },
     notes: {
       address: "Razorpay Corporate Office",

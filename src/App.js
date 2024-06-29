@@ -28,6 +28,7 @@ import ServiceDetails from './Screens/ServiceDetails'
 import UserProfile from './Screens/User/UserProfile'
 import Order from './Screens/EightScreen'
 import ServiceCustomer from './Screens/ServiceCustomer'
+import LawyerCity from './Component/LawyerCity'
 
 
 const App = () => {
@@ -66,6 +67,8 @@ const App = () => {
         {/* <Route path='/eight' element={<EightScreen />} /> */}
         <Route path='/category-info/:id' element={<CategoryDetails />} />
         <Route path='/service-info/:id' element={<ServiceDetails />} />
+        <Route path='/city/:id' element={<LawyerCity />} />
+
 
        </Routes>
     </BrowserRouter>

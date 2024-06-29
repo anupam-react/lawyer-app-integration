@@ -4,12 +4,15 @@ import { Modal } from "react-bootstrap";
 import useCity from "../hooks/useCity";
 import ServiceModal from "./ServiceModal";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function LocationModal(props) {
 
   const {  popularCity,
     city,} = useCity()
     const [modalShow, setModalShow] = useState(false);
+
+    const navigate = useNavigate()
   return (
     <>
      <ServiceModal show={modalShow} onHide={() => setModalShow(false)} />
@@ -37,7 +40,7 @@ function LocationModal(props) {
 
           <div className='sixSec'>
             {popularCity?.map((d, i)=>(
-            <div key={i}>
+            <div style={{cursor:"pointer"}} onClick={()=> navigate(`/city/${d?.city}`)} key={i}>
                 <img src={d?.image} alt='' />
                 <p>{d?.city}</p>
             </div>
