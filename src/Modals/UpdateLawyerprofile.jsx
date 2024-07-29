@@ -34,26 +34,26 @@ function UpdateLawyerprofile(props) {
 
     console.log(email, password);
     const formData = new FormData();
-    formData.append("email", email);
-    formData.append("password", password);
-    formData.append("fullName", name);
-    formData.append("phone", phone);
-    formData.append("image", image);
-    formData.append("firstLineAddress", firstLineAddress);
-    formData.append("secondLineAddress", secondLineAddress);
-    formData.append("country", country);
-    formData.append("state", state);
-    formData.append("district", district);
-    formData.append("pincode", pincode);
-    formData.append("skills[0]", skills);
-    formData.append("barCertificateNo", barCertificateNo);
-    formData.append("barRegistrationNo", barRegistrationNo);
-    formData.append("experiance", experiance);
-    formData.append("languages[0]", languages);
-    formData.append("bio", bio);
-    formData.append("hearingFee", hearingFee);
-    formData.append("minofconsultance", minofconsultance);
-    formData.append("consultancyCost", consultancyCost);
+   if(email) formData.append("email", email);
+   if(password) formData.append("password", password);
+   if(name) formData.append("fullName", name);
+   if(phone) formData.append("phone", phone);
+   if(image) formData.append("image", image);
+   if(firstLineAddress) formData.append("firstLineAddress", firstLineAddress);
+   if(secondLineAddress) formData.append("secondLineAddress", secondLineAddress);
+   if(country) formData.append("country", country);
+   if(state) formData.append("state", state);
+   if(district) formData.append("district", district);
+   if(pincode) formData.append("pincode", pincode);
+   if(skills) formData.append("skills[0]", skills);
+   if(barCertificateNo) formData.append("barCertificateNo", barCertificateNo);
+   if(barRegistrationNo) formData.append("barRegistrationNo", barRegistrationNo);
+   if(experiance) formData.append("experiance", experiance);
+   if(languages) formData.append("languages[0]", languages);
+   if(bio) formData.append("bio", bio);
+   if(hearingFee) formData.append("hearingFee", hearingFee);
+   if(minofconsultance) formData.append("minofconsultance", minofconsultance);
+   if(consultancyCost) formData.append("consultancyCost", consultancyCost);
     try {
       const response = await updateApiData(
         "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/update",

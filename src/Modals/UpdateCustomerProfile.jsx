@@ -22,14 +22,14 @@ function UpdateCustomerProfile(props) {
 
     console.log(email, password);
     const formData = new FormData();
-    formData.append("email", email);
-    formData.append("password", password);
-    formData.append("fullName", name);
-    formData.append("phone", phone);
-    formData.append("image", image);
-    formData.append("kyc", kyc);
-    formData.append("whatAppNotification", whatAppNotification);
-    formData.append("blogNotification", blogNotification);
+    if(email) formData.append("email", email);
+    if(password) formData.append("password", password);
+    if(name) formData.append("fullName", name);
+    if(phone) formData.append("phone", phone);
+    if(image) formData.append("image", image);
+    if(kyc) formData.append("kyc", kyc);
+    if(whatAppNotification) formData.append("whatAppNotification", whatAppNotification);
+    if(blogNotification) formData.append("blogNotification", blogNotification);
    
     try {
       const response = await updateApiData(
