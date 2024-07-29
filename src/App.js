@@ -26,9 +26,12 @@ import NotificationUser from './Screens/User/NotificationUser'
 import CategoryDetails from './Screens/CategoryDetails'
 import ServiceDetails from './Screens/ServiceDetails'
 import UserProfile from './Screens/User/UserProfile'
-import Order from './Screens/EightScreen'
+
 import ServiceCustomer from './Screens/ServiceCustomer'
 import LawyerCity from './Component/LawyerCity'
+import Order from './Screens/EightScreen'
+
+// import VideoCall from './VideoCall'
 
 
 const App = () => {
@@ -58,6 +61,7 @@ const App = () => {
   
         </Route>
         <Route path='/' element={<HomeScreen />} />
+        {/* <Route path='/videocall' element={<VideoCall />} /> */}
         <Route path='/second' element={<SecondScreen /> } />
         <Route path='/third' element={<ThirdScreen />} />
         <Route path='/fourth' element={<Fourth />} />
