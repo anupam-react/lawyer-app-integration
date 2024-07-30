@@ -99,7 +99,7 @@ const Order = () => {
     rzpay.open();
   }, [Razorpay , totalPay]);
 
-  const handleBookAppointment = async (id)=>{
+  const handleBookAppointment = async ()=>{
     const formData = {
       lawyerId: id,
       appointmentDate: appoinment?.appointmentDate,
