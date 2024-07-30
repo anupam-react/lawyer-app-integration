@@ -183,7 +183,7 @@ function SignInModal(props) {
                       </select>
                     </div>
                     <br />
-
+{/* 
                     <div className="icons">
                       <div className="google-button">
                         <img src="../Images/40.png" alt="" />
@@ -193,7 +193,7 @@ function SignInModal(props) {
                         <img src="../Images/41.png" alt="" />
                         <span>Facebook</span>
                       </div>
-                    </div>
+                    </div> */}
 
                     <div>
                       <i class="fa-solid fa-envelope"></i>
@@ -292,7 +292,7 @@ function SignInModal(props) {
                     </select>
                   </div>
                   <br />
-
+{/* 
                   <div className="icons">
                     <div className="google-button">
                       <img src="../Images/40.png" alt="" />
@@ -302,7 +302,7 @@ function SignInModal(props) {
                       <img src="../Images/41.png" alt="" />
                       <span>Facebook</span>
                     </div>
-                  </div>
+                  </div> */}
                   <div>
                     <i class="fa-solid fa-envelope"></i>
                     <input

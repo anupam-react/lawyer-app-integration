@@ -60,7 +60,7 @@ const AdminSignInModal = ({ selectedOption2, handleSingUpChange }) => {
   return (
     <div>
       <form>
-        <div className="icons">
+        {/* <div className="icons">
           <div className="google-button">
             <img src="../Images/40.png" alt="" />
             <span>Google</span>
@@ -69,7 +69,7 @@ const AdminSignInModal = ({ selectedOption2, handleSingUpChange }) => {
             <img src="../Images/41.png" alt="" />
             <span>Facebook</span>
           </div>
-        </div>
+        </div> */}
 
         <div className="form-conatiner">
           <div>
