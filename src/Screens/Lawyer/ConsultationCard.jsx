@@ -6,7 +6,7 @@ const ConsultationCard = ({ data }) => {
     <div className="Consultation-container">
       <div className="Consultation-main">
         <div className="file-button">
-          <button>View File</button>
+          {/* <button>View File</button> */}
         </div>
         <img
           src={data?.image}
