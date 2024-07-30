@@ -44,3 +44,13 @@ export const BookAppoint = atom({
     appointmentTime:'',
   },
 });
+
+export const BookAppointOrder = atom({
+  key: 'BookAppointOrderState',
+  default: {
+    lawyerId:'',
+    appointmentDate:'',
+    appointmentType:'',
+    appointmentTime:'',
+  },
+});

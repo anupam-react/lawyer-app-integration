@@ -73,7 +73,7 @@ const LawyerCard = ({unique, data , setSingleInstantLawyer = ()=>{} , setSingleL
         </div>
       </div>
 
-      <h6>{data?.consultancyCost} min. consultation</h6>
+      <h6>{data?.minofconsultance} min. consultation</h6>
     </div>
 
     <div className="right">
