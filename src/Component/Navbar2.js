@@ -19,7 +19,7 @@ const Navbar2 = () => {
 
       <div className="Navbar2">
         <div className="left">
-          <img src={"./Images/logo2.png"} alt="" onClick={() => navigate('/')} />
+          <img src={"../Images/logo2.png"} alt="" onClick={() => navigate('/')} />
         </div>
         <div className="mid">
           <ul>

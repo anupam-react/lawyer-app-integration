@@ -52,7 +52,7 @@ const UserNav = () => {
       <div className="UserNav">
         <div className="left">
           <i class="fa-solid fa-bars" onClick={handleShow}></i>
-          <img src="./Images/logo.png" alt="" onClick={() => navigate("/")} />
+          <img src="../Images/logo.png" alt="" onClick={() => navigate("/")} />
         </div>
 
         <div className="mid">

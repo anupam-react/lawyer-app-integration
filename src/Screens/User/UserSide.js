@@ -35,7 +35,7 @@ const UserSide = ({UserInfo, WalletInfo}) => {
             onClick={() => setPaymentModal(true)}
             style={{ cursor: "pointer" }}
           >
-            <img src="./Images/95.png" alt="" />
+            <img src="../Images/95.png" alt="" />
             <p>₹{WalletInfo}</p>
           </div>
         </div>
