@@ -31,7 +31,7 @@ import ServiceCustomer from './Screens/ServiceCustomer'
 import LawyerCity from './Component/LawyerCity'
 import Order from './Screens/EightScreen'
 
-// import VideoCall from './VideoCall'
+import VideoCall from './VideoCall'
 
 
 const App = () => {
@@ -61,7 +61,7 @@ const App = () => {
   
         </Route>
         <Route path='/' element={<HomeScreen />} />
-        {/* <Route path='/videocall' element={<VideoCall />} /> */}
+        <Route path='/videocall' element={<VideoCall />} />
         <Route path='/second' element={<SecondScreen /> } />
         <Route path='/third' element={<ThirdScreen />} />
         <Route path='/fourth' element={<Fourth />} />

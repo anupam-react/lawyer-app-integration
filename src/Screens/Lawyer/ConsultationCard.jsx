@@ -1,12 +1,15 @@
 import React from "react";
 import "./style.scss";
+import { useNavigate } from "react-router-dom";
 
 const ConsultationCard = ({ data }) => {
+
+  const navigate = useNavigate()
   return (
     <div className="Consultation-container">
       <div className="Consultation-main">
         <div className="file-button">
-          {/* <button>View File</button> */}
+          <button onClick={()=> navigate('/documents')}>View File</button>
         </div>
         <img
           src={data?.image}
@@ -41,7 +44,7 @@ const ConsultationCard = ({ data }) => {
               <span>Chat</span>
             </button>
           ) : (
-            <button>
+            <button onClick={()=> navigate('/videocall')}>
               <img src="./Group.png" alt="" />
               <span>Voice Call</span>
             </button>

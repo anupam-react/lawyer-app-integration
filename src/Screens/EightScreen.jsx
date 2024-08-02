@@ -5,16 +5,16 @@ import { useNavigate, useParams } from "react-router-dom";
 import Footer from "../Component/Footer";
 import ThankYouModal from "../Modals/ThankYouModal";
 import useRazorpay from "react-razorpay";
-import { createApiData, fetchApiData } from "../utils";
+import { createApiData, fetchApiData, updateApiData } from "../utils";
 import { useRecoilState } from "recoil";
 import { BookAppoint } from "../Component/Atoms/caseAtom";
 
 const Order = () => {
   const [ThankYouOpen, setThankYouOpen] = useState(false);
-  const [appoinment , setAppoinment] = useRecoilState(BookAppoint)
-  const [userInfo, setUserInfo] = useState()
+  const [appoinment, setAppoinment] = useRecoilState(BookAppoint);
+  const [userInfo, setUserInfo] = useState();
 
-
+  console.log(appoinment)
 
 
   const handleChange = (event) => {
@@ -25,25 +25,25 @@ const Order = () => {
     }));
   };
 
-  const {id} = useParams()
+  const { id } = useParams();
 
-  const getUserInfo = async ()=>{
-    const userData = await fetchApiData(`https://shlok-mittal-lawyer-backend.vercel.app/api/v1/admin/User/${id}`)
-    setUserInfo(userData?.data)
-  }
+  const getUserInfo = async () => {
+    const userData = await fetchApiData(
+      `https://shlok-mittal-lawyer-backend.vercel.app/api/v1/admin/User/${id}`
+    );
+    setUserInfo(userData?.data);
+  };
 
-  useEffect(()=>{
-    getUserInfo()
-   
-  },[id])
-  const totalPay =  userInfo?.consultancyCost + Math.round(userInfo?.consultancyCost /18)
- console.log(appoinment)
-
-
+  useEffect(() => {
+    getUserInfo();
+  }, [id]);
+  const totalPay =
+    userInfo?.consultancyCost + Math.round(userInfo?.consultancyCost / 18);
+  console.log(appoinment);
 
   const [Razorpay, isLoaded] = useRazorpay();
 
-  const handlePayment =  useCallback( async () => {
+  const handlePayment = useCallback(async () => {
     // const order = await createOrder(params);
 
     const options = {
@@ -53,35 +53,23 @@ const Order = () => {
       name: "Lawbstar",
       description: "Test Transaction",
       image: "../Images/logo.png",
-    //   order_id: order.id,
-    handler: async (response) => {
-      try {
-        const paymentId = response.razorpay_payment_id;
-        console.log(appoinment)
-        // const formData = {
-        //   lawyerId: id,
-        //   appointmentDate: appoinment?.appointmentDate,
-        //   appointmentType: appoinment?.appointmentType,
-        //   appointmentTime: appoinment?.appointmentTime
-        // }
-        // await createApiData(
-        //   "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/create/Appointment",
-        //   formData
-        // );
-        await createApiData(
-          "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/user/payNowForWebsite",
-          {amount: `${totalPay}`,
-          reciverId: id,
-          id:paymentId
-          }
-        );
-   
-       } catch (err) {
-         console.log(err);
-       }
-     
-      
-    },
+      //   order_id: order.id,
+      handler: async (response) => {
+        try {
+          const paymentId = response.razorpay_payment_id;
+          console.log(appoinment);
+
+          await createApiData(
+            "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/user/payNowForWebsite",
+            { amount: `${totalPay}`, reciverId: id, id: paymentId }
+          );
+          const appoinmentId = sessionStorage.getItem("appoinmentId")
+          await updateApiData(`https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/appointmentStart/${appoinmentId}`)
+          setThankYouOpen(true)
+        } catch (err) {
+          console.log(err);
+        }
+      },
       prefill: {
         name: userInfo?.fullName,
         email: userInfo?.email,
@@ -97,27 +85,28 @@ const Order = () => {
 
     const rzpay = new Razorpay(options);
     rzpay.open();
-  }, [Razorpay , totalPay]);
+  }, [Razorpay, totalPay]);
 
-  const handleBookAppointment = async ()=>{
+  const handleBookAppointment = async () => {
     const formData = {
       lawyerId: id,
       appointmentDate: appoinment?.appointmentDate,
       appointmentType: appoinment?.appointmentType,
-      appointmentTime: appoinment?.appointmentTime
-    }
+      appointmentTime: appoinment?.appointmentTime,
+    };
     try {
       const response = await createApiData(
         "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/create/Appointment",
         formData
       );
-
+      console.log(response)
+      sessionStorage.setItem("appoinmentId",response?._id )
+      setAppoinment(response?.data)
     } catch (error) {
       console.log(error);
       return error;
     }
-
-  }
+  };
 
   // useEffect(() => {
   //   if (isLoaded) {
@@ -126,8 +115,6 @@ const Order = () => {
   // }, [isLoaded, handlePayment])
 
   const navigate = useNavigate();
-
-
 
   const GoBack = () => {
     navigate(-1);
@@ -159,15 +146,30 @@ const Order = () => {
           <div>
             <div className="inputGroup">
               <p>Consultation Type</p>
-              <input type="text" value={appoinment?.appointmentType} name="appointmentType" onChange={handleChange}/>
+              <input
+                type="text"
+                value={appoinment?.appointmentType}
+                name="appointmentType"
+                onChange={handleChange}
+              />
             </div>
             <div className="inputGroup">
               <p>Consultation Time</p>
-              <input type="time" value={appoinment?.appointmentTime} name="appointmentTime" onChange={handleChange}/>
+              <input
+                type="time"
+                value={appoinment?.appointmentTime}
+                name="appointmentTime"
+                onChange={handleChange}
+              />
             </div>
             <div className="inputGroup">
               <p>Consultation Date</p>
-              <input type="date" value={appoinment?.appointmentDate} name="appointmentDate" onChange={handleChange}/>
+              <input
+                type="date"
+                value={appoinment?.appointmentDate}
+                name="appointmentDate"
+                onChange={handleChange}
+              />
             </div>
           </div>
           {/* <div style={{display:"flex", justifyContent:"center" , marginTop:"30px"}}>
@@ -194,7 +196,7 @@ const Order = () => {
             <div className="main">
               <div className="two-Sec">
                 <p>IGST (18%)</p>
-                <p>₹{Math.round(userInfo?.consultancyCost /18)}</p>
+                <p>₹{Math.round(userInfo?.consultancyCost / 18)}</p>
               </div>
             </div>
 
@@ -212,9 +214,9 @@ const Order = () => {
             </p>
             <button
               style={{ padding: "5px 0px" }}
-              onClick={()=>{
-                handlePayment()
-                handleBookAppointment()
+              onClick={() => {
+                handlePayment();
+                handleBookAppointment();
               }}
             >
               Pay Now

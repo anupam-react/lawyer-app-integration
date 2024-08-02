@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const LawyerCard = ({unique, data , setSingleInstantLawyer = ()=>{} , setSingleLawyer = ()=>{}}) => {
+  console.log(data)
   const navigate= useNavigate('')
   return (
     <div className="two-sec" style={{cursor:"pointer"}} onClick={()=>{

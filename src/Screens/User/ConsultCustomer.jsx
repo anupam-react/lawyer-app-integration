@@ -1,8 +1,10 @@
 import React from "react";
 import StarRating2 from "./StarRating2";
 import StarRating3 from "./StarRating3";
+import { useNavigate } from "react-router-dom";
 
 const ConsultCustomer = ({ data }) => {
+  const navigate = useNavigate()
   return (
     <div>
       <div className="rightFirst">
@@ -91,6 +93,7 @@ const ConsultCustomer = ({ data }) => {
             width: "120px",
             border: "none",
           }}
+          onClick={() => navigate(`/payment/${data?.lawyer?._id}`)}
         >
           Consult
         </button>
@@ -170,7 +173,7 @@ const ConsultCustomer = ({ data }) => {
         </div>
 
         <div className="consult">
-          <div>
+          <div  onClick={() => navigate(`/payment/${data?.lawyer?._id}`)}>
             <i class="fa-regular fa-message"></i>
             <p>Consult Now</p>
           </div>

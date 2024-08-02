@@ -170,7 +170,7 @@ const AppoinmentCustomer = ({ data }) => {
         </div>
 
         <div className="consult">
-          <div>
+          <div onClick={() => navigate(`/payment/${data?._id}`)}>
             <i class="fa-regular fa-message"></i>
             <p>Consult Now</p>
           </div>
