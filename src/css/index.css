@@ -11,6 +11,10 @@
   src: url(../Font/Poppins-Light.ttf);
 }
 
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
 /* ------------- */
 body {
   margin: 0;
@@ -3783,4 +3787,35 @@ padding-right: 10px;
   display: flex;
   align-items: center;
   font-weight: 700;
+}
+.chat-input{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0px 10px;
+
+  position: absolute;
+  bottom: 0;
+  /* absolute bottom-0 left-0 w-full bg-white bg-opacity-60 backdrop-filter backdrop-blur-lg p-4 flex items-center */
+}
+.chat-input-Active{
+  padding: 12px;
+  margin-bottom: 8px;
+  background-color: rgb(219 234 254);
+  text-align: right;
+  border-radius: 10px;
+}
+.chat-input-inactive{
+  padding: 12px;
+  margin-bottom: 8px;
+  background-color: white;
+  text-align: left;
+  border-radius: 10px;
+}
+.chat-input-input{
+ flex: 1;
+ width: 80vw;
+ height: 50px;
+ border-radius: 10px;
+ padding: 0px 10px;
 }

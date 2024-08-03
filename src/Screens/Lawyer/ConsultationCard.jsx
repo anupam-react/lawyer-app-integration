@@ -46,7 +46,7 @@ const ConsultationCard = ({ data }) => {
           ) : (
             <button onClick={()=> navigate('/videocall')}>
               <img src="./Group.png" alt="" />
-              <span>Voice Call</span>
+              <span>Video Call</span>
             </button>
           )}
         </div>

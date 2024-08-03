@@ -1,5 +1,6 @@
 import React from "react";
 import useInstantAppointment from "../hooks/useInstantAppointment";
+import { useNavigate } from "react-router-dom";
 
 const LawyerCard2 = ({
   unique,
@@ -7,7 +8,8 @@ const LawyerCard2 = ({
   setSingleInstantLawyer = () => {},
   setSingleLawyer = () => {},
 }) => {
-  const { handleInstantAppointment }= useInstantAppointment()
+  const { handleInstantAppointment }= useInstantAppointment();
+  const navigate = useNavigate()
   return (
     <div
       className="two-sec"
@@ -100,7 +102,11 @@ const LawyerCard2 = ({
         <div>
           <p>Wait time - 2h:8 m</p>
         </div>
-        <button onClick={handleInstantAppointment} style={{ fontSize: "18px", fontWeight: 700, padding:"5px 0px", width: "120px" , marginBottom:"10px" }}>
+        <button onClick={()=>{
+          navigate(`/payment/${data?._id}`)
+          handleInstantAppointment()
+        }
+        } style={{ fontSize: "18px", fontWeight: 700, padding:"5px 0px", width: "120px" , marginBottom:"10px" }}>
          Request
         </button>
       </div>

@@ -14,6 +14,8 @@ const Order = () => {
   const [appoinment, setAppoinment] = useRecoilState(BookAppoint);
   const [userInfo, setUserInfo] = useState();
 
+  const navigate = useNavigate();
+
   console.log(appoinment)
 
 
@@ -64,8 +66,8 @@ const Order = () => {
             { amount: `${totalPay}`, reciverId: id, id: paymentId }
           );
           const appoinmentId = sessionStorage.getItem("appoinmentId")
-          await updateApiData(`https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/appointmentStart/${appoinmentId}`)
-          setThankYouOpen(true)
+         const data =  await updateApiData(`https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/appointmentStart/${appoinmentId}`)
+          navigate(`/videocall/${data?.data?.meetingId}`)
         } catch (err) {
           console.log(err);
         }
@@ -114,7 +116,7 @@ const Order = () => {
   //   }
   // }, [isLoaded, handlePayment])
 
-  const navigate = useNavigate();
+
 
   const GoBack = () => {
     navigate(-1);
