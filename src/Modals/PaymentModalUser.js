@@ -69,7 +69,7 @@ function PaymentModalUser(props) {
                       color: `${d?.type === "Credit" ? "#0F2C64" : "#ED1E24"}`,
                     }}
                   >
-                    +₹{d?.amount}
+                  {d?.type === "Credit" ? "+₹" : "-₹"} {d?.amount}
                   </p>
                 </div>
                 <hr />
