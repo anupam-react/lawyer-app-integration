@@ -32,7 +32,7 @@ const ConsultationCard = ({ data }) => {
             </span>
           </div>
         </div>
-        <div className="consult-buttons">
+        {/* <div className="consult-buttons">
           {data?.appointmentType === "Call" ? (
             <button>
               <img src="./Group.png" alt="" />
@@ -49,7 +49,7 @@ const ConsultationCard = ({ data }) => {
               <span>Video Call</span>
             </button>
           )}
-        </div>
+        </div> */}
         <div className="consult-time">
           <div>10 min Booked</div>
           <span>Time: {data?.appointmentTime}</span>
