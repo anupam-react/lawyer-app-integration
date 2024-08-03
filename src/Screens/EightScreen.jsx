@@ -67,7 +67,10 @@ const Order = () => {
           );
           const appoinmentId = sessionStorage.getItem("appoinmentId")
          const data =  await updateApiData(`https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/appointmentStart/${appoinmentId}`)
-          navigate(`/videocall/${data?.data?.meetingId}`)
+         if(data?.data?.appointmentType?.toLowerCase() === "chat") navigate(`/chat`)
+          else{
+        navigate(`/videocall/${data?.data?.meetingId}`)
+        }
         } catch (err) {
           console.log(err);
         }

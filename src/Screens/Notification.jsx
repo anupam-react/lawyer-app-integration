@@ -13,7 +13,8 @@ const Notification = () => {
   }
 
  const handleNotification = async(data)=>{
-  if(data?.appointmentId?.appointmentType?.toLowerCase() === "video call") navigate(`/videocall/${data?.appointmentId?.meetingId}`)
+  if(data?.appointmentId?.appointmentType?.toLowerCase() === "chat") navigate('/chat')
+    else navigate(`/videocall/${data?.appointmentId?.meetingId}`)
   sessionStorage.setItem("appoinmentId",data?.appointmentId?._id )
   await updateApiData(`https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/appointmentJoin/${data?.appointmentId?._id}`)
  }
@@ -24,7 +25,7 @@ const Notification = () => {
 
   setTimeout(()=>{
     getAllNotification()
-  },20000)
+  },40000)
   return (
     <div style={{padding:"20px 40px" ,  height:"90vh" , overflow:"scroll"}}>
         <div style={{padding:"10px 20px", borderRadius:"10px", display:"flex" , flexDirection:"column", gap:"20px", background:"#0F2856", border:"1px solid black"}}>
