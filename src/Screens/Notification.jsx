@@ -32,7 +32,7 @@ const Notification = () => {
             {allNotification?.map((data, i)=>(
             <div onClick={()=>handleNotification(data)} key={i} style={{ background:"white" , cursor:"pointer", padding:"10px 20px", color:"white", borderRadius:"10px" , }}>
                 <div style={{display:"flex" , justifyContent:"space-between"}}>
-                <p style={{fontWeight:"bold", fontSize:"20px", color:"#0F2C64"}}>{data?.title}</p>
+                <p style={{fontWeight:"bold", fontSize:"20px", color:"#0F2C64"}}>{data?.title} ({data?.appointmentId?.appointmentType})</p>
                 <p style={{color:"green"}}>{getDateFromISOString(data?.date) + "," + formatTime(data?.date)}</p>
 
                 </div>
