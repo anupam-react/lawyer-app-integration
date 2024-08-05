@@ -9,7 +9,7 @@ import { createApiData, fetchApiData, updateApiData } from "../utils";
 import { useRecoilState } from "recoil";
 import { BookAppoint } from "../Component/Atoms/caseAtom";
 
-const Order = () => {
+const Order = ({isInstant = false}) => {
   const [ThankYouOpen, setThankYouOpen] = useState(false);
   const [appoinment, setAppoinment] = useRecoilState(BookAppoint);
   const [userInfo, setUserInfo] = useState();
@@ -146,44 +146,66 @@ const Order = () => {
       </div>
 
       <div className="eightThird">
+        {isInstant ? 
         <div className="left">
           <p className="head">Order Details</p>
           <div>
             <div className="inputGroup">
               <p>Consultation Type</p>
-              <input
-                type="text"
-                value={appoinment?.appointmentType}
+              <select id="" value={appoinment?.appointmentType}
                 name="appointmentType"
-                onChange={handleChange}
-              />
+                onChange={handleChange}>
+                <option value="video call">Video Call</option>
+                <option value="chat">Chat</option>
+              </select>
             </div>
-            <div className="inputGroup">
-              <p>Consultation Time</p>
-              <input
-                type="time"
-                value={appoinment?.appointmentTime}
-                name="appointmentTime"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="inputGroup">
-              <p>Consultation Date</p>
-              <input
-                type="date"
-                value={appoinment?.appointmentDate}
-                name="appointmentDate"
-                onChange={handleChange}
-              />
-            </div>
+        
           </div>
-          {/* <div style={{display:"flex", justifyContent:"center" , marginTop:"30px"}}>
-          <button onClick={()=>handleBookAppointment(id)} style={{ fontSize: "18px", borderRadius:"10px", border:"none", backgroundColor:"white", fontWeight: 700, padding:"8px 0px", width: "150px" , marginBottom:"10px" }}>
-          Book Consult
-        </button>
+   
+        </div> 
 
-          </div> */}
+        :
+        <div className="left">
+        <p className="head">Order Details</p>
+        <div>
+          <div className="inputGroup">
+            <p>Consultation Type</p>
+            <select id="" value={appoinment?.appointmentType}
+                name="appointmentType"
+                onChange={handleChange}>
+                <option value="video call">Video Call</option>
+                <option value="voice call">Voice Call</option>
+                <option value="chat">Chat</option>
+              </select>
+          </div>
+        <div className="inputGroup">
+          <p>Consultation Time</p>
+          <input
+            type="time"
+            value={appoinment?.appointmentTime}
+            name="appointmentTime"
+            onChange={handleChange}
+          />
         </div>
+        <div className="inputGroup">
+          <p>Consultation Date</p>
+          <input
+            type="date"
+            value={appoinment?.appointmentDate}
+            name="appointmentDate"
+            onChange={handleChange}
+          />
+        </div>
+        </div>
+        {/* <div style={{display:"flex", justifyContent:"center" , marginTop:"30px"}}>
+        <button onClick={()=>handleBookAppointment(id)} style={{ fontSize: "18px", borderRadius:"10px", border:"none", backgroundColor:"white", fontWeight: 700, padding:"8px 0px", width: "150px" , marginBottom:"10px" }}>
+        Book Consult
+      </button>
+
+        </div> */}
+      </div> 
+        
+      }
 
         <div className="right">
           <div className="upper">

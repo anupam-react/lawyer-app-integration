@@ -13,7 +13,7 @@ const Notification = () => {
   }
 
  const handleNotification = async(data)=>{
-  if(data?.appointmentId?.appointmentType?.toLowerCase() === "chat") navigate('/chat')
+  if(data?.appointmentId?.appointmentType?.toLowerCase() === "chat") navigate(`/chat/${data?.appointmentId?.userId}`)
     else navigate(`/videocall/${data?.appointmentId?.meetingId}`)
   sessionStorage.setItem("appoinmentId",data?.appointmentId?._id )
   await updateApiData(`https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/appointmentJoin/${data?.appointmentId?._id}`)

@@ -1,55 +1,26 @@
 import { useState, useEffect } from "react";
+import socket from "../socket";
+import { useParams } from "react-router-dom";
+ const Messages = () => {
 
-import {
-  collection,
-  addDoc,
-  query,
-  orderBy,
-  onSnapshot,
-} from "firebase/firestore";
-import { db } from "../firebase";
-const Messages = () => {
+
+  const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState("");
-  const [isSender, setIsSender] = useState(true); // Assume current user is sender
 
-  useEffect(() => {
-    const q = query(collection(db, "Messages"), orderBy("timestamp"));
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const messages = [];
-      querySnapshot.forEach((doc) => {
-        messages.push(doc.data());
-      });
-      setMessages(messages);
-    });
+  const {id} = useParams()
 
-    return () => unsubscribe();
-  }, []);
-
-  const handleInputChange = (e) => {
-    setInput(e.target.value);
-  };
-
-  const handleSend = async () => {
-    console.log(input);
-    if (input.trim()) {
-      await addDoc(collection(db, "messages"), {
-        text: input,
-        sender: isSender,
-        timestamp: new Date(),
-      });
-      setInput("");
-      setIsSender(!isSender); // Toggle sender/receiver for demonstration
-
-      // Add the new message to the messages state
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        {
-          text: input,
-          sender: isSender,
-          timestamp: new Date(),
-        },
-      ]);
+  const handleSend = () => {
+    if (message) {
+      console.log("heelelo" , message , id)
+        socket.emit('sendMessage', {
+          to: id,
+          chat: {
+           "messageType": "text",
+           "message": message
+       }
+      })
+      
+      setMessage('');
     }
   };
 
@@ -87,7 +58,7 @@ const Messages = () => {
                       : "chat-input-inactive"
                   }`}
                 >
-                  {message.text}
+                  {message}
                 </div>
               ))}
             </div>
@@ -96,8 +67,8 @@ const Messages = () => {
                 placeholder="Message..."
                 style={{ }}
                 className="chat-input-input"
-                value={input}
-                onChange={handleInputChange}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
                     handleSend();

@@ -7,15 +7,22 @@ import "./style.scss";
 import StarRating from "./StarRating";
 import useLawyerProfile from "../../hooks/useLawyerProfile";
 import UpdateLawyerprofile from "../../Modals/UpdateLawyerprofile";
+import UpdateExpertises from "../../Modals/UpdateExpertises";
+import UpdateSkills from "../../Modals/UpdateSkills";
 
 const LawyerProfile = () => {
     const { UserInfo } = useLawyerProfile();
     const [updateProfile, setupdateProfile] = useState(false)
+    const [updateExpertises, setUpdateExpertises] = useState(false)
+    const [updateSkill, setUpdateSkill] = useState(false)
     console.log(UserInfo)
   const [hamb, setHamb] = useState(true);
   return (
     <div>
          <UpdateLawyerprofile show={updateProfile} onHide={() => setupdateProfile(false)} />
+         <UpdateExpertises show={updateExpertises} onHide={() => setUpdateExpertises(false)} />
+         <UpdateSkills show={updateSkill} onHide={() => setUpdateSkill(false)} />
+
       <section className="HocSection" style={{ height: "200vh" }}>
         <div className="HocSide">
           <LawyerSidebar hamb={hamb} setHamb={setHamb} />
@@ -119,9 +126,9 @@ const LawyerProfile = () => {
                       <div></div>
                     </div>
                   </div>
-                  {/* <div className="profile-edit-button">
-                    <button>Edit</button>
-                  </div> */}
+                  <div className="profile-edit-button">
+                    <button onClick={()=>setupdateProfile(true)}>Edit</button>
+                  </div>
                   <div className="skill-container">
                     <p className="skill-title">Advocate  {UserInfo?.fullName || UserInfo?.firstName + " " + UserInfo?.lastName} Expertise</p>
 
@@ -134,12 +141,12 @@ const LawyerProfile = () => {
                             </p>
                           </div>
                         ))}
-                      {/* <div className="skill-info">
+                      <div className="skill-info" onClick={()=>setUpdateExpertises(true)}>
                         <img src="./Group 9750.png" alt="" />
                         <p>
-                          Add <br /> Services
+                          Add <br /> Expertises
                         </p>
-                      </div> */}
+                      </div>
                     </div>
                     <p className="skill-title">Advocate  {UserInfo?.fullName || UserInfo?.firstName + " " + UserInfo?.lastName} Skills</p>
                     <div className="skill-body">
@@ -151,12 +158,17 @@ const LawyerProfile = () => {
                              </p>
                            </div>
                         ))}
-                  
+                  <div className="skill-info" onClick={()=>setUpdateSkill(true)}>
+                        <img src="./Group 9750.png" alt="" />
+                        <p>
+                          Add <br /> Skills
+                        </p>
+                      </div>
                     </div>
                   </div>
-                  <div className="profile-edit-button">
-                    <button onClick={()=>setupdateProfile(true)}>Edit</button>
-                  </div>
+                  {/* <div className="profile-edit-button">
+                    <button >Edit</button>
+                  </div> */}
                 </div>
                 <div className="profile-right">
                   <div className="profile-fees">

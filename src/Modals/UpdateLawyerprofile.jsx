@@ -19,7 +19,8 @@ function UpdateLawyerprofile(props) {
   const [state, setState] = useState("");
   const [district, setDistrict] = useState("");
   const [pincode, setPincode] = useState("");
-  const [languages, setLanguages] = useState("");
+  const [languages1, setLanguages1] = useState("");
+  const [languages2, setLanguages2] = useState("");
   const [skills, setSkills] = useState("");
   const [barCertificateNo, setBarCertificateNo] = useState("");
   const [barRegistrationNo, setBarRegistrationNo] = useState("");
@@ -45,11 +46,11 @@ function UpdateLawyerprofile(props) {
    if(state) formData.append("state", state);
    if(district) formData.append("district", district);
    if(pincode) formData.append("pincode", pincode);
-   if(skills) formData.append("skills[0]", skills);
    if(barCertificateNo) formData.append("barCertificateNo", barCertificateNo);
    if(barRegistrationNo) formData.append("barRegistrationNo", barRegistrationNo);
    if(experiance) formData.append("experiance", experiance);
-   if(languages) formData.append("languages[0]", languages);
+   if(languages1) formData.append("languages[0]", languages1);
+   if(languages2) formData.append("languages[1]", languages2);
    if(bio) formData.append("bio", bio);
    if(hearingFee) formData.append("hearingFee", hearingFee);
    if(minofconsultance) formData.append("minofconsultance", minofconsultance);
@@ -64,6 +65,7 @@ function UpdateLawyerprofile(props) {
       console.log(error);
       return error;
     }
+    props.onHide()
   };
 
   return (
@@ -203,10 +205,19 @@ function UpdateLawyerprofile(props) {
               <div>
                 <input
                   type="text"
-                  placeholder="Languages Known"
+                  placeholder="Languages Known1"
                   style={{ borderRadius: "8px", padding: "5px" }}
-                  value={languages}
-                  onChange={(e) => setLanguages(e.target.value)}
+                  value={languages1}
+                  onChange={(e) => setLanguages1(e.target.value)}
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  placeholder="Languages Known2"
+                  style={{ borderRadius: "8px", padding: "5px" }}
+                  value={languages2}
+                  onChange={(e) => setLanguages2(e.target.value)}
                 />
               </div>
               <div>
@@ -273,15 +284,7 @@ function UpdateLawyerprofile(props) {
                   onChange={(e) => setConsultancyCost(e.target.value)}
                 />
               </div>
-              <div>
-                <input
-                  type="text"
-                  placeholder="Your Skills"
-                  style={{ padding: "5px", borderRadius: "8px" }}
-                  value={skills}
-                  onChange={(e) => setSkills(e.target.value)}
-                />
-              </div>
+     
             </div>
             <button onClick={handleUpdate}>Update</button>
           </div>

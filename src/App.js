@@ -56,6 +56,7 @@ const App = () => {
         <Route path='/laywer-profile' element={<LawyerProfile />} />
         <Route path='/user-profile' element={<UserProfile />} />
         <Route path='/payment/:id' element={<Order />} />
+        <Route path='/payment-instant/:id' element={<Order isInstant={true}/>} />
         <Route path='/notification' element={<Notification />} />
         <Route path='/notification-user' element={<NotificationUser />} />
         <Route path='/service/:id' element={<ServiceCustomer />} />
@@ -63,7 +64,7 @@ const App = () => {
         </Route>
         <Route path='/' element={<HomeScreen />} />
         <Route path='/videocall/:id' element={<VideoCall />} />
-        <Route path='/chat' element={<Messages />} />
+        <Route path='/chat/:id' element={<Messages />} />
         <Route path='/second' element={<SecondScreen /> } />
         <Route path='/third' element={<ThirdScreen />} />
         <Route path='/fourth' element={<Fourth />} />

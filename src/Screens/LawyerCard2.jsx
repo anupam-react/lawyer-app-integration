@@ -46,7 +46,7 @@ const LawyerCard2 = ({
               fontWeight: 600,
             }}
           >
-            Legal Advisor
+           {/* {data?.expertises?.[0]} */}
           </div>
         </div>
       </div>
@@ -103,8 +103,8 @@ const LawyerCard2 = ({
           <p>Wait time - 2h:8 m</p>
         </div>
         <button onClick={()=>{
-          navigate(`/payment/${data?._id}`)
-          handleInstantAppointment()
+          navigate(`/payment-instant/${data?._id}`)
+          // handleInstantAppointment()
         }
         } style={{ fontSize: "18px", fontWeight: 700, padding:"5px 0px", width: "120px" , marginBottom:"10px" }}>
          Request
