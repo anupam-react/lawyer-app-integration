@@ -1,28 +1,57 @@
 import { useState, useEffect } from "react";
-import socket from "../socket";
+import socket, { chatList, sendMesage, viewChat } from "../socket";
 import { useParams } from "react-router-dom";
+import { fetchApiData } from "../utils";
  const Messages = () => {
 
-
   const [message, setMessage] = useState('');
-  const [messages, setMessages] = useState([]);
+  const [messagesInfo, setMessagesInfo] = useState([]);
+  const [userInfo, setUserInfo] = useState()
 
   const {id} = useParams()
 
-  const handleSend = () => {
+
+  const getUserInfo = async ()=>{
+    const userData = await fetchApiData(`https://shlok-mittal-lawyer-backend.vercel.app/api/v1/admin/User/${id}`)
+    console.log(userData)
+    setUserInfo(userData?.data)
+  }
+
+  const handleSend = async() => {
     if (message) {
-      console.log("heelelo" , message , id)
-        socket.emit('sendMessage', {
-          to: id,
-          chat: {
-           "messageType": "text",
-           "message": message
-       }
-      })
-      
+      await sendMesage(id, message)
       setMessage('');
     }
+    socket.on("viewChat", (data) => {
+      console.log("viewChat List", data?.chat?.chats);
+      setMessagesInfo(data?.chat?.chats)
+    });
   };
+
+  useEffect(()=>{
+    socket.on("connect", () => {
+      console.log("Connected to the server");
+    });
+
+    socket.on("userConnected", (data) => {
+      
+      console.log("User connected:", data);
+    });
+
+    // socket.on("sendMessage", (data) => {
+    //   setMessagesInfo(data?.chat)
+    //   console.log("send Message", data?.chat);
+    // });
+
+    viewChat(id)
+    console.log("chatId", id)
+    socket.on("viewChat", (data) => {
+      console.log("viewChat List", data?.chat?.chats);
+      setMessagesInfo(data?.chat?.chats)
+    });
+    getUserInfo()
+
+  },[])
 
   return (
     <div>
@@ -38,27 +67,24 @@ import { useParams } from "react-router-dom";
           <div style={{height:"100px", display:"flex" , alignItems:"center" , borderBottom:"1px"}}>
             <div style={{display:"flex" , justifyItems:"center", justifyContent:"center", width:"100%", marginLeft:"10px", gap:"10px"}}>
               <div className="" style={{ fontSize:"20px"}}>
-                <img src="" alt="" style={{borderRadius:"50px" , width:"30px" , height:"30px", margin:"0px 10px"}} />
-                Mr. Shlok <span style={{color:'#979797'}}>(Advocate)</span>
+                <img src={userInfo?.image} alt="" style={{borderRadius:"50px" , width:"30px" , height:"30px", margin:"0px 10px"}} />
+                 {userInfo?.fullName || userInfo?.firstName + userInfo?.lastName}
               </div>
-              <div style={{ fontSize:"20px"}}>
-                <img src="" alt="" style={{borderRadius:"50px" , width:"30px" , height:"30px", margin:"0px 10px"}} />
-                Mr. Client <span style={{color:'#979797'}}>(User)</span>
-              </div>
+             
             </div>
           </div>
           <div style={{backgroundColor:"rgb(240 249 255)", height:"580px", overflow:"scroll", position:"relative"}}>
             <div style={{padding:"20px" , height:"490px", overflow:"scroll",}}>
-              {messages?.map((message, index) => (
+              {messagesInfo?.chats?.map((message, index) => (
                 <div
                   key={index}
                   className={`${
-                    message.sender
+                    message.sender !== id
                       ? "chat-input-Active"
                       : "chat-input-inactive"
                   }`}
                 >
-                  {message}
+                  {message?.message}
                 </div>
               ))}
             </div>

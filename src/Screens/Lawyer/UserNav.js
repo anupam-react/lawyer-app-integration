@@ -65,7 +65,10 @@ const UserNav = () => {
           <button onClick={() => setRemModal(true)}>Set Reminder</button> */}
         </div>
 
-        <div className="right" style={{cursor:"pointer"}} onClick={() => navigate("/notification")}>
+        <div className="right" style={{cursor:"pointer"}} onClick={() => navigate("/chat-list")}>
+          <img src="../chat-icon.png" alt="" style={{width:"30px"}}/>
+        </div>
+        <div className="right" style={{cursor:"pointer"}} onClick={() => navigate("/notification-lawyer")}>
           <img src="./Images/98.png" alt="" />
         </div>
       </div>

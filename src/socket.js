@@ -4,7 +4,6 @@ import { io } from "socket.io-client";
 const SERVER_URL = "wss://flyweisgroup.com";
 
 // Your access token
-const ACCESS_TOKEN = sessionStorage.getItem('token');
 
 // Setup socket connection with headers
 const socket = io(SERVER_URL, {
@@ -23,8 +22,32 @@ socket.on("userConnected", (data) => {
   console.log("User connected:", data);
 });
 
+
 socket.on("disconnect", () => {
   console.log("Disconnected from the server");
 });
+
+export async function sendMesage(id,message ) {
+    socket.emit('sendMessage', {
+        to: id,
+        chat: {
+         "messageType": "text",
+         "message": message
+     }
+    })
+}
+
+export async function viewChat(id) {
+    socket.emit('viewChat', {
+        id:id   
+    })
+}
+export async function chatList(id) {
+    socket.emit('chatList', {
+    id: id,
+    isUnread: true  
+    })
+}
+
 
 export default socket;

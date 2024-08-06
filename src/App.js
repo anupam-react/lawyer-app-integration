@@ -21,7 +21,6 @@ import Reminder from './Screens/Lawyer/Reminder'
 import Consultation from './Screens/Lawyer/Consultation'
 import LawyerProfile from './Screens/Lawyer/LawyerProfile'
 import Appointment from './Screens/Appointment'
-import Notification from './Screens/Notification'
 import NotificationUser from './Screens/User/NotificationUser'
 import CategoryDetails from './Screens/CategoryDetails'
 import ServiceDetails from './Screens/ServiceDetails'
@@ -33,6 +32,9 @@ import Order from './Screens/EightScreen'
 
 import VideoCall from './VideoCall'
 import Messages from './Screens/Messages'
+import MessagesList from './Screens/MessagesList'
+import NotificationLawyer from './Screens/NotificationLawyer'
+import MessagesListUser from './Screens/MessagesListUser'
 
 
 const App = () => {
@@ -57,7 +59,7 @@ const App = () => {
         <Route path='/user-profile' element={<UserProfile />} />
         <Route path='/payment/:id' element={<Order />} />
         <Route path='/payment-instant/:id' element={<Order isInstant={true}/>} />
-        <Route path='/notification' element={<Notification />} />
+        <Route path='/notification-lawyer' element={<NotificationLawyer />} />
         <Route path='/notification-user' element={<NotificationUser />} />
         <Route path='/service/:id' element={<ServiceCustomer />} />
   
@@ -65,6 +67,8 @@ const App = () => {
         <Route path='/' element={<HomeScreen />} />
         <Route path='/videocall/:id' element={<VideoCall />} />
         <Route path='/chat/:id' element={<Messages />} />
+        <Route path='/chat-list' element={<MessagesList />} />
+        <Route path='/chat-list-user' element={<MessagesListUser />} />
         <Route path='/second' element={<SecondScreen /> } />
         <Route path='/third' element={<ThirdScreen />} />
         <Route path='/fourth' element={<Fourth />} />
