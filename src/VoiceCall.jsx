@@ -1,28 +1,185 @@
-import React, { useEffect, useState } from "react";
-import AgoraUIKit from 'agora-react-uikit';
-import { initAgora, joinChannel, leaveChannel, publishTracks, unpublishTracks } from "./agoraService";
+import React, { useEffect, useRef, useState } from "react";
+import AgoraRTC from "agora-rtc-sdk-ng";
+import { useRecoilState } from "recoil";
+import { Metting } from "./Component/Atoms/caseAtom";
+import useLawyerProfile from "./hooks/useLawyerProfile";
+import useCustomerProfile from "./hooks/useCustomerProfile";
+import { updateApiData } from "./utils";
+// Environment variables for Agora App ID and Token
 
 const VoiceCall = () => {
-  const [videoCall, setVideoCall] = useState(true);
-  const rtcProps = {
-    appId: '8aed948fbc254c6ea0c7db73791ae484', 
-    channel: 'test', 
-    token: null, // enter your channel token as a string 
-  }; 
-  const callbacks = {
-    EndCall: () => setVideoCall(false),
-  };
-  return videoCall ? (
-    <div style={{display: 'flex', width: '100%', height: '100vh'}}>
-      <AgoraUIKit rtcProps={rtcProps} callbacks={callbacks} videoCall/>
-    </div>
-  ) : (
-    <button onClick={() => setVideoCall(true)}>Join</button>
+  const [localTrack, setLocalTrack] = useState(null);
+  const [remoteUsers, setRemoteUsers] = useState({});
+  const [isJoined, setIsJoined] = useState(false);
+  const [metting, setMetting] = useRecoilState(Metting);
+  const {  UserInfo,
+} = useCustomerProfile()
+    console.log(UserInfo )
+  
+  console.log(metting)
+  const client = useRef(null);
 
+  const appId = "d7e8eab417054fe58809c9e1b2bac21e"; // Using environment variable
+  const token = null; // Using environment variable
+  const channel = "test"; // Channel name
+
+  useEffect(() => {
+    const init = async () => {
+      client.current = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
+      client.current.on("user-published", handleUserPublished);
+      client.current.on("user-unpublished", handleUserUnpublished);
+    };
+
+    init();
+
+    // return () => {
+    //   // Cleanup logic
+    //   if (localTrack) {
+    //     localTrack.close();
+    //   }
+    //   client.current.leave();
+    // };
+  }, [localTrack]);
+
+  const joinAndSubscribe = async () => {
+    try {
+      // Join the channel
+      await client.current.join(appId, channel, token, null);
+
+      console.log("Successfully joined the channel");
+
+      // Now, you can subscribe to streams
+      client.current.on("user-published", async (user, mediaType) => {
+        await client.current.subscribe(user, mediaType);
+        console.log("Subscribed to the user's stream successfully");
+        setIsJoined(true);
+        // Handle the received stream
+
+        if (mediaType === "audio") {
+          const remoteAudioTrack = user.audioTrack;
+          remoteAudioTrack.play(); // Plays the audio
+        }
+        const appoinmentId = sessionStorage.getItem("appoinmentId")
+        await updateApiData(`https://flyweisgroup.com/api/api/v1/customer/appointmentJoin/${appoinmentId}`)
+      });
+    } catch (error) {
+      console.error("Error joining channel or subscribing to streams:", error);
+    }
+  };
+
+  const joinChannel = async () => {
+    try {
+      // Join the channel
+      await client.current.join(appId, channel, token, null);
+      // Create microphone track
+      const microphoneTrack = await AgoraRTC.createMicrophoneAudioTrack();
+      setLocalTrack(microphoneTrack);
+      // Publish local track
+      await client.current.publish([microphoneTrack]);
+      const appoinmentId = sessionStorage.getItem("appoinmentId")
+      await updateApiData(`https://flyweisgroup.com/api/api/v1/customer/appointmentJoin/${appoinmentId}`)
+      setIsJoined(true); // Update state to indicate user has joined
+    } catch (error) {
+      console.error("Error joining Agora channel:", error);
+    }
+  };
+
+  const leaveChannel = async () => {
+    if (localTrack) {
+      localTrack.close(); // Close local track
+      setLocalTrack(null);
+    }
+    const appoinmentId = sessionStorage.getItem("appoinmentId")
+    await updateApiData(`https://flyweisgroup.com/api/api/v1/customer/appointmentEnd/${appoinmentId}`)
+    await client.current.leave();
+     // Leave the channel
+    setIsJoined(false); // Update state to indicate user has left
+    setRemoteUsers({}); // Clear remote users
+  };
+
+  const handleUserPublished = async (user, mediaType) => {
+    await client.current.subscribe(user, mediaType);
+    if (mediaType === "audio") {
+      const remoteAudioTrack = user.audioTrack;
+      setRemoteUsers((prev) => ({ ...prev, [user.uid]: remoteAudioTrack }));
+      remoteAudioTrack.play(); // Play remote audio
+    }
+  };
+
+  const handleUserUnpublished = (user) => {
+    setRemoteUsers((prev) => {
+      const updatedUsers = { ...prev };
+      delete updatedUsers[user.uid];
+      return updatedUsers;
+    });
+  };
+
+  return (
+    <div>
+     
+      <div>
+        <h3>Local Audio</h3>
+        <p>Your microphone is {isJoined ? "active" : "inactive"}.</p>
+        {!isJoined ? (
+          <>
+          {UserInfo?.userType === "LAWYER" ? 
+            <button
+              style={{
+                padding: "10px 20px",
+                marginLeft: "10px",
+                backgroundColor: "blue",
+                color: "white",
+                border: "none",
+                borderRadius: "8px",
+              }}
+              onClick={joinChannel}
+            >
+              Join Channel
+            </button>
+          :
+          <button
+          style={{
+            padding: "10px 20px",
+            marginLeft: "10px",
+            backgroundColor: "blue",
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+          }}
+          onClick={joinAndSubscribe}
+        >
+          Join Channel
+        </button>
+        }
+          
+          </>
+        ) : (
+          <button
+            style={{
+              padding: "10px 20px",
+              marginLeft: "10px",
+              backgroundColor: "red",
+              color: "white",
+              border: "none",
+              borderRadius: "8px",
+            }}
+            onClick={leaveChannel}
+          >
+            Leave Channel
+          </button>
+        )}
+      </div>
+      <div>
+        <h3>Remote Users</h3>
+        {Object.keys(remoteUsers).map((uid) => (
+          <div key={uid}>
+            <h4>User {uid}</h4>
+            <p>Audio is playing...</p>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 
 export default VoiceCall;
-
-
-

@@ -9,7 +9,7 @@ const useAllLawyers = () => {
   const [singleInstantLawyer , setSingleInstantLawyer] = useRecoilState(InstantsingleInfo)
 
   const getUserInfo = async ()=>{
-    const userData = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/admin/lawyer')
+    const userData = await fetchApiData('https://flyweisgroup.com/api/api/v1/admin/lawyer')
     setUserInfo(userData?.data)
     setSingleLawyer(userData?.data?.[0])
     setSingleInstantLawyer(userData?.data?.[0])

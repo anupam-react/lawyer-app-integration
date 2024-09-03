@@ -23,7 +23,7 @@ const [hamb, setHamb] = useState(true);
 
   
   async function fetchServiceInfo() {
-    const data = await fetchApiData(`https://shlok-mittal-lawyer-backend.vercel.app/api/v1/category/${id}`);
+    const data = await fetchApiData(`https://flyweisgroup.com/api/api/v1/category/${id}`);
     setCategoryInfo(data);
   }
 

@@ -26,7 +26,7 @@ const useBookAppointment = () => {
     }
     try {
       const response = await createApiData(
-        "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/create/Appointment",
+        "https://flyweisgroup.com/api/api/v1/customer/create/Appointment",
         formData
       );
       successToast("Book Appointment Successfully");

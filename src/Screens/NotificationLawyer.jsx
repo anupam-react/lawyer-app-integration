@@ -2,21 +2,32 @@ import React, { useEffect, useState } from 'react'
 import LawyerHOC from './Lawyer/LawyerHOC'
 import { fetchApiData, formatTime, getDateFromISOString, updateApiData } from '../utils'
 import { useNavigate } from 'react-router-dom'
+import { Metting } from '../Component/Atoms/caseAtom'
+import { useRecoilState } from 'recoil'
 
 const Notification = () => {
     const [allNotification, setAllNotification] = useState([])
+    const [metting, setMetting] = useRecoilState(Metting);
     const navigate = useNavigate()
 
   const getAllNotification = async ()=>{
-    const data = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/admin/notifications')
+    const data = await fetchApiData('https://flyweisgroup.com/api/api/v1/admin/notifications')
     setAllNotification(data?.data)
   }
 
  const handleNotification = async(data)=>{
+  console.log(data)
   if(data?.appointmentId?.appointmentType?.toLowerCase() === "chat") navigate(`/chat/${data?.appointmentId?.userId}`)
-    else navigate(`/videocall/${data?.appointmentId?.meetingId}`)
+    else if(data?.appointmentId?.appointmentType?.toLowerCase() === "video-call"){ 
+      setMetting(data?.appointmentId)
+  navigate(`/videocall/${data?.appointmentId?.meetingId}`)
+}
+  else{
+    setMetting(data?.appointmentId)
+    navigate(`/voiceCall/${data?.appointmentId?.meetingId}`)
+}
   sessionStorage.setItem("appoinmentId",data?.appointmentId?._id )
-  await updateApiData(`https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/appointmentJoin/${data?.appointmentId?._id}`)
+  await updateApiData(`https://flyweisgroup.com/api/api/v1/customer/appointmentJoin/${data?.appointmentId?._id}`)
  }
 
   useEffect(()=>{

@@ -52,7 +52,7 @@ function SignInModal(props) {
     };
     try {
       const response = await axios.post(
-        "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/forgetPassword",
+        "https://flyweisgroup.com/api/api/v1/customer/forgetPassword",
         formData
       );
       setActive(3)
@@ -69,7 +69,7 @@ function SignInModal(props) {
     };
     try {
       const response = await axios.post(
-        "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/forgetPassword",
+        "https://flyweisgroup.com/api/api/v1/lawyer/forgetPassword",
         formData
       );
       setActive(3)
@@ -86,7 +86,7 @@ function SignInModal(props) {
     };
     try {
       const response = await axios.post(
-        "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/forgotVerifyotp",
+        "https://flyweisgroup.com/api/api/v1/customer/forgotVerifyotp",
         formData
       );
       console.log(response?.data)
@@ -104,7 +104,7 @@ function SignInModal(props) {
     };
     try {
       const response = await axios.post(
-        "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/forgotVerifyotp",
+        "https://flyweisgroup.com/api/api/v1/lawyer/forgotVerifyotp",
         formData
       );
       sessionStorage.setItem("lawyerId", response?.data?.data?.userId)
@@ -123,7 +123,7 @@ function SignInModal(props) {
     };
     try {
       const response = await axios.post(
-        `https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/changePassword/${id}`,
+        `https://flyweisgroup.com/api/api/v1/customer/changePassword/${id}`,
         formData
       );
       setActive(0)
@@ -142,7 +142,7 @@ function SignInModal(props) {
     };
     try {
       const response = await axios.post(
-        `https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/changePassword/${id}`,
+        `https://flyweisgroup.com/api/api/v1/lawyer/changePassword/${id}`,
         formData
       );
       setActive(0)

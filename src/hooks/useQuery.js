@@ -20,7 +20,7 @@ const useQuery = () => {
 
     try {
       const response = await createApiData(
-        "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/help/createQuery",
+        "https://flyweisgroup.com/api/api/v1/help/createQuery",
         formData
       );
       successToast("Request Successfully");

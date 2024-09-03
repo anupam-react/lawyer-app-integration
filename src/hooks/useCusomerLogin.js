@@ -34,7 +34,7 @@ const useCusomerLogin = () => {
     };
     try {
       const response = await axios.post(
-        "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/signin",
+        "https://flyweisgroup.com/api/api/v1/customer/signin",
         formData
       );
       console.log(response?.data);
@@ -59,7 +59,7 @@ const useCusomerLogin = () => {
     };
     try {
       const response = await axios.post(
-        "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/signin",
+        "https://flyweisgroup.com/api/api/v1/lawyer/signin",
         formData
       );
       console.log(response?.data);
@@ -89,7 +89,7 @@ const useCusomerLogin = () => {
     };
     try {
       const response = await axios.post(
-        "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/registration",
+        "https://flyweisgroup.com/api/api/v1/customer/registration",
         formData
       );
       successToast("Regsiter Successfully");

@@ -40,7 +40,7 @@ export const BookAppoint = atom({
     lawyerId:'',
     caseId:'',
     appointmentDate:'',
-    appointmentType:'video call',
+    appointmentType:'video-call',
     appointmentTime:'',
     id:""
   },
@@ -55,3 +55,8 @@ export const BookAppointOrder = atom({
     appointmentTime:'',
   },
 });
+
+export const Metting = atom({
+  key: 'mettingOrderState',
+  default: {},
+})

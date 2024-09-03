@@ -42,6 +42,8 @@ export async function viewChat(id) {
         id:id   
     })
 }
+
+
 export async function chatList(id) {
     socket.emit('chatList', {
     id: id,

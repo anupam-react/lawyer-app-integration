@@ -11,7 +11,7 @@ function CunsultationModal(props) {
   const navigate = useNavigate()
 
   async function fetchCategory() {
-    const data = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/category');
+    const data = await fetchApiData('https://flyweisgroup.com/api/api/v1/category');
     setData(data?.data);
   }
 

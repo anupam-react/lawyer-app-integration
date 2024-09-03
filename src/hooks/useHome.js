@@ -8,20 +8,20 @@ const useHome = () => {
   const [government, setGovernment] = useState([])
 
   const getTrusted = async ()=>{
-    const data = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/Blog/getTrusted')
+    const data = await fetchApiData('https://flyweisgroup.com/api/api/v1/Blog/getTrusted')
     setTrusted(data?.data)
   }
 
   const getUserLove = async ()=>{
-    const data = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/Blog/getWhyUserLove')
+    const data = await fetchApiData('https://flyweisgroup.com/api/api/v1/Blog/getWhyUserLove')
     setUserLove(data?.data)
   }
   const getLegal = async ()=>{
-    const data = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/category?type=legal')
+    const data = await fetchApiData('https://flyweisgroup.com/api/api/v1/category?type=legal')
     setLegal(data?.data)
   }
   const getGovernment = async ()=>{
-    const data = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/category?type=government')
+    const data = await fetchApiData('https://flyweisgroup.com/api/api/v1/category?type=government')
     setGovernment(data?.data)
   }
 

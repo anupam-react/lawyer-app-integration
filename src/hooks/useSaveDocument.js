@@ -12,18 +12,18 @@ const useSaveDocument = () => {
 
 
   const getAllDocumnt = async ()=>{
-    const documentData = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/document/all')
+    const documentData = await fetchApiData('https://flyweisgroup.com/api/api/v1/lawyer/document/all')
     setAllDocuments(documentData?.data)
   }
 
   const getAllCase = async ()=>{
-    const caseData = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/case/all')
+    const caseData = await fetchApiData('https://flyweisgroup.com/api/api/v1/lawyer/case/all')
     setAllUsers(caseData?.data)
 
   }
 
   const getDocumentInfo = async (id)=>{
-    const document = await fetchApiData(`https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/document/get/${id}`)
+    const document = await fetchApiData(`https://flyweisgroup.com/api/api/v1/lawyer/document/get/${id}`)
     setSingleDocument(document?.data)
   }
 
@@ -41,7 +41,7 @@ const useSaveDocument = () => {
 
     try {
       const response = await createApiData(
-        'https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/document/add',
+        'https://flyweisgroup.com/api/api/v1/lawyer/document/add',
         formData
       );
       successToast("Add Document");

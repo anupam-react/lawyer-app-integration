@@ -11,19 +11,19 @@ const useDocument = () => {
   const [image , setImage] = useState({})
 
   const getAllDocumnt = async ()=>{
-    const documentData = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/document/all')
+    const documentData = await fetchApiData('https://flyweisgroup.com/api/api/v1/lawyer/document/all')
     setAllDocuments(documentData?.data)
 
   }
 
   const getAllCase = async ()=>{
-    const caseData = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/getCase')
+    const caseData = await fetchApiData('https://flyweisgroup.com/api/api/v1/customer/getCase')
     setAllUsers(caseData?.data)
 
   }
 
   const getDocumentInfo = async (id)=>{
-    const document = await fetchApiData(`https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/document/get/${id}`)
+    const document = await fetchApiData(`https://flyweisgroup.com/api/api/v1/customer/document/get/${id}`)
     setSingleDocument(document?.data)
   }
 
@@ -43,7 +43,7 @@ const useDocument = () => {
 
     try {
       const response = await createApiData(
-        'https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/document/add',
+        'https://flyweisgroup.com/api/api/v1/lawyer/document/add',
         formData
       );
       successToast("Add Document");

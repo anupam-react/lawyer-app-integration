@@ -34,7 +34,7 @@ const UserNav = () => {
    let  rating=2;
     let location="kolkata"
     try {
-      const response = await fetchApiData(`https://shlok-mittal-lawyer-backend.vercel.app/api/v1/user/getLawyersWithFilter?search=${item}`);
+      const response = await fetchApiData(`https://flyweisgroup.com/api/api/v1/user/getLawyersWithFilter?search=${item}`);
       setSearchResults(response?.data); // Assuming the API returns an array of results
     } catch (error) {
       console.error('Error fetching data:', error);

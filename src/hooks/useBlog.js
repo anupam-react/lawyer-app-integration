@@ -7,15 +7,15 @@ const useBlog = () => {
   const [blog, setBlog] = useState([])
 
   const getBlogCategory = async ()=>{
-    const data = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/BlogCategory/getBlogCategory')
+    const data = await fetchApiData('https://flyweisgroup.com/api/api/v1/BlogCategory/getBlogCategory')
     setCategory(data?.data)
   }
   const getBlogPopular = async ()=>{
-    const data = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/Blog/getBlogPopular')
+    const data = await fetchApiData('https://flyweisgroup.com/api/api/v1/Blog/getBlogPopular')
     setBlogPopular(data?.data)
   }
   const getBlog = async ()=>{
-    const data = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/Blog/getBlog')
+    const data = await fetchApiData('https://flyweisgroup.com/api/api/v1/Blog/getBlog')
     setBlog(data?.data)
   }
 

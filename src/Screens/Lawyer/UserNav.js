@@ -30,7 +30,7 @@ const UserNav = () => {
     let item = event.target.value;
 
     try {
-      const response = await fetchApiData(`https://shlok-mittal-lawyer-backend.vercel.app/api/v1/user/getCustomerWithFilter?search=${item}`);
+      const response = await fetchApiData(`https://flyweisgroup.com/api/api/v1/user/getCustomerWithFilter?search=${item}`);
  
       setSearchResults(response.data); // Assuming the API returns an array of results
     } catch (error) {

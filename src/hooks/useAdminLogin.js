@@ -30,7 +30,7 @@ const useAdminLogin = () => {
   const navigate = useNavigate();
 
   async function fetchCategory() {
-    const data = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/category');
+    const data = await fetchApiData('https://flyweisgroup.com/api/api/v1/category');
     setCategory(data?.data);
   }
 
@@ -89,7 +89,7 @@ const useAdminLogin = () => {
     formData.append("languages[0]", languages);
     try {
       const response = await axios.post(
-        "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/registration",
+        "https://flyweisgroup.com/api/api/v1/lawyer/registration",
         formData
       );
       successToast("Regsiter Successfully");

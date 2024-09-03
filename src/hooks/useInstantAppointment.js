@@ -8,7 +8,7 @@ const useInstantAppointment = () => {
   const handleInstantAppointment = async ()=>{
     try {
       const response = await createApiData(
-        "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/instant/Appointment",
+        "https://flyweisgroup.com/api/api/v1/customer/instant/Appointment",
         { appointmentType: "Call"}
       );
       successToast("Send Instant Appointment Successfully");

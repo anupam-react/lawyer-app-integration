@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from "react";
 import AgoraUIKit from 'agora-react-uikit';
-import { initAgora, joinChannel, leaveChannel, publishTracks, unpublishTracks } from "./agoraService";
 import { updateApiData } from "./utils";
 import { useParams } from "react-router-dom";
+import { Metting } from "./Component/Atoms/caseAtom";
+import { useRecoilState } from "recoil";
 
 const VideoCall = () => {
   const [videoCall, setVideoCall] = useState(true);
+  const [metting, setMetting] = useRecoilState(Metting);
   const {id}  = useParams()
   const rtcProps = {
-    appId: '8aed948fbc254c6ea0c7db73791ae484', 
+    appId: 'd7e8eab417054fe58809c9e1b2bac21e', 
     channel: id, 
     token: null, // enter your channel token as a string 
   }; 
   const callbacks = {
     EndCall: async() =>{
       const appoinmentId = sessionStorage.getItem("appoinmentId")
-      await updateApiData(`https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/appointmentEnd/${appoinmentId}`)
+      await updateApiData(`https://flyweisgroup.com/api/api/v1/customer/appointmentEnd/${appoinmentId}`)
        setVideoCall(false)
       },
   };
@@ -24,9 +26,9 @@ const VideoCall = () => {
       <AgoraUIKit rtcProps={rtcProps} callbacks={callbacks} />
     </div>
   ) : (
-    <button onClick={async() =>{ 
+    <button style={{padding:"10px 20px", marginLeft:"10px", backgroundColor:"blue", color:"white", border:"none", borderRadius:"8px"}} onClick={async() =>{ 
       const appoinmentId = sessionStorage.getItem("appoinmentId")
-      await updateApiData(`https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/appointmentJoin/${appoinmentId}`)
+      await updateApiData(`https://flyweisgroup.com/api/api/v1/customer/appointmentJoin/${appoinmentId}`)
       setVideoCall(true)}}>Join</button>
 
   );

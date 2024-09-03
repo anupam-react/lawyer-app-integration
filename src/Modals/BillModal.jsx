@@ -27,7 +27,7 @@ const handleChange = (option) => {
 
 
 const getAllCase = async ()=>{
-    const caseData = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/case/all')
+    const caseData = await fetchApiData('https://flyweisgroup.com/api/api/v1/lawyer/case/all')
     setAllUsers(caseData?.data)
 
   }
@@ -46,7 +46,7 @@ const getAllCase = async ()=>{
 console.log(formData)
     try {
       const response = await createApiData(
-        `https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/createBill/${customerId}`,
+        `https://flyweisgroup.com/api/api/v1/lawyer/createBill/${customerId}`,
         formData
       );
       successToast("Send Bill Successfully");

@@ -7,11 +7,11 @@ const useCity = () => {
 
 
   const getPopularCity = async ()=>{
-    const data = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/City/getCityPopular')
+    const data = await fetchApiData('https://flyweisgroup.com/api/api/v1/City/getCityPopular')
     setPopularCity(data?.data)
   }
   const getCity = async ()=>{
-    const data = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/City/getCity')
+    const data = await fetchApiData('https://flyweisgroup.com/api/api/v1/City/getCity')
     setCity(data?.data)
   }
 

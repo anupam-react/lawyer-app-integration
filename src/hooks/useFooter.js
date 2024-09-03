@@ -10,21 +10,21 @@ const useFooter = () => {
 
   
   async function fetchCategory() {
-    const data = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/category');
+    const data = await fetchApiData('https://flyweisgroup.com/api/api/v1/category');
     setCatInfo(data?.data);
   }
 
 
   const getPolicy = async ()=>{
-    const userData = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/privacy/all')
+    const userData = await fetchApiData('https://flyweisgroup.com/api/api/v1/privacy/all')
     setPolicy(userData)
   }
   const getLegal = async ()=>{
-    const data = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/category?type=legal')
+    const data = await fetchApiData('https://flyweisgroup.com/api/api/v1/category?type=legal')
     setLegal(data?.data)
   }
   const getGovernment = async ()=>{
-    const data = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/category?type=government')
+    const data = await fetchApiData('https://flyweisgroup.com/api/api/v1/category?type=government')
     setGovernment(data?.data)
   }
 

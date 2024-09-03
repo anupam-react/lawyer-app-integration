@@ -57,7 +57,7 @@ function UpdateLawyerprofile(props) {
    if(consultancyCost) formData.append("consultancyCost", consultancyCost);
     try {
       const response = await updateApiData(
-        "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/update",
+        "https://flyweisgroup.com/api/api/v1/lawyer/update",
         formData
       );
       successToast("Update Successfully");

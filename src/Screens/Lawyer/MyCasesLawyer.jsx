@@ -12,12 +12,12 @@ const MyCasesLawyer = () => {
   const [allUpcomingConsult, setAllUpcomingConsult] = useState([])
 
   const getAllCase = async ()=>{
-    const caseData = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/case/all')
+    const caseData = await fetchApiData('https://flyweisgroup.com/api/api/v1/lawyer/case/all')
     setAllCases(caseData?.data)
   }
 
   const getAllUpcomingConsult = async ()=>{
-    const consultData = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/Appointment/upcomingAppointment')
+    const consultData = await fetchApiData('https://flyweisgroup.com/api/api/v1/lawyer/Appointment/upcomingAppointment')
     setAllUpcomingConsult(consultData?.data)
   }
 

@@ -18,7 +18,7 @@ const LawyerCity = () => {
 
   
   async function fetchServiceInfo() {
-    const data = await fetchApiData(`https://shlok-mittal-lawyer-backend.vercel.app/api/v1/user/getLawyersWithFilter?location=${id}`);
+    const data = await fetchApiData(`https://flyweisgroup.com/api/api/v1/user/getLawyersWithFilter?location=${id}`);
     setCategoryInfo(data?.data);
   }
 

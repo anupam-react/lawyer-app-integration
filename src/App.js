@@ -35,6 +35,7 @@ import Messages from './Screens/Messages'
 import MessagesList from './Screens/MessagesList'
 import NotificationLawyer from './Screens/NotificationLawyer'
 import MessagesListUser from './Screens/MessagesListUser'
+import VoiceCall from './VoiceCall'
 
 
 const App = () => {
@@ -66,6 +67,7 @@ const App = () => {
         </Route>
         <Route path='/' element={<HomeScreen />} />
         <Route path='/videocall/:id' element={<VideoCall />} />
+        <Route path='/voiceCall/:id' element={<VoiceCall />} />
         <Route path='/chat/:id' element={<Messages />} />
         <Route path='/chat-list' element={<MessagesList />} />
         <Route path='/chat-list-user' element={<MessagesListUser />} />

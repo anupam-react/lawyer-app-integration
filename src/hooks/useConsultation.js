@@ -8,17 +8,17 @@ const useConsultation = () => {
 
 
   const getAllUpcomingConsult = async ()=>{
-    const consultData = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/Appointment/upcomingAppointment')
+    const consultData = await fetchApiData('https://flyweisgroup.com/api/api/v1/lawyer/Appointment/upcomingAppointment')
     setAllUpcomingConsult(consultData?.data)
   }
 
   const getAllPastConsult = async ()=>{
-    const document = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/pastAppointment')
+    const document = await fetchApiData('https://flyweisgroup.com/api/api/v1/lawyer/pastAppointment')
     setAllPastConsult(document?.data)
   }
 
   const getAllCancelConsult = async ()=>{
-    const document = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/allCancelAppointment')
+    const document = await fetchApiData('https://flyweisgroup.com/api/api/v1/lawyer/allCancelAppointment')
     setAllCancelConsult(document?.data)
   }
 

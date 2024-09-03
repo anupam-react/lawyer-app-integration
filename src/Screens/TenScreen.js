@@ -14,7 +14,7 @@ const TenScreen = () => {
   const navigate = useNavigate("")
 
   const getAllLawyer = async ()=>{
-    const data = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/getmyLawyer')
+    const data = await fetchApiData('https://flyweisgroup.com/api/api/v1/customer/getmyLawyer')
     setMyLawyer(data?.data)
 
   }

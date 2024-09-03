@@ -8,7 +8,7 @@ const NotificationUser = () => {
     const [allNotification, setAllNotification] = useState([])
 
   const getAllNotification = async ()=>{
-    const data = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/admin/notifications')
+    const data = await fetchApiData('https://flyweisgroup.com/api/api/v1/admin/notifications')
     setAllNotification(data?.data)
   }
  

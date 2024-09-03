@@ -16,7 +16,7 @@ const SecondScreen = () => {
   const [caseInfo, setCaseInfo] = useState([]);
 
   const getCase = async ()=>{
-    const userData = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/Blog/getCaseManager')
+    const userData = await fetchApiData('https://flyweisgroup.com/api/api/v1/Blog/getCaseManager')
     setCaseInfo(userData?.data)
   }
 
@@ -38,7 +38,7 @@ const SecondScreen = () => {
   
     try {
       const response = await axios.post(
-        "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/registration",
+        "https://flyweisgroup.com/api/api/v1/lawyer/registration",
         formData
       );
       successToast("Regsiter Successfully");

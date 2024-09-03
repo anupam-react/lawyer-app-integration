@@ -31,7 +31,7 @@ const handlePayment =  useCallback( async () => {
     try {
      const paymentId = response.razorpay_payment_id;
      console.log(paymentId)
-     const addMoney = await createApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/user/addMoney', {amount: amount , id: paymentId})
+     const addMoney = await createApiData('https://flyweisgroup.com/api/api/v1/user/addMoney', {amount: amount , id: paymentId})
      console.log(addMoney);
     } catch (err) {
       console.log(err);
@@ -71,7 +71,7 @@ const handlePayment =  useCallback( async () => {
 // console.log(formData)
 //     try {
 //       const response = await createApiData(
-//         'https://shlok-mittal-lawyer-backend.vercel.app/api/v1/user/withdrawRequest',
+//         'https://flyweisgroup.com/api/api/v1/user/withdrawRequest',
 //         formData
 //       );
 //       successToast("Send AddMoney Request");

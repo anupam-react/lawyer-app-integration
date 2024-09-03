@@ -9,7 +9,7 @@ const useAddCase = () => {
   const [allUsers, setAllUsers] = useState([])
 
   const getAllUsers = async ()=>{
-    const userData = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/admin/users')
+    const userData = await fetchApiData('https://flyweisgroup.com/api/api/v1/admin/users')
     setAllUsers(userData?.data)
   }
  
@@ -47,7 +47,7 @@ const useAddCase = () => {
 console.log(formData)
     try {
       const response = await createApiData(
-        "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/case/add",
+        "https://flyweisgroup.com/api/api/v1/lawyer/case/add",
         formData
       );
       successToast("Add Case Successfully");

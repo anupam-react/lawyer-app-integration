@@ -22,7 +22,7 @@ function UpdateSkills(props) {
 
     try {
       const response = await updateApiData(
-        "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/addskill",
+        "https://flyweisgroup.com/api/api/v1/lawyer/addskill",
         formData
       );
       successToast("Update Successfully");

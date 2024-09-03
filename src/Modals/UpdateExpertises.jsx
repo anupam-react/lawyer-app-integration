@@ -21,7 +21,7 @@ function UpdateExpertises(props) {
 
     try {
       const response = await updateApiData(
-        "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/addExpertise",
+        "https://flyweisgroup.com/api/api/v1/lawyer/addExpertise",
         formData
       );
       successToast("Update Successfully");

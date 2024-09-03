@@ -7,11 +7,13 @@ import ThankYouModal from "../Modals/ThankYouModal";
 import useRazorpay from "react-razorpay";
 import { createApiData, fetchApiData, updateApiData } from "../utils";
 import { useRecoilState } from "recoil";
-import { BookAppoint } from "../Component/Atoms/caseAtom";
+import { BookAppoint, Metting } from "../Component/Atoms/caseAtom";
+import { successToast } from "../Component/Toast";
 
 const Order = ({isInstant = false}) => {
   const [ThankYouOpen, setThankYouOpen] = useState(false);
   const [appoinment, setAppoinment] = useRecoilState(BookAppoint);
+  const [metting, setMetting] = useRecoilState(Metting);
   const [userInfo, setUserInfo] = useState();
 
   const navigate = useNavigate();
@@ -31,7 +33,7 @@ const Order = ({isInstant = false}) => {
 
   const getUserInfo = async () => {
     const userData = await fetchApiData(
-      `https://shlok-mittal-lawyer-backend.vercel.app/api/v1/admin/User/${id}`
+      `https://flyweisgroup.com/api/api/v1/admin/User/${id}`
     );
     setUserInfo(userData?.data);
   };
@@ -62,14 +64,19 @@ const Order = ({isInstant = false}) => {
           console.log(appoinment);
 
           await createApiData(
-            "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/user/payNowForWebsite",
+            "https://flyweisgroup.com/api/api/v1/user/payNowForWebsite",
             { amount: `${totalPay}`, reciverId: id, id: paymentId }
           );
           const appoinmentId = sessionStorage.getItem("appoinmentId")
-         const data =  await updateApiData(`https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/appointmentStart/${appoinmentId}`)
+         const data =  await updateApiData(`https://flyweisgroup.com/api/api/v1/customer/appointmentStart/${appoinmentId}`)
          if(data?.data?.appointmentType?.toLowerCase() === "chat") navigate(`/chat/${id}`)
-          else{
+          else if(data?.data?.appointmentType?.toLowerCase() === "video-call"){
+
         navigate(`/videocall/${data?.data?.meetingId}`)
+        setMetting(data?.data)
+        }else{
+          navigate(`/voiceCall/${data?.data?.meetingId}`)
+          setMetting(data?.data)
         }
         } catch (err) {
           console.log(err);
@@ -101,12 +108,13 @@ const Order = ({isInstant = false}) => {
     };
     try {
       const response = await createApiData(
-        "https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/create/Appointment",
+        "https://flyweisgroup.com/api/api/v1/customer/create/Appointment",
         formData
       );
       console.log(response)
       sessionStorage.setItem("appoinmentId",response?._id )
       setAppoinment(response?.data)
+      successToast("Book Appoinment Successfully")
     } catch (error) {
       console.log(error);
       return error;
@@ -155,7 +163,8 @@ const Order = ({isInstant = false}) => {
               <select id="" value={appoinment?.appointmentType}
                 name="appointmentType"
                 onChange={handleChange}>
-                <option value="video call">Video Call</option>
+                <option value="video-call">Video Call</option>
+                <option value="voice-call">Voice Call</option>
                 <option value="chat">Chat</option>
               </select>
             </div>
@@ -173,8 +182,8 @@ const Order = ({isInstant = false}) => {
             <select id="" value={appoinment?.appointmentType}
                 name="appointmentType"
                 onChange={handleChange}>
-                <option value="video call">Video Call</option>
-                <option value="voice call">Voice Call</option>
+                <option value="video-call">Video Call</option>
+                <option value="voice-call">Voice Call</option>
                 <option value="chat">Chat</option>
               </select>
           </div>
@@ -197,16 +206,17 @@ const Order = ({isInstant = false}) => {
           />
         </div>
         </div>
-        {/* <div style={{display:"flex", justifyContent:"center" , marginTop:"30px"}}>
-        <button onClick={()=>handleBookAppointment(id)} style={{ fontSize: "18px", borderRadius:"10px", border:"none", backgroundColor:"white", fontWeight: 700, padding:"8px 0px", width: "150px" , marginBottom:"10px" }}>
+        <div style={{display:"flex", justifyContent:"center" , marginTop:"30px"}}>
+        <button onClick={handleBookAppointment} style={{ fontSize: "18px", borderRadius:"10px", border:"none", backgroundColor:"white", fontWeight: 700, padding:"8px 0px", width: "100%" , marginBottom:"10px" }}>
         Book Consult
       </button>
 
-        </div> */}
+        </div>
       </div> 
         
       }
 
+        {isInstant &&
         <div className="right">
           <div className="upper">
             <p className="head">Your Order Summary</p>
@@ -275,6 +285,7 @@ const Order = ({isInstant = false}) => {
             </div>
           </div>
         </div>
+        }
       </div>
 
       <Footer />

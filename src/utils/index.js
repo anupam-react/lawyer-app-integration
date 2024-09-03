@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://shlok-mittal-lawyer-backend.vercel.app/";
+const BASE_URL = "https://flyweisgroup.com/api/";
 
 export const fetchApiData = async (url) => {
   let token = sessionStorage.getItem("token");

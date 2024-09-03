@@ -7,16 +7,16 @@ const useLawyerProfile = () => {
   const [WalletInfo, setWalletInfo] = useState([])
 
   const getUserInfo = async ()=>{
-    const userData = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/lawyer/getProfile')
+    const userData = await fetchApiData('https://flyweisgroup.com/api/api/v1/lawyer/getProfile')
     setUserInfo(userData?.data)
   }
   const getCustomerInfo = async ()=>{
-    const userData = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/getProfile')
+    const userData = await fetchApiData('https://flyweisgroup.com/api/api/v1/customer/getProfile')
     setCustomerInfo(userData?.data)
   }
 
   const getWalletInfo = async ()=>{
-    const wallet = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/user/getWallet')
+    const wallet = await fetchApiData('https://flyweisgroup.com/api/api/v1/user/getWallet')
     setWalletInfo(wallet?.data)
   }
 

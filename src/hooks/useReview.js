@@ -5,7 +5,7 @@ const useReview = () => {
   const [review, setReview] = useState([])
 
   const getReview = async ()=>{
-    const userData = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/user/allRating' )
+    const userData = await fetchApiData('https://flyweisgroup.com/api/api/v1/user/allRating' )
     setReview(userData?.data)
   }
 

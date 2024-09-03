@@ -5,7 +5,7 @@ const useMyLawyers = () => {
   const [UserInfo, setUserInfo] = useState([])
 
   const getUserInfo = async ()=>{
-    const userData = await fetchApiData('https://shlok-mittal-lawyer-backend.vercel.app/api/v1/customer/getmyLawyer')
+    const userData = await fetchApiData('https://flyweisgroup.com/api/api/v1/customer/getmyLawyer')
     setUserInfo(userData?.data)
   }
 
