@@ -1,5 +1,4 @@
 import React from "react";
-import useInstantAppointment from "../hooks/useInstantAppointment";
 import { useNavigate } from "react-router-dom";
 
 const LawyerCard2 = ({
@@ -8,7 +7,7 @@ const LawyerCard2 = ({
   setSingleInstantLawyer = () => {},
   setSingleLawyer = () => {},
 }) => {
-  const { handleInstantAppointment }= useInstantAppointment();
+
   const navigate = useNavigate()
   return (
     <div
@@ -60,7 +59,11 @@ const LawyerCard2 = ({
           Advocate. {data?.fullName || data?.firstName + " " + data?.lastName}
           <span style={{ fontSize:"24px", color:"#FF0000"  }}>.</span>
         </p>
-        <span style={{ fontWeight: 700 }}>{data?.categoryId?.[0]?.name}</span>
+        {data?.categoryId?.map((d, i) => (
+          <span key={i} style={{ fontWeight: 700 }}>
+            {d?.name + ", "}
+          </span>
+        ))}
         <br />
         {data?.languages?.map((d, i) => (
           <span key={i} style={{ fontWeight: 500, fontSize: "12px" }}>

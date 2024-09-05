@@ -5,7 +5,7 @@ import { Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import useCusomerLogin from "../hooks/useCusomerLogin";
 import AdminSignInModal from "./AdminSignInModal";
-import useAdminLogin from "../hooks/useAdminLogin";
+import { auth, provider, signInWithPopup } from '../firebase-config';
 import axios from "axios";
 
 function SignInModal(props) {
@@ -25,7 +25,9 @@ function SignInModal(props) {
     handleCheckboxChange,
     handleRegister,
     handleLogin,
-    handleAdminLogin
+    handleAdminLogin,
+    handleGoogleLoginUser,
+    handleGoogleLoginLawyer,
   } = useCusomerLogin();
 
   const [active, setActive] = useState(0);
@@ -42,6 +44,29 @@ function SignInModal(props) {
   };
   const handleSingUpChange = (event) => {
     setSelectedOption2(event.target.value);
+  };
+
+  const handleGoogleSignInUser = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      console.log('User Info:', user);
+      handleGoogleLoginUser(user)
+      // Handle the logged-in user information (e.g., send it to your backend or store it in state)
+    } catch (error) {
+      console.error('Error during sign-in:', error);
+    }
+  };
+  const handleGoogleSignInLawyer = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      console.log('User Info:', user);
+      handleGoogleLoginLawyer(user)
+      // Handle the logged-in user information (e.g., send it to your backend or store it in state)
+    } catch (error) {
+      console.error('Error during sign-in:', error);
+    }
   };
 
 
@@ -183,19 +208,16 @@ function SignInModal(props) {
                       </select>
                     </div>
                     <br />
-{/* 
-                    <div className="icons">
-                      <div className="google-button">
+
+                    {/* <div className="icons">
+                      <div className="google-button" style={{cursor:"pointer"}} onClick={handleGoogleSignInUser}>
                         <img src="../Images/40.png" alt="" />
                         <span>Google</span>
                       </div>
-                      <div className="google-button">
-                        <img src="../Images/41.png" alt="" />
-                        <span>Facebook</span>
-                      </div>
+                    
                     </div> */}
 
-                    <div>
+                    <div className="divRelative">
                       <i class="fa-solid fa-envelope"></i>
                       <input
                         type="email"
@@ -206,7 +228,7 @@ function SignInModal(props) {
                       />
                     </div>
 
-                    <div>
+                    <div className="divRelative">
                       <i class="fa-solid fa-user"></i>
                       <input
                         type="text"
@@ -216,7 +238,7 @@ function SignInModal(props) {
                         style={{ paddingLeft: "65px" }}
                       />
                     </div>
-                    <div>
+                    <div className="divRelative">
                       <i class="fa-solid fa-phone"></i>
                       <input
                         type="text"
@@ -226,7 +248,7 @@ function SignInModal(props) {
                         style={{ paddingLeft: "65px" }}
                       />
                     </div>
-                    <div>
+                    <div className="divRelative">
                       <i class="fa-solid fa-lock"></i>
                       <input
                         type="password"
@@ -292,18 +314,19 @@ function SignInModal(props) {
                     </select>
                   </div>
                   <br />
-{/* 
+
                   <div className="icons">
-                    <div className="google-button">
+                    <div className="google-button" style={{cursor:"pointer"}} onClick={
+                      selectedOption === "Costumer"
+                        ? handleGoogleSignInUser
+                        : handleGoogleSignInLawyer
+                    } >
                       <img src="../Images/40.png" alt="" />
                       <span>Google</span>
                     </div>
-                    <div className="google-button">
-                      <img src="../Images/41.png" alt="" />
-                      <span>Facebook</span>
-                    </div>
-                  </div> */}
-                  <div>
+                  
+                  </div>
+                  <div className="divRelative">
                     <i class="fa-solid fa-envelope"></i>
                     <input
                       type="email"
@@ -313,7 +336,7 @@ function SignInModal(props) {
                       style={{ paddingLeft: "65px" }}
                     />
                   </div>
-                  <div>
+                  <div className="divRelative"> 
                     <i class="fa-solid fa-lock"></i>
                     <input
                       type="password"

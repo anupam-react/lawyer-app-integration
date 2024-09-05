@@ -38,8 +38,8 @@ const ConsultCarousel = ({children}) => {
         swipeable={true}
         emulateTouch={true}
         interval={2000}
-        infiniteLoop={false}
-        autoPlay={false}
+        infiniteLoop={true}
+        autoPlay={true}
         showArrows={true}
         showThumbs={false}
         showStatus={false}

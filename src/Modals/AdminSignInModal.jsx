@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./style.scss";
 import useAdminLogin from "../hooks/useAdminLogin";
+import Select from "react-select";
 
 const AdminSignInModal = ({ selectedOption2, handleSingUpChange }) => {
   const {
@@ -42,6 +43,11 @@ const AdminSignInModal = ({ selectedOption2, handleSingUpChange }) => {
     setCategoryId,
     category,
     isChecked,
+    selectedLang,
+    selectedCategory,
+    handleLanguage,
+    handleCategory,
+    language,
     handleCheckboxChange,
     handleRegister,
     handleBarRegistrationImageChange,
@@ -71,14 +77,14 @@ const AdminSignInModal = ({ selectedOption2, handleSingUpChange }) => {
           </div>
         </div> */}
 
-        <div className="form-conatiner">
+        <main className="form-conatiner">
           <div>
             <select value={selectedOption2} onChange={handleSingUpChange}>
               <option value="Costumer">Costumer </option>
               <option value="Lawyer">Lawyer </option>
             </select>
           </div>
-          <div>
+          <div className="divRelative">
             <i class="fa-solid fa-envelope"></i>
             <input
               type="email"
@@ -89,7 +95,7 @@ const AdminSignInModal = ({ selectedOption2, handleSingUpChange }) => {
             />
           </div>
 
-          <div>
+          <div className="divRelative">
             <i class="fa-solid fa-user"></i>
             <input
               type="text"
@@ -100,7 +106,7 @@ const AdminSignInModal = ({ selectedOption2, handleSingUpChange }) => {
             />
           </div>
 
-          <div>
+          <div className="divRelative">
             <i class="fa-solid fa-phone"></i>
             <input
               type="text"
@@ -111,7 +117,7 @@ const AdminSignInModal = ({ selectedOption2, handleSingUpChange }) => {
             />
           </div>
 
-          <div>
+          <div className="divRelative">
             <i class="fa-solid fa-lock"></i>
             <input
               type="password"
@@ -172,12 +178,19 @@ const AdminSignInModal = ({ selectedOption2, handleSingUpChange }) => {
               onChange={(e) => setPincode(e.target.value)}
             />
           </div>
-          <div>
-            <input
-              type="text"
-              placeholder="Languages Known"
-              value={languages}
-              onChange={(e) => setLanguages(e.target.value)}
+          <div style={{marginTop:"40px"}}>
+            <Select
+              isMulti
+              className="basic-multi-select"
+              placeholder="Select Languages"
+              styles={{ width: "20px" }}
+              value={selectedLang}
+              options={language?.map((user) => ({
+                value: user?.language,
+                label: user?.language,
+              }))}
+              defaultValue={language?.[0]?._id}
+              onChange={handleLanguage}
             />
           </div>
           <div>
@@ -234,13 +247,23 @@ const AdminSignInModal = ({ selectedOption2, handleSingUpChange }) => {
               onChange={(e) => setSkills(e.target.value)}
             />
           </div>
-          <div>
-          <select name="" id=""  value={categoryId} onChange={(e)=> setCategoryId(e.target.value)}>
-                {category?.map((d, i)=>(
-                    <option value={d?._id}>{d?.name}</option>
-
-                ))}
-              </select>
+          <div  style={{marginTop:"40px"}}>
+        
+            <Select
+              isMulti
+              className="basic-multi-select"
+              placeholder="Select Category"
+              styles={{ width: "20px"  }}
+              value={selectedCategory}
+              options={category?.map((user) => ({
+                value: user?._id,
+                label: user?.name,
+              }))}
+              defaultValue={category?.[0]?._id}
+              onChange={handleCategory}
+            />
+       
+       
           </div>
           <div style={{ position: "relative" }}>
             <input
@@ -286,7 +309,7 @@ const AdminSignInModal = ({ selectedOption2, handleSingUpChange }) => {
               onChange={handleAadharChange}
             />
           </div>
-        </div>
+        </main>
 
         <button className="login" onClick={handleRegister}>
           Sign Up

@@ -15,9 +15,9 @@ const useAdminLogin = () => {
   const [state, setState] = useState("");
   const [district, setDistrict] = useState("");
   const [pincode, setPincode] = useState("");
-  const [languages, setLanguages] = useState("");
+  const [languages, setLanguages] = useState([]);
   const [skills, setSkills] = useState("");
-  const [categoryId, setCategoryId] = useState("");
+  const [categoryId, setCategoryId] = useState([]);
   const [barCertificateNo, setBarCertificateNo] = useState("");
   const [barRegistrationNo, setBarRegistrationNo] = useState("");
   const [experiance, setExperiance] = useState("");
@@ -26,16 +26,23 @@ const useAdminLogin = () => {
   const [aadhar, setAadhar] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const [category, setCategory] = useState()
-
+  const [language, setLanguage] = useState()
+  const [selectedLang, setSelectedLang] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const navigate = useNavigate();
 
   async function fetchCategory() {
     const data = await fetchApiData('https://flyweisgroup.com/api/api/v1/category');
     setCategory(data?.data);
   }
+  async function fetchLanguage() {
+    const data = await fetchApiData('https://flyweisgroup.com/api/api/v1/admin/Language/All');
+    setLanguage(data?.data);
+  }
 
   useEffect(()=>{
     fetchCategory()
+    fetchLanguage()
   },[])
 
   const handleCheckboxChange = () => {
@@ -55,6 +62,16 @@ const useAdminLogin = () => {
   const handleAadharChange = (e) => {
     const file = e.target.files[0];
     setAadhar(file);
+  };
+  const handleLanguage = (option) => {
+    console.log(option)
+    setSelectedLang(option)
+    setLanguages(option?.map((d)=> d?.value))
+  
+  };
+  const handleCategory = (option) => {
+   setSelectedCategory(option)
+   setCategoryId(option?.map((d)=> d?.value))
   };
 
 
@@ -78,15 +95,22 @@ const useAdminLogin = () => {
     formData.append("state", state);
     formData.append("district", district);
     formData.append("pincode", pincode);
-    formData.append("skills[0]", skills);
-    formData.append("categoryId[0]", categoryId);
+    // formData.append("skills[0]", skills);
+    categoryId?.map((d,i)=>(
+      formData.append(`categoryId[${i}]`, d)
+
+    ))
     formData.append("barCertificateNo", barCertificateNo);
     formData.append("barRegistrationNo", barRegistrationNo);
     formData.append("barRegistrationImage", barRegistrationImage);
     formData.append("barCertificateImage", barCertificateImage);
     formData.append("aadhar", aadhar);
     formData.append("experiance", experiance);
-    formData.append("languages[0]", languages);
+    languages?.map((d,i)=>(
+      formData.append(`languages[${i}]`, d)
+
+    ))
+    console.log(formData)
     try {
       const response = await axios.post(
         "https://flyweisgroup.com/api/api/v1/lawyer/registration",
@@ -137,6 +161,11 @@ const useAdminLogin = () => {
     setBarRegistrationNo,
     isChecked,
     category,
+    selectedLang,
+    selectedCategory,
+    language,
+    handleLanguage,
+    handleCategory,
     handleCheckboxChange,
     handleRegister,
     handleBarRegistrationImageChange,

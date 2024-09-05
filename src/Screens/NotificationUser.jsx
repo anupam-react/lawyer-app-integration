@@ -43,51 +43,23 @@ const Notification = () => {
     getAllNotification();
   }, 40000);
   return (
-    <div style={{ padding: "20px 40px", height: "90vh", overflow: "scroll" }}>
-      <div
-        style={{
-          padding: "10px 20px",
-          borderRadius: "10px",
-          display: "flex",
-          flexDirection: "column",
-          gap: "20px",
-          background: "#0F2856",
-          border: "1px solid black",
-        }}
-      >
-        {allNotification?.map((data, i) => (
-          <div
-            onClick={() => handleNotification(data)}
-            key={i}
-            style={{
-              background: "white",
-              cursor: "pointer",
-              padding: "10px 20px",
-              color: "white",
-              borderRadius: "10px",
-            }}
-          >
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <p
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "20px",
-                  color: "#0F2C64",
-                }}
-              >
-                {data?.title} ({data?.appointmentId?.appointmentType})
-              </p>
-              <p style={{ color: "green" }}>
-                {getDateFromISOString(data?.date) +
-                  "," +
-                  formatTime(data?.date)}
-              </p>
+    <div style={{padding:"20px 40px" ,  height:"90vh" , overflow:"scroll"}}>
+    <div style={{padding:"10px 20px", borderRadius:"10px", display:"flex" , flexDirection:"column", gap:"20px", background:"#0F2856", border:"1px solid black"}}>
+        {allNotification?.map((data, i)=>(
+        <div onClick={()=>handleNotification(data)} key={i} style={{ background:"white" , cursor:"pointer", padding:"10px 20px", color:"white", borderRadius:"10px" , }}>
+            <div style={{display:"flex" , justifyContent:"space-between"}}>
+            <p style={{fontWeight:"bold", fontSize:"20px", color:"#0F2C64"}}>{data?.title} ({data?.appointmentId?.appointmentType})</p>
+            <p style={{color:"green"}}>{getDateFromISOString(data?.date) + "," + formatTime(data?.date)}</p>
+
             </div>
-            <p style={{ color: "#1D1D1D" }}>{data?.message}</p>
-          </div>
+            <p style={{color:"#1D1D1D"}}>{data?.message}</p>
+        </div>
+
         ))}
-      </div>
+        
     </div>
+
+</div>
   );
 };
 

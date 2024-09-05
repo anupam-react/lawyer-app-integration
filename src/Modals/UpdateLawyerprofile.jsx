@@ -2,10 +2,11 @@
 
 import { Modal } from "react-bootstrap";
 
-import { updateApiData } from "../utils";
+import { fetchApiData, updateApiData } from "../utils";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { successToast } from "../Component/Toast";
+import Select from "react-select";
 
 function UpdateLawyerprofile(props) {
   const [name, setName] = useState("");
@@ -19,9 +20,7 @@ function UpdateLawyerprofile(props) {
   const [state, setState] = useState("");
   const [district, setDistrict] = useState("");
   const [pincode, setPincode] = useState("");
-  const [languages1, setLanguages1] = useState("");
-  const [languages2, setLanguages2] = useState("");
-  const [skills, setSkills] = useState("");
+  const [languages, setLanguages] = useState([]);
   const [barCertificateNo, setBarCertificateNo] = useState("");
   const [barRegistrationNo, setBarRegistrationNo] = useState("");
   const [experiance, setExperiance] = useState("");
@@ -29,43 +28,63 @@ function UpdateLawyerprofile(props) {
   const [hearingFee, setHearingFee] = useState("");
   const [minofconsultance, setMinofconsultance] = useState("");
   const [consultancyCost, setConsultancyCost] = useState("");
+  const [language, setLanguage] = useState();
+  const [selectedLang, setSelectedLang] = useState(null);
+
+  async function fetchLanguage() {
+    const data = await fetchApiData(
+      "https://flyweisgroup.com/api/api/v1/admin/Language/All"
+    );
+    setLanguage(data?.data);
+  }
+
+  useEffect(() => {
+    fetchLanguage();
+  }, []);
+  const handleLanguage = (option) => {
+    console.log(option);
+    setSelectedLang(option);
+    setLanguages(option?.map((d) => d?.value));
+  };
 
   const handleUpdate = async (event) => {
     event.preventDefault();
 
     console.log(email, password);
     const formData = new FormData();
-   if(email) formData.append("email", email);
-   if(password) formData.append("password", password);
-   if(name) formData.append("fullName", name);
-   if(phone) formData.append("phone", phone);
-   if(image) formData.append("image", image);
-   if(firstLineAddress) formData.append("firstLineAddress", firstLineAddress);
-   if(secondLineAddress) formData.append("secondLineAddress", secondLineAddress);
-   if(country) formData.append("country", country);
-   if(state) formData.append("state", state);
-   if(district) formData.append("district", district);
-   if(pincode) formData.append("pincode", pincode);
-   if(barCertificateNo) formData.append("barCertificateNo", barCertificateNo);
-   if(barRegistrationNo) formData.append("barRegistrationNo", barRegistrationNo);
-   if(experiance) formData.append("experiance", experiance);
-   if(languages1) formData.append("languages[0]", languages1);
-   if(languages2) formData.append("languages[1]", languages2);
-   if(bio) formData.append("bio", bio);
-   if(hearingFee) formData.append("hearingFee", hearingFee);
-   if(minofconsultance) formData.append("minofconsultance", minofconsultance);
-   if(consultancyCost) formData.append("consultancyCost", consultancyCost);
+    if (email) formData.append("email", email);
+    if (password) formData.append("password", password);
+    if (name) formData.append("fullName", name);
+    if (phone) formData.append("phone", phone);
+    if (image) formData.append("image", image);
+    if (firstLineAddress) formData.append("firstLineAddress", firstLineAddress);
+    if (secondLineAddress)
+      formData.append("secondLineAddress", secondLineAddress);
+    if (country) formData.append("country", country);
+    if (state) formData.append("state", state);
+    if (district) formData.append("district", district);
+    if (pincode) formData.append("pincode", pincode);
+    if (barCertificateNo) formData.append("barCertificateNo", barCertificateNo);
+    if (barRegistrationNo)
+      formData.append("barRegistrationNo", barRegistrationNo);
+    if (experiance) formData.append("experiance", experiance);
+    if(languages?.length) languages?.map((d, i) => formData.append(`languages[${i}]`, d));
+    if (bio) formData.append("bio", bio);
+    if (hearingFee) formData.append("hearingFee", hearingFee);
+    if (minofconsultance) formData.append("minofconsultance", minofconsultance);
+    if (consultancyCost) formData.append("consultancyCost", consultancyCost);
     try {
       const response = await updateApiData(
         "https://flyweisgroup.com/api/api/v1/lawyer/update",
         formData
       );
       successToast("Update Successfully");
+      props.onHide();
     } catch (error) {
       console.log(error);
       return error;
     }
-    props.onHide()
+    
   };
 
   return (
@@ -132,7 +151,7 @@ function UpdateLawyerprofile(props) {
                   id="bar-file"
                   style={{ display: "none" }}
                   name=""
-                  onChange={(e)=> setImage(e.target.files[0])}
+                  onChange={(e) => setImage(e.target.files[0])}
                 />
               </div>
 
@@ -202,24 +221,22 @@ function UpdateLawyerprofile(props) {
                   onChange={(e) => setPincode(e.target.value)}
                 />
               </div>
-              <div>
-                <input
-                  type="text"
-                  placeholder="Languages Known1"
-                  style={{ borderRadius: "8px", padding: "5px" }}
-                  value={languages1}
-                  onChange={(e) => setLanguages1(e.target.value)}
+              <div style={{ paddingRight: "30px" }}>
+                <Select
+                  isMulti
+                  className="basic-multi-select"
+                  placeholder="Select Languages"
+                  styles={{ width: "20px" }}
+                  value={selectedLang}
+                  options={language?.map((user) => ({
+                    value: user?.language,
+                    label: user?.language,
+                  }))}
+                  defaultValue={language?.[0]?._id}
+                  onChange={handleLanguage}
                 />
               </div>
-              <div>
-                <input
-                  type="text"
-                  placeholder="Languages Known2"
-                  style={{ borderRadius: "8px", padding: "5px" }}
-                  value={languages2}
-                  onChange={(e) => setLanguages2(e.target.value)}
-                />
-              </div>
+
               <div>
                 <input
                   type="text"
@@ -284,7 +301,6 @@ function UpdateLawyerprofile(props) {
                   onChange={(e) => setConsultancyCost(e.target.value)}
                 />
               </div>
-     
             </div>
             <button onClick={handleUpdate}>Update</button>
           </div>

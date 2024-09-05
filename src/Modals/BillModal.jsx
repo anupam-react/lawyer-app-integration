@@ -84,6 +84,7 @@ console.log(formData)
                 <label style={{color:"#1D1D1D" , fontWeight:500}}>Select Customer</label>
                 <Select
                         className="item"
+                        
                         styles={{ width: "20px" }}
                         value={selectedUser}
                         options={allUsers?.map(d => ({

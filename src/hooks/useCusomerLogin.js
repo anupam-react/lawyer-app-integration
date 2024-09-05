@@ -9,17 +9,15 @@ const useCusomerLogin = () => {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [isChecked, setIsChecked] = useState(false);
-  const [otp, setOtp] = useState("")
-  const [newPass , setNewPass] = useState("")
-  const [confirmPass , setConfirmPass] = useState("")
+  const [otp, setOtp] = useState("");
+  const [newPass, setNewPass] = useState("");
+  const [confirmPass, setConfirmPass] = useState("");
 
   const navigate = useNavigate();
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
-
- 
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -40,6 +38,50 @@ const useCusomerLogin = () => {
       console.log(response?.data);
       sessionStorage.setItem("token", response?.data?.accessToken);
       navigate("/ninth");
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  };
+
+  const handleGoogleLoginUser = async (data) => {
+    console.log(data);
+    const formData = {
+      email: data?.email,
+      phone: data?.phoneNumber,
+      fullName: data?.displayName,
+      socialType: "Google",
+    };
+    try {
+      const response = await axios.post(
+        "https://flyweisgroup.com/api/api/v1/customer/socialLogin",
+        formData
+      );
+      console.log(response?.data);
+      sessionStorage.setItem("token", response?.data?.accessToken);
+      navigate("/ninth");
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  };
+
+  const handleGoogleLoginLawyer = async (data) => {
+    console.log(data);
+    const formData = {
+      email: data?.email,
+      phone: data?.phoneNumber,
+      fullName: data?.displayName,
+      socialType: "Google",
+    };
+    try {
+      const response = await axios.post(
+        "https://flyweisgroup.com/api/api/v1/lawyer/socialLogin",
+        formData
+      );
+      console.log(response?.data);
+      sessionStorage.setItem("token", response?.data?.accessToken);
+      navigate("/mycase");
     } catch (error) {
       console.log(error);
       return error;
@@ -112,14 +154,19 @@ const useCusomerLogin = () => {
     setPassword,
     phone,
     setPhone,
-    otp, setOtp,
-    newPass , setNewPass,
-    confirmPass , setConfirmPass,
+    otp,
+    setOtp,
+    newPass,
+    setNewPass,
+    confirmPass,
+    setConfirmPass,
     isChecked,
     handleCheckboxChange,
     handleRegister,
     handleAdminLogin,
     handleLogin,
+    handleGoogleLoginUser,
+    handleGoogleLoginLawyer,
   };
 };
 

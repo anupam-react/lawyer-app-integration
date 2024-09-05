@@ -4,7 +4,7 @@ import { useRecoilState } from "recoil";
 import { Metting } from "./Component/Atoms/caseAtom";
 import useLawyerProfile from "./hooks/useLawyerProfile";
 import useCustomerProfile from "./hooks/useCustomerProfile";
-import { updateApiData } from "./utils";
+import { createApiData, fetchApiData, updateApiData } from "./utils";
 // Environment variables for Agora App ID and Token
 
 const VoiceCall = () => {
@@ -12,12 +12,43 @@ const VoiceCall = () => {
   const [remoteUsers, setRemoteUsers] = useState({});
   const [isJoined, setIsJoined] = useState(false);
   const [metting, setMetting] = useRecoilState(Metting);
+  const [userInfo, setUserInfo] = useState();
+  const [seconds, setSeconds] = useState(0);
   const {  UserInfo,
 } = useCustomerProfile()
-    console.log(UserInfo )
   
-  console.log(metting)
+
   const client = useRef(null);
+
+  const getUserInfo = async () => {
+    const userData = await fetchApiData(
+      `https://flyweisgroup.com/api/api/v1/admin/User/${metting?.lawyer}`
+    );
+    
+    setUserInfo(userData?.data);
+  };
+
+  useEffect(()=>{
+    getUserInfo()
+  },[])
+
+  const totalPay =
+  userInfo?.consultancyCost + Math.round((userInfo?.consultancyCost) / 18);
+
+
+
+  useEffect(() => {
+    let interval;
+    if (isJoined) {
+      interval = setInterval(() => {
+        setSeconds(prev => prev + 1);
+      }, 1000);
+    }
+
+    return () => clearInterval(interval);
+  }, [isJoined]);
+
+  const minutes = Math.ceil(seconds / 60);
 
   const appId = "d7e8eab417054fe58809c9e1b2bac21e"; // Using environment variable
   const token = null; // Using environment variable
@@ -91,6 +122,7 @@ const VoiceCall = () => {
     }
     const appoinmentId = sessionStorage.getItem("appoinmentId")
     await updateApiData(`https://flyweisgroup.com/api/api/v1/customer/appointmentEnd/${appoinmentId}`)
+    await createApiData('https://flyweisgroup.com/api/api/v1/user/removeMoney',{amount : minutes * totalPay})
     await client.current.leave();
      // Leave the channel
     setIsJoined(false); // Update state to indicate user has left

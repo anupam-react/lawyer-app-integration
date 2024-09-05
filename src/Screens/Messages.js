@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import socket, { chatList, sendMesage, viewChat } from "../socket";
+import socket, { sendMesage, viewChat } from "../socket";
 import { useParams } from "react-router-dom";
 import { fetchApiData } from "../utils";
 const Messages = () => {
@@ -26,6 +26,10 @@ const Messages = () => {
       setMessage("");
     }
   };
+  setTimeout(() => {
+    viewChat(id);
+  }, 2000);
+
 
   useEffect(() => {
     socket.on("connect", () => {

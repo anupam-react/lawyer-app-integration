@@ -8,13 +8,16 @@ import useRazorpay from "react-razorpay";
 import { createApiData, fetchApiData, updateApiData } from "../utils";
 import { useRecoilState } from "recoil";
 import { BookAppoint, Metting } from "../Component/Atoms/caseAtom";
-import { successToast } from "../Component/Toast";
+import { successToast, warnToast } from "../Component/Toast";
+import useCustomerProfile from "../hooks/useCustomerProfile";
 
 const Order = ({isInstant = false}) => {
   const [ThankYouOpen, setThankYouOpen] = useState(false);
   const [appoinment, setAppoinment] = useRecoilState(BookAppoint);
   const [metting, setMetting] = useRecoilState(Metting);
   const [userInfo, setUserInfo] = useState();
+
+  const { WalletInfo } = useCustomerProfile()
 
   const navigate = useNavigate();
 
@@ -41,63 +44,103 @@ const Order = ({isInstant = false}) => {
   useEffect(() => {
     getUserInfo();
   }, [id]);
+
   const totalPay =
-    userInfo?.consultancyCost + Math.round(userInfo?.consultancyCost / 18);
+    userInfo?.consultancyCost * 10 + Math.round((userInfo?.consultancyCost * 10) / 18);
   console.log(appoinment);
 
   const [Razorpay, isLoaded] = useRazorpay();
 
-  const handlePayment = useCallback(async () => {
-    // const order = await createOrder(params);
+  // const handlePayment = useCallback(async () => {
+  //   // const order = await createOrder(params);
 
-    const options = {
-      key: "rzp_test_SIyQ7CGdRlVT9y",
-      amount: totalPay * 100,
-      currency: "INR",
-      name: "Lawbstar",
-      description: "Test Transaction",
-      image: "../Images/logo.png",
-      //   order_id: order.id,
-      handler: async (response) => {
-        try {
-          const paymentId = response.razorpay_payment_id;
-          console.log(appoinment);
+  //   const options = {
+  //     key: "rzp_test_SIyQ7CGdRlVT9y",
+  //     amount: totalPay * 100,
+  //     currency: "INR",
+  //     name: "Lawbstar",
+  //     description: "Test Transaction",
+  //     image: "../Images/logo.png",
+  //     //   order_id: order.id,
+  //     handler: async (response) => {
+  //       try {
+  //         const paymentId = response.razorpay_payment_id;
+  //         console.log(appoinment);
 
-          await createApiData(
-            "https://flyweisgroup.com/api/api/v1/user/payNowForWebsite",
-            { amount: `${totalPay}`, reciverId: id, id: paymentId }
-          );
-          const appoinmentId = sessionStorage.getItem("appoinmentId")
-         const data =  await updateApiData(`https://flyweisgroup.com/api/api/v1/customer/appointmentStart/${appoinmentId}`)
-         if(data?.data?.appointmentType?.toLowerCase() === "chat") navigate(`/chat/${id}`)
-          else if(data?.data?.appointmentType?.toLowerCase() === "video-call"){
+  //         await createApiData(
+  //           "https://flyweisgroup.com/api/api/v1/user/payNowForWebsite",
+  //           { amount: `${totalPay}`, reciverId: id, id: paymentId }
+  //         );
+  //         const appoinmentId = sessionStorage.getItem("appoinmentId")
+  //        const data =  await updateApiData(`https://flyweisgroup.com/api/api/v1/customer/appointmentStart/${appoinmentId}`)
+  //        if(data?.data?.appointmentType?.toLowerCase() === "chat") navigate(`/chat/${id}`)
+  //         else if(data?.data?.appointmentType?.toLowerCase() === "video-call"){
 
-        navigate(`/videocall/${data?.data?.meetingId}`)
-        setMetting(data?.data)
-        }else{
-          navigate(`/voiceCall/${data?.data?.meetingId}`)
-          setMetting(data?.data)
-        }
-        } catch (err) {
-          console.log(err);
-        }
-      },
-      prefill: {
-        name: userInfo?.fullName,
-        email: userInfo?.email,
-        contact: userInfo?.phone,
-      },
-      notes: {
-        address: "Razorpay Corporate Office",
-      },
-      theme: {
-        color: "#3399cc",
-      },
+  //       navigate(`/videocall/${data?.data?.meetingId}`)
+  //       setMetting(data?.data)
+  //       }else{
+  //         navigate(`/voiceCall/${data?.data?.meetingId}`)
+  //         setMetting(data?.data)
+  //       }
+  //       } catch (err) {
+  //         console.log(err);
+  //       }
+  //     },
+  //     prefill: {
+  //       name: userInfo?.fullName,
+  //       email: userInfo?.email,
+  //       contact: userInfo?.phone,
+  //     },
+  //     notes: {
+  //       address: "Razorpay Corporate Office",
+  //     },
+  //     theme: {
+  //       color: "#3399cc",
+  //     },
+  //   };
+
+  //   const rzpay = new Razorpay(options);
+  //   rzpay.open();
+  // }, [Razorpay, totalPay]);
+
+
+
+
+  const handleBookInstantAppointment = async () => {
+    console.log(WalletInfo , totalPay)
+    if(WalletInfo < totalPay) return warnToast("Insufficient Balance")
+    const formData = {
+      lawyerId: id,
+      appointmentDate: appoinment?.appointmentDate,
+      appointmentType: appoinment?.appointmentType,
+      appointmentTime: appoinment?.appointmentTime,
     };
+    try {
+      const response = await createApiData(
+        "https://flyweisgroup.com/api/api/v1/customer/create/Appointment",
+        formData
+      );
+      console.log(response)
+      sessionStorage.setItem("appoinmentId",response?._id )
+      setAppoinment(response?.data)
+      successToast("Book Appoinment Successfully")
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+    const appoinmentId = sessionStorage.getItem("appoinmentId")
+    const data =  await updateApiData(`https://flyweisgroup.com/api/api/v1/customer/appointmentStart/${appoinmentId}`)
+    if(data?.data?.appointmentType?.toLowerCase() === "chat") navigate(`/chat/${id}`)
+     else if(data?.data?.appointmentType?.toLowerCase() === "video-call"){
 
-    const rzpay = new Razorpay(options);
-    rzpay.open();
-  }, [Razorpay, totalPay]);
+   navigate(`/videocall/${data?.data?.meetingId}`)
+   setMetting(data?.data)
+   }else{
+     navigate(`/voiceCall/${data?.data?.meetingId}`)
+     setMetting(data?.data)
+   }
+  };
+
 
   const handleBookAppointment = async () => {
     const formData = {
@@ -226,14 +269,14 @@ const Order = ({isInstant = false}) => {
             <div className="main">
               <div className="two-Sec">
                 <p>Booking Charges</p>
-                <p>₹{userInfo?.consultancyCost}</p>
+                <p>₹{userInfo?.consultancyCost * 10}</p>
               </div>
               <input type="text" placeholder="Enter promo code here" />
             </div>
             <div className="main">
               <div className="two-Sec">
                 <p>IGST (18%)</p>
-                <p>₹{Math.round(userInfo?.consultancyCost / 18)}</p>
+                <p>₹{Math.round((userInfo?.consultancyCost *10 )/ 18)}</p>
               </div>
             </div>
 
@@ -252,11 +295,11 @@ const Order = ({isInstant = false}) => {
             <button
               style={{ padding: "5px 0px" }}
               onClick={() => {
-                handlePayment();
-                handleBookAppointment();
+          
+                handleBookInstantAppointment();
               }}
             >
-              Pay Now
+              Start
             </button>
           </div>
 

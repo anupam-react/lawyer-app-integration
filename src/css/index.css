@@ -933,11 +933,14 @@ code {
   background-color: #ffff;
 }
 
-.SignInModal form div {
+.SignInModal form {
   margin: auto;
   position: relative;
 }
-.SignInModal form div input , select {
+.divRelative{
+  position: relative;
+}
+.SignInModal form div input , select , Select {
   width: 100%;
   color: #000;
   font-weight: bold;
@@ -950,7 +953,19 @@ code {
   font-size: 17px;
   margin-top: 40px;
 }
-
+.select-input{
+  width: 100%;
+  color: #000;
+  font-weight: bold;
+  font-family: Open Sans;
+  border-radius: 50px;
+  padding: 5px;
+  outline: none;
+  border: 1px solid #000;
+  padding-left: 20px;
+  font-size: 17px;
+  margin-top: 40px;
+}
 .SignInModal form .icons {
   display: flex;
   justify-content: space-evenly;

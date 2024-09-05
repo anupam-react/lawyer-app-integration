@@ -15,7 +15,7 @@ const Appointment = () => {
       <div className="NinthFirst">
         <div className="left">
           {UserInfo?.map((d, i) => (
-            <LawyerCard unique={i} data={d} setSingleLawyer={setSingleLawyer} />
+            <LawyerCard unique={i} data={d} setSingleLawyer={setSingleLawyer} isBook={true}/>
           ))}
         </div>
 
