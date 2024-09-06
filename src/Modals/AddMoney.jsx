@@ -52,6 +52,7 @@ const handlePayment =  useCallback( async () => {
 
   const rzpay = new Razorpay(options);
   rzpay.open();
+  props.onHide()
 }, [Razorpay , amount]);
 
 
