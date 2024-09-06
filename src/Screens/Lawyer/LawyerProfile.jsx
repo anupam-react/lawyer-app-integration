@@ -19,7 +19,7 @@ const LawyerProfile = () => {
   const [hamb, setHamb] = useState(true);
   return (
     <div>
-         <UpdateLawyerprofile show={updateProfile} onHide={() => setupdateProfile(false)} />
+         <UpdateLawyerprofile show={updateProfile} data={UserInfo} onHide={() => setupdateProfile(false)} />
          <UpdateExpertises show={updateExpertises} onHide={() => setUpdateExpertises(false)} />
          <UpdateSkills show={updateSkill} onHide={() => setUpdateSkill(false)} />
 

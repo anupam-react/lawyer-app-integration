@@ -57,7 +57,11 @@ const LawyerCard2 = ({
           }}
         >
           Advocate. {data?.fullName || data?.firstName + " " + data?.lastName}
-          <span style={{ fontSize:"24px", color:"#FF0000"  }}>.</span>
+          {data?.lawyerStatus ? 
+          <span style={{ fontSize:"26px", color:"#008000"  }}>.</span>
+          :
+          <span style={{ fontSize:"26px", color:"#FF0000"  }}>.</span>
+          }
         </p>
         {data?.categoryId?.map((d, i) => (
           <span key={i} style={{ fontWeight: 700 }}>
@@ -101,9 +105,13 @@ const LawyerCard2 = ({
         </div>
       </div>
 
-      <div className="right" style={{display:"flex", flexDirection:"column", justifyContent:"space-between"}}>
-        <div>
-          <p>Wait time - 2h:8 m</p>
+      <div className="right" style={{display:"flex", flexDirection:"column", justifyContent:"space-between", alignItems:"end"}}>
+        <div style={{paddingTop:"10px"}}>
+        {data?.lawyerStatus ? 
+          <p style={{color:"#008000"}}>Online</p>
+          :
+          <p>Offline</p>
+        }
         </div>
         <button onClick={()=>{
           navigate(`/payment-instant/${data?._id}`)

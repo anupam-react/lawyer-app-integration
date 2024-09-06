@@ -14,9 +14,9 @@ const VoiceCall = () => {
   const [metting, setMetting] = useRecoilState(Metting);
   const [userInfo, setUserInfo] = useState();
   const [seconds, setSeconds] = useState(0);
-  const {  UserInfo,
-} = useCustomerProfile()
-  
+  const { UserInfo } = useCustomerProfile();
+
+ 
 
   const client = useRef(null);
 
@@ -24,24 +24,22 @@ const VoiceCall = () => {
     const userData = await fetchApiData(
       `https://flyweisgroup.com/api/api/v1/admin/User/${metting?.lawyer}`
     );
-    
+
     setUserInfo(userData?.data);
   };
 
-  useEffect(()=>{
-    getUserInfo()
-  },[])
+  useEffect(() => {
+    getUserInfo();
+  }, []);
 
   const totalPay =
-  userInfo?.consultancyCost + Math.round((userInfo?.consultancyCost) / 18);
-
-
+    userInfo?.consultancyCost + Math.round(userInfo?.consultancyCost / 18);
 
   useEffect(() => {
     let interval;
     if (isJoined) {
       interval = setInterval(() => {
-        setSeconds(prev => prev + 1);
+        setSeconds((prev) => prev + 1);
       }, 1000);
     }
 
@@ -90,8 +88,10 @@ const VoiceCall = () => {
           const remoteAudioTrack = user.audioTrack;
           remoteAudioTrack.play(); // Plays the audio
         }
-        const appoinmentId = sessionStorage.getItem("appoinmentId")
-        await updateApiData(`https://flyweisgroup.com/api/api/v1/customer/appointmentJoin/${appoinmentId}`)
+        const appoinmentId = sessionStorage.getItem("appoinmentId");
+        await updateApiData(
+          `https://flyweisgroup.com/api/api/v1/customer/appointmentJoin/${appoinmentId}`
+        );
       });
     } catch (error) {
       console.error("Error joining channel or subscribing to streams:", error);
@@ -107,8 +107,10 @@ const VoiceCall = () => {
       setLocalTrack(microphoneTrack);
       // Publish local track
       await client.current.publish([microphoneTrack]);
-      const appoinmentId = sessionStorage.getItem("appoinmentId")
-      await updateApiData(`https://flyweisgroup.com/api/api/v1/customer/appointmentJoin/${appoinmentId}`)
+      const appoinmentId = sessionStorage.getItem("appoinmentId");
+      await updateApiData(
+        `https://flyweisgroup.com/api/api/v1/customer/appointmentJoin/${appoinmentId}`
+      );
       setIsJoined(true); // Update state to indicate user has joined
     } catch (error) {
       console.error("Error joining Agora channel:", error);
@@ -120,11 +122,18 @@ const VoiceCall = () => {
       localTrack.close(); // Close local track
       setLocalTrack(null);
     }
-    const appoinmentId = sessionStorage.getItem("appoinmentId")
-    await updateApiData(`https://flyweisgroup.com/api/api/v1/customer/appointmentEnd/${appoinmentId}`)
-    await createApiData('https://flyweisgroup.com/api/api/v1/user/removeMoney',{amount : minutes * totalPay})
+    const appoinmentId = sessionStorage.getItem("appoinmentId");
+    await updateApiData(
+      `https://flyweisgroup.com/api/api/v1/customer/appointmentEnd/${appoinmentId}`
+    );
+    if (UserInfo?.userType !== "LAWYER") {
+      await createApiData(
+        "https://flyweisgroup.com/api/api/v1/user/removeMoney",
+        { amount: minutes * totalPay }
+      );
+    }
     await client.current.leave();
-     // Leave the channel
+    // Leave the channel
     setIsJoined(false); // Update state to indicate user has left
     setRemoteUsers({}); // Clear remote users
   };
@@ -148,42 +157,40 @@ const VoiceCall = () => {
 
   return (
     <div>
-     
       <div>
         <h3>Local Audio</h3>
         <p>Your microphone is {isJoined ? "active" : "inactive"}.</p>
         {!isJoined ? (
           <>
-          {UserInfo?.userType === "LAWYER" ? 
-            <button
-              style={{
-                padding: "10px 20px",
-                marginLeft: "10px",
-                backgroundColor: "blue",
-                color: "white",
-                border: "none",
-                borderRadius: "8px",
-              }}
-              onClick={joinChannel}
-            >
-              Join Channel
-            </button>
-          :
-          <button
-          style={{
-            padding: "10px 20px",
-            marginLeft: "10px",
-            backgroundColor: "blue",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-          }}
-          onClick={joinAndSubscribe}
-        >
-          Join Channel
-        </button>
-        }
-          
+            {UserInfo?.userType === "LAWYER" ? (
+              <button
+                style={{
+                  padding: "10px 20px",
+                  marginLeft: "10px",
+                  backgroundColor: "blue",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "8px",
+                }}
+                onClick={joinChannel}
+              >
+                Join Channel
+              </button>
+            ) : (
+              <button
+                style={{
+                  padding: "10px 20px",
+                  marginLeft: "10px",
+                  backgroundColor: "blue",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "8px",
+                }}
+                onClick={joinAndSubscribe}
+              >
+                Join Channel
+              </button>
+            )}
           </>
         ) : (
           <button
@@ -202,10 +209,11 @@ const VoiceCall = () => {
         )}
       </div>
       <div>
-        <h3>Remote Users</h3>
+        <h3>{UserInfo?.userType === "LAWYER" ? "User" : "Lawyer"}</h3>
+        <h4>{UserInfo?.userType === "LAWYER" ? UserInfo?.fullName : userInfo?.fullName}</h4>
         {Object.keys(remoteUsers).map((uid) => (
           <div key={uid}>
-            <h4>User {uid}</h4>
+         
             <p>Audio is playing...</p>
           </div>
         ))}

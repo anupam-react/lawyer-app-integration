@@ -106,7 +106,7 @@ function UpdateLawyerprofile(props) {
                 <input
                   type="email"
                   placeholder="Email"
-                  value={email}
+                  value={email || props?.data?.email}
                   style={{ borderRadius: "8px", padding: "5px" }}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -117,7 +117,7 @@ function UpdateLawyerprofile(props) {
                   type="text"
                   placeholder="Full Name"
                   style={{ borderRadius: "8px", padding: "5px" }}
-                  value={name}
+                  value={name || props?.data?.fullName}
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
@@ -127,7 +127,7 @@ function UpdateLawyerprofile(props) {
                   type="text"
                   placeholder="Phone Number"
                   style={{ borderRadius: "8px", padding: "5px" }}
-                  value={phone}
+                  value={phone || props?.data?.phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
               </div>
@@ -170,7 +170,7 @@ function UpdateLawyerprofile(props) {
                   type="text"
                   placeholder="First line address"
                   style={{ borderRadius: "8px", padding: "5px" }}
-                  value={firstLineAddress}
+                  value={firstLineAddress || props?.data?.firstLineAddress}
                   onChange={(e) => setFirstLineAddress(e.target.value)}
                 />
               </div>
@@ -180,7 +180,7 @@ function UpdateLawyerprofile(props) {
                   type="text"
                   placeholder="Second line address"
                   style={{ borderRadius: "8px", padding: "5px" }}
-                  value={secondLineAddress}
+                  value={secondLineAddress  || props?.data?.secondLineAddress}
                   onChange={(e) => setSecondLineAddress(e.target.value)}
                 />
               </div>
@@ -190,7 +190,7 @@ function UpdateLawyerprofile(props) {
                   type="text"
                   placeholder="Country"
                   style={{ borderRadius: "8px", padding: "5px" }}
-                  value={country}
+                  value={country || props?.data?.country}
                   onChange={(e) => setCountry(e.target.value)}
                 />
               </div>
@@ -199,7 +199,7 @@ function UpdateLawyerprofile(props) {
                   type="text"
                   placeholder="State"
                   style={{ borderRadius: "8px", padding: "5px" }}
-                  value={state}
+                  value={state || props?.data?.state}
                   onChange={(e) => setState(e.target.value)}
                 />
               </div>
@@ -208,7 +208,7 @@ function UpdateLawyerprofile(props) {
                   type="text"
                   placeholder="District"
                   style={{ borderRadius: "8px", padding: "5px" }}
-                  value={district}
+                  value={district || props?.data?.district}
                   onChange={(e) => setDistrict(e.target.value)}
                 />
               </div>
@@ -217,7 +217,7 @@ function UpdateLawyerprofile(props) {
                   type="text"
                   placeholder="Pin code"
                   style={{ borderRadius: "8px", padding: "5px" }}
-                  value={pincode}
+                  value={pincode || props?.data?.pincode}
                   onChange={(e) => setPincode(e.target.value)}
                 />
               </div>
@@ -242,7 +242,7 @@ function UpdateLawyerprofile(props) {
                   type="text"
                   placeholder="Bar Registration number"
                   style={{ borderRadius: "8px", padding: "5px" }}
-                  value={barRegistrationNo}
+                  value={barRegistrationNo || props?.data?.barRegistrationNo}
                   onChange={(e) => setBarRegistrationNo(e.target.value)}
                 />
               </div>
@@ -252,7 +252,7 @@ function UpdateLawyerprofile(props) {
                   type="text"
                   placeholder="Bar Certificate"
                   style={{ padding: "5px", borderRadius: "8px" }}
-                  value={barCertificateNo}
+                  value={barCertificateNo || props?.data?.barCertificateNo}
                   onChange={(e) => setBarCertificateNo(e.target.value)}
                 />
               </div>
@@ -261,7 +261,7 @@ function UpdateLawyerprofile(props) {
                   type="text"
                   placeholder="Law Experiance"
                   style={{ padding: "5px", borderRadius: "8px" }}
-                  value={experiance}
+                  value={experiance || props?.data?.experiance}
                   onChange={(e) => setExperiance(e.target.value)}
                 />
               </div>
@@ -270,7 +270,7 @@ function UpdateLawyerprofile(props) {
                   type="text"
                   placeholder="Bio"
                   style={{ padding: "5px", borderRadius: "8px" }}
-                  value={bio}
+                  value={bio || props?.data?.bio}
                   onChange={(e) => setBio(e.target.value)}
                 />
               </div>
@@ -279,7 +279,7 @@ function UpdateLawyerprofile(props) {
                   type="text"
                   placeholder="hearing fee"
                   style={{ padding: "5px", borderRadius: "8px" }}
-                  value={hearingFee}
+                  value={hearingFee || props?.data?.hearingFee}
                   onChange={(e) => setHearingFee(e.target.value)}
                 />
               </div>
@@ -288,7 +288,7 @@ function UpdateLawyerprofile(props) {
                   type="text"
                   placeholder="min of consultance"
                   style={{ padding: "5px", borderRadius: "8px" }}
-                  value={minofconsultance}
+                  value={minofconsultance || props?.data?.minofconsultance}
                   onChange={(e) => setMinofconsultance(e.target.value)}
                 />
               </div>
@@ -297,7 +297,7 @@ function UpdateLawyerprofile(props) {
                   type="text"
                   placeholder="Consultancy Cost"
                   style={{ padding: "5px", borderRadius: "8px" }}
-                  value={consultancyCost}
+                  value={consultancyCost || props?.data?.consultancyCost}
                   onChange={(e) => setConsultancyCost(e.target.value)}
                 />
               </div>

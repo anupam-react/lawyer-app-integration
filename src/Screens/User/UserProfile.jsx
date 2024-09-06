@@ -15,7 +15,7 @@ const UserProfile = () => {
   const [hamb, setHamb] = useState(true);
   return (
     <div>
-         <UpdateCustomerProfile show={updateProfile} onHide={() => setupdateProfile(false)} />
+         <UpdateCustomerProfile show={updateProfile} data={cusomerInfo} onHide={() => setupdateProfile(false)} />
       <section className="HocSection" style={{ height: "200vh" }}>
         <div className="HocSide">
           <UserSide WalletInfo={WalletInfo} UserInfo={cusomerInfo} />

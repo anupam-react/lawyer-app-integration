@@ -63,7 +63,7 @@ function UpdateCustomerProfile(props) {
                 <input
                   type="email"
                   placeholder="Email"
-                  value={email}
+                  value={email || props?.data?.email}
                   style={{ borderRadius: "8px", padding: "5px" }}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -74,7 +74,7 @@ function UpdateCustomerProfile(props) {
                   type="text"
                   placeholder="Full Name"
                   style={{ borderRadius: "8px", padding: "5px" }}
-                  value={name}
+                  value={name || props?.data?.fullName}
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
@@ -84,7 +84,7 @@ function UpdateCustomerProfile(props) {
                   type="text"
                   placeholder="Phone Number"
                   style={{ borderRadius: "8px", padding: "5px" }}
-                  value={phone}
+                  value={phone || props?.data?.phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
               </div>
@@ -126,22 +126,18 @@ function UpdateCustomerProfile(props) {
                   type="text"
                   placeholder="kyc"
                   style={{ borderRadius: "8px", padding: "5px" }}
-                  value={kyc}
+                  value={kyc || props?.data?.kyc}
                   onChange={(e) => setkyc(e.target.value)}
                 />
               </div>
               <div>
-              <input type="checkbox"  style={{  marginRight: "5px" }} onChange={()=> setWhatAppNotification(!whatAppNotification)}   checked={whatAppNotification} />
+              <input type="checkbox"  style={{  marginRight: "5px" }} onChange={()=> setWhatAppNotification(!whatAppNotification)}   checked={whatAppNotification || props?.data?.whatAppNotification} />
               <label for="vehicle1">WhatApp Notification </label>
               </div>
               <div>
-              <input type="checkbox"  style={{  marginRight: "5px" }} onChange={()=> setBlogNotification(!blogNotification)}   checked={blogNotification} />
+              <input type="checkbox"  style={{  marginRight: "5px" }} onChange={()=> setBlogNotification(!blogNotification)}   checked={blogNotification || props?.data?.blogNotification} />
               <label for="vehicle1">Blog Notification</label>
               </div>
-              
-
-
-             
             </div>
             <button onClick={handleUpdate}>Update</button>
           </div>

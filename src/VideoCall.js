@@ -4,11 +4,14 @@ import { createApiData, fetchApiData, updateApiData } from "./utils";
 import { useParams } from "react-router-dom";
 import { Metting } from "./Component/Atoms/caseAtom";
 import { useRecoilState } from "recoil";
+import useCustomerProfile from "./hooks/useCustomerProfile";
 
 const VideoCall = () => {
   const [videoCall, setVideoCall] = useState(true);
   const [metting, setMetting] = useRecoilState(Metting);
   const [userInfo, setUserInfo] = useState();
+  const {  UserInfo,
+  } = useCustomerProfile()
   const {id}  = useParams()
 
   const [seconds, setSeconds] = useState(0);
@@ -54,7 +57,9 @@ const VideoCall = () => {
     EndCall: async() =>{
       const appoinmentId = sessionStorage.getItem("appoinmentId")
       await updateApiData(`https://flyweisgroup.com/api/api/v1/customer/appointmentEnd/${appoinmentId}`)
+      if(UserInfo?.userType !== "LAWYER"){
       await createApiData('https://flyweisgroup.com/api/api/v1/user/removeMoney',{amount : minutes * totalPay})
+      }
        setVideoCall(false)
       },
   };
