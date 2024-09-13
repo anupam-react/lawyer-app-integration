@@ -127,10 +127,12 @@ const VoiceCall = () => {
       `https://flyweisgroup.com/api/api/v1/customer/appointmentEnd/${appoinmentId}`
     );
     if (UserInfo?.userType !== "LAWYER") {
-      await createApiData(
-        "https://flyweisgroup.com/api/api/v1/user/removeMoney",
-        { amount: minutes * totalPay }
-      );
+      await createApiData('https://flyweisgroup.com/api/api/v1/user/payNowForWebsite',
+        {amount : minutes * totalPay, 
+          reciverId: metting?.lawyer,
+          appointmentId: metting?._id
+})
+   
     }
     await client.current.leave();
     // Leave the channel
