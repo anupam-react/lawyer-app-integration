@@ -10,6 +10,13 @@ const MessagesListUser = () => {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (!window.location.hash) {
+      window.location = window.location + '#loaded';
+      window.location.reload();
+    }
+  }, []);
+
   const getUserInfo = async () => {
     const userData = await fetchApiData(
       `https://flyweisgroup.com/api/api/v1/customer/getProfile`
@@ -21,6 +28,10 @@ const MessagesListUser = () => {
   useEffect(() => {
     getUserInfo();
   }, []);
+
+  // useEffect(()=>{
+  //   window.location.reload()
+  // },[])
 
   useEffect(() => {
     socket.on("connect", () => {
@@ -37,6 +48,7 @@ const MessagesListUser = () => {
       setMessagesInfo(data?.chat);
       console.log("Chat List", data);
     });
+
   }, [userInfo?._id]);
 
   return (

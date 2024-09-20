@@ -21,6 +21,13 @@ import LawyerHOC from "./Lawyer/LawyerHOC";
     getUserInfo()
   },[])
 
+  useEffect(() => {
+    if (!window.location.hash) {
+      window.location = window.location + '#loaded';
+      window.location.reload();
+    }
+  }, []);
+
   useEffect(()=>{
     socket.on("connect", () => {
       console.log("Connected to the server");
