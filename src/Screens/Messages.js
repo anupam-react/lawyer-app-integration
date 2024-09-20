@@ -9,6 +9,13 @@ const Messages = () => {
 
   const { id } = useParams();
 
+  useEffect(() => {
+    if (!window.location.hash) {
+      window.location = window.location + '#loaded';
+      window.location.reload();
+    }
+  }, []);
+
   const getUserInfo = async () => {
     const userData = await fetchApiData(
       `https://flyweisgroup.com/api/api/v1/admin/User/${id}`
